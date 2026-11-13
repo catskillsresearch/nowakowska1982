@@ -1,5 +1,7 @@
-`ActionAutomaton` carries $\tau$ (nonempty admissible sets) and $\pi$.
-`Admissible` is the inductive language of action strings;
-`language` is its set form. `nextState` records the corrected
-stimulus-indexed transition. `toActionSystem` embeds an automaton into the
-sixtuplet API with unit durations.
+`ActionAutomaton` carries tau (nonempty admissible sets) and pi (tuple letters
+normalized from printed T/Pi). `Admissible` / `language` are the inductive
+language; `nextState` and `admissible_cons_nextState` record the corrected
+stimulus index $b_{j-1}$ (print $n_{j-1}$). `toActionSystem` embeds into the
+sixtuplet API with unit durations. **Palomar novel:** `toActionSystem_L` /
+`toActionSystem_mem_L_iff` prove the realization reading that section 13 states
+without proof.

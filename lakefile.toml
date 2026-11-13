@@ -1,11 +1,11 @@
 name = "nowakowska1982"
 version = "0.1.0"
 keywords = ["action-theory", "nowakowska", "lean4"]
-defaultTargets = ["Actions"]
+defaultTargets = ["Actions", "Challenge", "Solution"]
 
 # `lake build` elaborates the root module Actions.lean, which must import
-# every file under Actions/ (the single barrel). Module system matches
-# DomainTheory / Palomar packaging.
+# every file under Actions/ (the single barrel). Challenge/Solution are the
+# Palomar Comparator pair (DomainTheory / scott1980 pattern).
 
 moreLeanArgs = [
   "-Dbackward.privateInPublic=true",
@@ -24,3 +24,11 @@ rev = "v4.36.0-rc2"
 [[lean_lib]]
 name = "Actions"
 globs = ["Actions"]
+
+[[lean_lib]]
+name = "Challenge"
+roots = ["Challenge"]
+
+[[lean_lib]]
+name = "Solution"
+roots = ["Solution"]

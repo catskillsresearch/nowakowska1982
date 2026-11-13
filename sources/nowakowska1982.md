@@ -8,9 +8,12 @@ editorial_notes: |
   - p.149: ≠ ∅, ∩, L \ R^{-1} kept as LaTeX (not =1= (/), (), L ",-R-I).
   - p.150: strongly attainable uses ⋂ (print wrongly has ⋃).
   - p.153–154: ≽_soc / ≻_x / B kept as LaTeX (not ~ soc / »soe / J3).
+  - p.156: A →_s B and G_p →_s K_p ∨ T_p kept as LaTeX (not -+s OCR).
   - p.159–160: T ⊆ L (print T ∈ L); (a) if xy ∈ L (print “is”); hats on T̂, Û kept.
   - p.169–171: automaton tuple normalized to ⟨U,B,Θ,D,#,τ,π⟩ to match prose;
     u_j = π(u_{j-1}, b_{j-1}, d_j) (print n_{j-1} typo).
+  Batch A verification (2026-11-13): body already uses corrected symbols for
+  §§4–7,13; no further OCR string rewrites required for Arrow / →_s / hats.
 ---
 
 # Transcription (LLM vision OCR)

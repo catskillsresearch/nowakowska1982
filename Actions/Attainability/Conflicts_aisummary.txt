@@ -1,0 +1,7 @@
+Section 4 observes that weak-but-not-strong attainability of a desirable
+four-motive set $C$ under-specifies the conflict: many subsets of $C$ may or
+may not be jointly attainable. The taxonomy takes the *downward-closed*
+family of strongly attainable subsets, requiring each singleton to be
+attainable and forbidding joint attainability of all four. Enumeration of
+these labeled patterns yields 113 types (machine-checked); the paper states
+the count without a displayed listing.

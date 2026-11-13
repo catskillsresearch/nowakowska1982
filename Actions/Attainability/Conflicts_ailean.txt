@@ -1,0 +1,6 @@
+`Conflicts.isDownset` / `hasAllAtoms` / `hasTop` encode the Boolean-lattice
+model on four labeled motives. `conflictPatterns` filters all $2^{16}$
+subset-families; `conflictPattern_card` proves the length is **113** by
+`native_decide`. **Palomar novel compared claim:** the paper asserts 113
+without exhibiting the enumeration; the decide proof is library-new. Motives
+are *labeled* (no $S_4$ quotient)—quotienting yields 19 orbits, not 113.

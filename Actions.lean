@@ -10,7 +10,11 @@ module -- shake: keep-all
 
 public import Actions.ActionSystem
 public import Actions.Attainability.Goals
+public import Actions.Attainability.Conflicts
 public import Actions.Means.Prax
 public import Actions.Promise.Promise
 public import Actions.Automata.Automaton
+public import Actions.Choice.Arrow
 public import Actions.Examples.ToyWorld
+
+

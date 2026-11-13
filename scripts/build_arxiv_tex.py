@@ -225,21 +225,32 @@ def embed_lstlean(preamble: str) -> str:
     return preamble.replace(marker, lstlean_path.read_text(encoding="utf-8"))
 
 
+# Bold first line of a ```source``` block: **Nowakowska, <Work> (YEAR), pp. …**
 _SOURCE_HEADER_RE = re.compile(
-    r"^\*\*(Nowakowska,\s*)Theory of Actions(\s*\(1982\).*?)\*\*\s*$",
+    r"^\*\*Nowakowska,\s*(.+?)\s*(\((?:1982|1973)\).*?)\*\*\s*$",
     re.MULTILINE,
 )
 
+_SOURCE_WORK_EMPH = {
+    "Theory of Actions": r"\emph{Theory of Actions}",
+    "Language of Motivation": r"\emph{Language of Motivation}",
+    "Language of Motivation and Language of Actions": (
+        r"\emph{Language of Motivation and Language of Actions}"
+    ),
+}
+
 
 def source_header_to_title(header: str) -> str:
-    """Turn ``**Nowakowska, Theory of Actions (1982), pp. …**`` into a box title."""
+    """Turn ``**Nowakowska, <Work> (YEAR), pp. …**`` into a box title."""
     m = _SOURCE_HEADER_RE.match(header.strip())
     if not m:
         return "Nowakowska, \\emph{Theory of Actions} (1982)"
+    work = m.group(1).strip().rstrip(",")
     rest = m.group(2)
     rest = rest.replace("–", "--").replace("—", "---")
     rest = re.sub(r"\bpp\.\s*", "pp.~", rest)
-    return f"Nowakowska, \\emph{{Theory of Actions}}{rest}"
+    emph = _SOURCE_WORK_EMPH.get(work, f"\\emph{{{work}}}")
+    return f"Nowakowska, {emph}{rest}"
 
 
 def source_block_latex(markdown: str) -> str:

@@ -1,0 +1,25 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "Challenge.conflictPattern_card",
+    "Challenge.toActionSystem_L",
+    "Challenge.arrow_impossibility_dictatorial_core",
+    "Solution.conflictPattern_card",
+    "Solution.toActionSystem_L",
+    "Solution.arrow_impossibility_dictatorial_core"
+  ],
+  "definition_names": [
+    "Challenge.CompulsiveOrHedonistic",
+    "Challenge.BlindObedience",
+    "Challenge.NeuroticAllOrNothing",
+    "Solution.CompulsiveOrHedonistic",
+    "Solution.BlindObedience",
+    "Solution.NeuroticAllOrNothing"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+  "notes": {
+    "batch_A": "113 conflicts (novel), automaton realization (novel if 1982 omits proof), Arrow dictatorial core + clinical defs",
+    "batch_B_TBD": "MotCalc SemImp rules; promise CF preservation — await 1973 scans"
+  }
+}

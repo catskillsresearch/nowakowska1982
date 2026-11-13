@@ -1,0 +1,75 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+# nowakowska1982 — Batch A Palomar scaffolding (PALOMAR_URL still TBD).
+version: v0.4
+project:
+  name: Nowakowska Theory of Actions (1982) in Lean 4
+  description: >-
+    Lean 4 / Mathlib (v4.36.0-rc2) formalization of Maria Nowakowska's
+    A Formal Theory of Actions (1982/1983). Batch A compared claims:
+    (i) novel machine-checked count of 113 labeled four-motive conflict
+    patterns; (ii) novel automaton-to-sixtuplet realization theorem
+    (1982 §13 states the reading without proof); (iii) Arrow dictatorial-core
+    inconsistency with clinical corollary packaging from §5.
+    MotCalc (§6) and promise context-free preservation (§7 proofs) await
+    1973 Language of Motivation scans (Batch B). Palomar Registration: TBD.
+  authors:
+  - Lars Warren Ericson
+  license: Apache-2.0
+  responsible_maintainers:
+  - Lars Warren Ericson
+repository:
+  role: substantive-development
+classification:
+  arxiv:
+  - math.LO
+  - cs.LO
+  msc2020:
+  - 03B70
+  - 68Q45
+  - 91B14
+status:
+  scope: >-
+    Batch A complete for §§2,4,5,7(defs),13 plus novel 113-count and automaton
+    realization. Batch B TBD: MotCalc SemImp sample; promise CF theorems.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms:
+  - propext
+  - Classical.choice
+  - Quot.sound
+  main_results:
+  - declaration: Actions.Conflicts.conflictPattern_card
+    file: Actions/Attainability/Conflicts.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+    note: >-
+      Novel compared claim: paper asserts 113 conflict types without exhibiting
+      the enumeration; decide proof confirms the labeled downset model.
+  - declaration: Actions.ActionAutomaton.toActionSystem_L
+    file: Actions/Automata/Automaton.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+    note: >-
+      Novel realization theorem: 1982 §13 states the automaton reading; this
+      library supplies the machine-checked L-equality.
+  - declaration: Actions.Arrow.arrow_impossibility_dictatorial_core
+    file: Actions/Choice/Arrow.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies:
+    - Arrow63
+    note: >-
+      Dictatorial-core inconsistency for pure scale dictators; clinical defs
+      are disclosed library corollaries, not new psychological theorems.
+comparator_config: comparator.json

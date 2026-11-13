@@ -72,6 +72,18 @@ theorem nextState_eq (u : M.U) (b : M.B) (d : M.D) :
     M.nextState u b d = M.π u b d :=
   rfl
 
+/-- One cons-step uses `nextState` (stimulus-indexed `π`), not a time index. -/
+theorem admissible_cons_nextState {u : M.U} {b b' : M.B} {d : M.D}
+    {ds : List M.D} (hd : d ∈ M.τ u b)
+    (tail : M.Admissible (M.nextState u b d) b' ds) :
+    M.Admissible u b (d :: ds) :=
+  Admissible.cons hd (by simpa [nextState] using tail)
+
+/-- Membership in `language` is exactly inductive admissibility. -/
+theorem mem_language_iff (u₀ : M.U) (b₀ : M.B) (ds : List M.D) :
+    ds ∈ M.language u₀ b₀ ↔ M.Admissible u₀ b₀ ds :=
+  Iff.rfl
+
 end ActionAutomaton
 
 /-- Bridge: an automaton with a fixed start induces an `ActionSystem`
@@ -87,5 +99,26 @@ noncomputable def ActionAutomaton.toActionSystem (M : ActionAutomaton)
   L := M.language u₀ b₀
   R := fun u s _t => u ∈ M.language u₀ b₀ ∧ s = u₀
   R_mem_L := fun h => h.1
+
+/-- **Novel realization theorem** (1982 §13 states the reading; no proof is
+given there): the induced sixtuplet’s language is exactly the automaton
+language from `(u₀,b₀)`. -/
+theorem ActionAutomaton.toActionSystem_L (M : ActionAutomaton)
+    (u₀ : M.U) (b₀ : M.B) :
+    (M.toActionSystem u₀ b₀).L = M.language u₀ b₀ :=
+  rfl
+
+/-- Strings of the induced system are precisely the admissible runs. -/
+theorem ActionAutomaton.toActionSystem_mem_L_iff (M : ActionAutomaton)
+    (u₀ : M.U) (b₀ : M.B) (ds : List M.D) :
+    ds ∈ (M.toActionSystem u₀ b₀).L ↔ M.Admissible u₀ b₀ ds :=
+  Iff.rfl
+
+/-- Causation in the skeleton only holds for admissible strings (sixtuplet law). -/
+theorem ActionAutomaton.toActionSystem_R_mem_L (M : ActionAutomaton)
+    (u₀ : M.U) (b₀ : M.B) {u : List M.D} {s : M.U} {t : ℕ}
+    (h : (M.toActionSystem u₀ b₀).R u s t) :
+    u ∈ (M.toActionSystem u₀ b₀).L :=
+  (M.toActionSystem u₀ b₀).R_mem_L h
 
 end Actions

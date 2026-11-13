@@ -1,0 +1,9 @@
+**Nowakowska, Theory of Actions (1982), pp. 152–156**
+
+Treat evaluations on scales of motivational space as “votes” and the final
+decision as social choice. Arrow’s postulates (lack of dictator, sovereignty,
+consistency, independence of irrelevant options, freedom) are jointly
+inconsistent. Persons whose choice functions violate lack of dictator are
+described as compulsive or hedonistic according as the dominating continuum is
+Superego- or Id-typed; sovereignty failure corresponds to blind obedience; IIA
+failure to a neurotic all-or-nothing attitude.

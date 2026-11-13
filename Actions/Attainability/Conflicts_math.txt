@@ -1,0 +1,7 @@
+**Nowakowska, Theory of Actions (1982), pp. 150–151**
+
+A potential taxonomy of conflicts is obtained by studying those subsets of a
+desirable goal set $C$ which are *strongly attainable*, in particular the
+maximal among such subsets. Even in the case of four time-results not
+attainable jointly there are as many as 113 types of conflicts, depending on
+which of the combinations of time-results are attainable and which are not.
