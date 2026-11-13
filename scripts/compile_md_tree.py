@@ -502,6 +502,12 @@ def expand_import(
         body = target.read_text(encoding="utf-8").rstrip() + "\n"
         return f"\n\n```mermaid\n{body}```\n\n"
 
+    # Paper quotations (`*_math.txt`): leave notes as bare @import for interactive
+    # viewing; wrap in ```source only when flattening for the TeX/PDF pipeline.
+    if suffix == ".txt" and target.name.endswith("_math.txt"):
+        body = target.read_text(encoding="utf-8").rstrip() + "\n"
+        return f"\n\n```source\n{body}```\n\n"
+
     if suffix == ".svg":
         import hashlib
         import shutil
@@ -765,27 +771,9 @@ def ensure_abstract(text: str) -> str:
 
 
 def ensure_model_card_markers(text: str) -> str:
-    """Ensure ``## References`` and ``AI_MODEL_*`` markers for ``build_arxiv_tex.py``."""
+    """Ensure a ``## References`` heading exists (bibliography lives in ``references.bib``)."""
     if not re.search(r"^#{1,6}\s+References\s*$", text, re.MULTILINE):
         text = text.rstrip() + "\n\n## References\n\n"
-    if "<!-- AI_MODEL_REFERENCES -->" not in text:
-        text = text.rstrip() + (
-            "\n\n<!-- AI_MODEL_REFERENCES -->\n<!-- /AI_MODEL_REFERENCES -->\n"
-        )
-    if "<!-- AI_MODEL_TOOL_BULLETS -->" not in text:
-        # Insert after Acknowledgments if present; otherwise append a stub section.
-        ack = re.search(r"^#{1,6}\s+Acknowledgments\s*$", text, re.MULTILINE)
-        stub = (
-            "\n<!-- AI_MODEL_TOOL_BULLETS -->\n<!-- /AI_MODEL_TOOL_BULLETS -->\n"
-        )
-        if ack:
-            # Place markers near end of acknowledgments (before next heading).
-            start = ack.end()
-            nxt = re.search(r"^#{1,6}\s+", text[start:], re.MULTILINE)
-            insert_at = start + (nxt.start() if nxt else len(text[start:]))
-            text = text[:insert_at] + stub + text[insert_at:]
-        else:
-            text = text.rstrip() + "\n\n## Acknowledgments\n" + stub
     return text
 
 

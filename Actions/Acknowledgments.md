@@ -12,12 +12,15 @@ Following standard publisher practice (e.g., COPE guidance on authorship
 and AI tools), **no large language model is listed as a co-author** —
 authorship implies an accountability that automated systems cannot bear.
 
-We gratefully acknowledge assistance from the following tools
-(auto-generated from `scripts/ai_model_cards.py` when building
-`arxiv.tex`):
+Development used **Cursor Auto mode** [@Cur26], including the models
+below. We gratefully acknowledge assistance from:
 
-<!-- AI_MODEL_TOOL_BULLETS -->
-<!-- /AI_MODEL_TOOL_BULLETS -->
+- **Cursor Composer 2.5** [@Cmp25] — multi-step work on this library: module
+  scaffolding, note-tree and SVG barrels, MD→TeX pipeline wiring, and medium
+  Lean obligations where the strategy was already fixed.
+- **Cursor Grok 4.7** [@Grk47] — Lean 4 / Mathlib formalization of Nowakowska
+  (1982), `lake build` repair, vision-OCR transcription, drafting the narrative
+  note tree, and Palomar-oriented module packaging.
 
 All definitions and final prose were reviewed by the human author, who
 takes full responsibility for them.

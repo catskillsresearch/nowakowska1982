@@ -4,5 +4,7 @@ The bibliography is maintained in [`references.bib`](../references.bib).
 Notes use pandoc citation syntax (`[@key]`); the TeX build rewrites those to
 `\cite` before pandoc, following DomainTheory.
 
-<!-- AI_MODEL_REFERENCES -->
-<!-- /AI_MODEL_REFERENCES -->
+```latex
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+```

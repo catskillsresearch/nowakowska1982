@@ -4,7 +4,7 @@ Released under Apache-2.0 license as described in file LICENSE.
 -/
 module
 
-public import Actions.Basic.ActionSystem
+public import Actions.ActionSystem
 public import Mathlib.Algebra.Order.Archimedean.Real.Basic
 public import Mathlib.Order.ConditionallyCompleteLattice.Basic
 import Mathlib.Tactic

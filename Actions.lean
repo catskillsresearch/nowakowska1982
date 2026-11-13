@@ -8,7 +8,7 @@ module -- shake: keep-all
 -- lake build elaborates this module (hence all of them). Rename/delete without
 -- updating this list breaks the build.
 
-public import Actions.Basic.ActionSystem
+public import Actions.ActionSystem
 public import Actions.Attainability.Goals
 public import Actions.Means.Prax
 public import Actions.Promise.Promise

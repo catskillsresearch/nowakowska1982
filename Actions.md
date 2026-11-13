@@ -2,14 +2,14 @@
 bibliography: references.bib
 ---
 
-# Formalization of Nowakowska's Theory of Actions in Lean 4
+# Nowakowska's Theory of Actions in Lean 4
 
 - [Introduction](Actions/Introduction.md)
-- [The system and its interpretation](Actions/Basic/Basic.md)
-- [Algebra of goals](Actions/Attainability/Attainability.md)
-- [Algebra of means](Actions/Means/Means.md)
-- [Promises](Actions/Promise/Promise.md)
-- [Automata](Actions/Automata/Automata.md)
-- [Examples](Actions/Examples/Examples.md)
+- [Action system (sixtuplet)](Actions/ActionSystem.md)
+- [Weak and strong attainability](Actions/Attainability/Goals.md)
+- [Prax and Prax-min](Actions/Means/Prax.md)
+- [Promise closure and horizons](Actions/Promise/PromiseClosure.md)
+- [Action automaton](Actions/Automata/Automaton.md)
+- [Toy world](Actions/Examples/ToyWorld.md)
 - [Acknowledgments](Actions/Acknowledgments.md)
 - [References](Actions/References.md)

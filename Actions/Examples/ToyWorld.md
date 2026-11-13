@@ -2,9 +2,7 @@
 
 @import "ToyWorld_aisummary.txt" {code_block=false}
 
-```source
 @import "ToyWorld_math.txt" {code_block=false}
-```
 
 **[Actions/Examples/ToyWorld.lean](ToyWorld.lean)**
 

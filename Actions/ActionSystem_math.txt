@@ -1,0 +1,7 @@
+**Nowakowska, Theory of Actions (1982), pp. 144–145**
+
+Define a *primitive system* as a sixtuplet
+$$
+\langle D,\#,\varphi,L,S,R\rangle.
+$$
+Here $D$ is an alphabet of elementary actions with a distinguished *pause* $\#$, and $\varphi:D\to\mathbb{R}_{>0}$ assigns a duration to each action, with $\varphi(\#)=1$. Let $L\subseteq D^*$ be the *language of admissible strings*, let $S$ be a set of *outcomes*, and let $R$ relate a string $u\in L$ to a *time-result* $(s,t)$ when performing $u$ brings about $s$ at time $t$.

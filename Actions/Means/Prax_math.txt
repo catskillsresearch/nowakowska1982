@@ -1,15 +1,3 @@
 **Nowakowska, Theory of Actions (1982), pp. 151–152**
 
-… in the set $R^{-1}(f(C))$ of all strings of actions which bring about the goal $f(C)$, one may distinguish the subsets $\mathrm{Prax}\,f(C)$ and $\mathrm{Prax\,min}\,f(C)$. The first consists of those strings which are not ‘economically dominated’, and lead to $f(C)$, i.e.
-
-$$
-\mathrm{Prax}\,f(C) = \{u \in R^{-1}(f(C));\ \text{there is no } u' \in R^{-1}(f(C))\ \text{with } u \prec u'\ \text{where } u \prec u'\ \text{if } u'\ \text{results from } u\ \text{by crossing out some of its actions and replacing them by } \#\}.
-$$
-
-Similarly, one may define
-
-$$
-\mathrm{Prax\,min}\,f(C) = \{u \in \mathrm{Prax}\,f(C)\ :\ \text{there is no } u' \in \mathrm{Prax}\,f(C)\ \text{with } \varphi(u') < \varphi(u)\},
-$$
-
-where $\varphi(u)$ is the duration of a string …
+Among the strings that realize a goal, define *Prax* to be those that are not *effort-dominated*: no other realizer is obtained by replacing some letters of $u$ by the pause $\#$. Define *Prax min* to be the strings in Prax of minimal total duration $\varphi(u)$.

@@ -2,9 +2,7 @@
 
 @import "PromiseClosure_aisummary.txt" {code_block=false}
 
-```source
 @import "PromiseClosure_math.txt" {code_block=false}
-```
 
 **[Actions/Promise/Promise.lean](Promise.lean)**
 

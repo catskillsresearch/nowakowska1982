@@ -2,11 +2,9 @@
 
 @import "ActionSystem_aisummary.txt" {code_block=false}
 
-```source
 @import "ActionSystem_math.txt" {code_block=false}
-```
 
-**[Actions/Basic/ActionSystem.lean](ActionSystem.lean)**
+**[Actions/ActionSystem.lean](ActionSystem.lean)**
 
 @import "ActionSystem.lean"
 

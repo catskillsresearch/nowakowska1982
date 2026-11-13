@@ -1,17 +1,7 @@
 **Nowakowska, Theory of Actions (1982), pp. 169–171**
 
-The primitive notion here is an automaton, understood as a system
-
+Define an *action automaton* as a system
 $$
-\langle U, B, \Theta, D, \#, \tau, \pi \rangle
+\langle U,B,\Theta,D,\#,\tau,\pi\rangle,
 $$
-
-… Formally, $\tau$ is a relation in the set $U \times B \times D$, with the property that for any $u$ and $b$ there exists $d$ such that $(u, b, d)$ is in $\tau$. …
-
-… $\pi : U \times B \times D \to U$, and $\pi$ is defined only for those triplets $(u, b, d)$, for which $d \in \tau(u, b)$. …
-
-… $d_1 d_2 \ldots d_n$ belongs to the language of actions, if …
-
-$$d_{j+1} \in \tau(u_j, b_j),$$
-
-where $u_j = \pi(u_{j-1}, b_{j-1}, d_j)$.
+where $U$ is a set of *states*, $B$ a set of *stimuli* with *null stimulus* $\Theta$, and $D$ an alphabet with pause $\#$. For each state and stimulus, $\tau(u,b)\subseteq D$ is a nonempty set of *admissible actions*, and $\pi:U\times B\times D\to U$ is the *transition map*. A string $d_1\ldots d_n$ is admissible from $(u_0,b_0)$ when each $d_{j+1}$ lies in $\tau(u_j,b_j)$ and $u_j=\pi(u_{j-1},b_{j-1},d_j)$.
