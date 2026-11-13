@@ -4,8 +4,6 @@
 
 @import "Prax_math.txt" {code_block=false}
 
-**Formalization notes.**
-
 @import "Prax_ailean.txt" {code_block=false}
 
 **[Actions/Means/Prax.lean](Prax.lean)**

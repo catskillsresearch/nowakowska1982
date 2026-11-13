@@ -4,8 +4,6 @@
 
 @import "PromiseClosure_math.txt" {code_block=false}
 
-**Formalization notes.**
-
 @import "PromiseClosure_ailean.txt" {code_block=false}
 
 **[Actions/Promise/Promise.lean](Promise.lean)**

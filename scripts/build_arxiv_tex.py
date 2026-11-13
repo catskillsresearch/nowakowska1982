@@ -83,7 +83,7 @@ def render_mermaid(code: str, idx: int) -> str:
 
 
 def extract_title() -> str:
-    return "Formalization of Nowakowska\'s Theory of Actions in Lean 4"
+    return "Nowakowska\'s Theory of Actions in Lean 4"
 
 
 TITLE = extract_title()
@@ -266,19 +266,11 @@ def lean_block_latex(code: str, listing_name: str) -> str:
     parts: list[str] = []
     for first, last in ranges:
         if first == 1 and last == line_count:
-            parts.append(
-                "\\vspace{0.5\\baselineskip}\n"
-                "\\noindent\\textcolor{green!40!black}{\\textbf{Lean 4 source}}"
-                "\\par\\vspace{0.25\\baselineskip}\n"
-                f"\\lstinputlisting[style=leanbox]{{{rel_path}}}\n"
-                "\\vspace{0.5\\baselineskip}\n\n"
-            )
+            parts.append(f"\\lstinputlisting[style=leanbox]{{{rel_path}}}\n")
         else:
             parts.append(
-                f"\\noindent\\textcolor{{green!40!black}}{{\\textbf{{Lean 4 source "
-                f"(lines {first}--{last})}}}}\\par\\vspace{{0.25\\baselineskip}}\n"
                 f"\\lstinputlisting[style=leanbox,firstline={first},lastline={last}]"
-                f"{{{rel_path}}}\n\n"
+                f"{{{rel_path}}}\n"
             )
     return "".join(parts)
 
@@ -489,10 +481,41 @@ def break_lean_path_headings(latex: str) -> str:
 def cleanup_pandoc_latex(latex: str) -> str:
     latex = latex.replace("\\pandocbounded{", "{")
     latex = re.sub(r"\\tightlist\n?", "", latex)
+    # Keep overview / note diagrams under their section titles (no float drift).
+    latex = re.sub(r"\\begin\{figure\}(?!\[)", r"\\begin{figure}[H]", latex)
+    latex = re.sub(r"\\begin\{figure\}\[[^\]]*\]", r"\\begin{figure}[H]", latex)
     # Markdown SVG→PNG figures often arrive without a width; keep them below text width.
     latex = re.sub(
         r"\\includegraphics\{(figures/[^}]+)\}",
         r"\\includegraphics[width=0.72\\linewidth,keepaspectratio]{\1}",
+        latex,
+    )
+    # Each \\section starts on a fresh page (title page / abstract stays alone).
+    latex = re.sub(
+        r"(?<!\\newpage\n)(\\section\{)",
+        r"\\newpage\n\1",
+        latex,
+    )
+    # Drop duplicate Lean path paragraph headings (the blue \\href is enough).
+    latex = re.sub(
+        r"\\hypertarget\{[^\n]*\}\{%\n\\(?:sub)*paragraph\{Actions[^\n]*\}\\label\{[^\n]*\}\}\n*",
+        "",
+        latex,
+    )
+    # Blue Lean path link: noindent, flush against the following listing.
+    def _lean_href(m: re.Match[str]) -> str:
+        # Blank line before the path (\\parskip is 0, so \\medskip is required),
+        # flush left, then listing with no gap under the link.
+        return (
+            f"\\medskip\\noindent\\textbf{{\\href{{{m.group(1)}}}{{{m.group(2)}}}}}"
+            f"\\\\*\\nopagebreak\n"
+            f"\\lstinputlisting[style=leanbox,aboveskip=0pt,belowskip=0.5\\baselineskip]"
+        )
+
+    latex = re.sub(
+        r"\\textbf\{\\href\{([^}]*)\}\{(Actions[^}]*)\}\}\s*"
+        r"\\lstinputlisting\[style=leanbox\]",
+        _lean_href,
         latex,
     )
     latex = break_texttt_paths(latex)
@@ -539,18 +562,6 @@ def insert_appendix_command(latex: str) -> str:
         r"\appendix" + "\n" + r"\sloppy" + "\n" + marker,
         1,
     )
-
-
-def insert_list_of_figures(latex: str) -> str:
-    """Insert \\listoffigures immediately before the References section."""
-    anchor = r"\hypertarget{references}{%"
-    if anchor not in latex:
-        anchor = r"\section{References}"
-    if anchor not in latex:
-        print("warning: missing References anchor; skipping \\listoffigures", file=sys.stderr)
-        return latex
-    block = "\\clearpage\n\\listoffigures\n\\clearpage\n\n"
-    return latex.replace(anchor, block + anchor, 1)
 
 
 def cleanup_abstract_latex(latex: str) -> str:
@@ -630,7 +641,6 @@ def main() -> int:
     latex_body = pandoc_to_latex(body, shift=True)
     latex_body = inject_placeholders(latex_body, placeholders)
     latex_body = cleanup_pandoc_latex(latex_body)
-    latex_body = insert_list_of_figures(latex_body)
     latex_body = insert_appendix_command(latex_body)
 
     abstract_latex = pandoc_to_latex(github_math_to_tex(abstract_md), shift=False) if abstract_md else ""

@@ -55,13 +55,10 @@ IMPORT_RE = re.compile(
 HEADING_RE = re.compile(r"^(#{1,6})[ \t]+(.+)$", re.MULTILINE)
 
 DEFAULT_ABSTRACT = """\
-This document is a machine-checked Lean 4 formalization of Maria Nowakowska's
-*A Formal Theory of Actions: Syntax and Semantics of Behaviour* (1982), as
-published in *Praxiological Studies* (Gasparski et al., eds., 1983). The
-development encodes the action-system sixtuplet, the algebra of goals and means
-(weak and strong attainability, Prax / Prax-min), promise-closure conditions,
-and the automaton interpretation, with checked examples. Citations use pandoc
-syntax against `references.bib`.
+We give a Lean 4 / Mathlib formalization of Maria Nowakowska's *A Formal
+Theory of Actions* (1982). The library develops the action-system sixtuplet,
+weak and strong attainability, Prax / Prax-min, promise closure, and an
+automaton reading of admissible behaviour, with a small checked example.
 """
 
 
@@ -565,7 +562,8 @@ def expand_import(
             if cited_above:
                 return fenced
             return f"\n\n**[{rel_repo}]({rel_repo})**\n\n{fenced.lstrip()}"
-        return f"\n\n### {rel_repo}\n\n```lean\n{source}```\n\n"
+        # inline: notes already carry the blue path link; do not emit a duplicate heading.
+        return fenced
 
     if suffix in AI_PROSE_SUFFIXES and not include_ai_prose:
         return "\n\n"
@@ -814,8 +812,11 @@ def flatten_md_tree(
         visited=visited,
         included_lean=included_lean,
     )
-    # Full-book root only: chapter/section PDFs keep the section header flush with its diagram.
-    if root_md.resolve() == (ROOT / "DomainTheory.md").resolve():
+    # Insert a default abstract if the note tree has none (title-page abstract env).
+    if root_md.resolve() in {
+        (ROOT / "DomainTheory.md").resolve(),
+        (ROOT / "Actions.md").resolve(),
+    }:
         body = ensure_abstract(body)
     body = ensure_model_card_markers(body)
     header = (

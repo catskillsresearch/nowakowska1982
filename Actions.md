@@ -4,6 +4,7 @@ bibliography: references.bib
 
 # Nowakowska's Theory of Actions in Lean 4
 
+- [Abstract](Actions/Abstract.md)
 - [Introduction](Actions/Introduction.md)
 - [Action system (sixtuplet)](Actions/ActionSystem.md)
 - [Weak and strong attainability](Actions/Attainability/Goals.md)

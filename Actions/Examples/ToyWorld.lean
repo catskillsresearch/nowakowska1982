@@ -3,21 +3,16 @@ Copyright (c) 2026 Lars Warren Ericson
 Released under Apache-2.0 license as described in file LICENSE.
 -/
 module
-
 public import Actions.Attainability.Goals
 public import Actions.Means.Prax
 public import Actions.Promise.Promise
 import Mathlib.Tactic
-
 @[expose] public section
-
 /-!
 # Toy example world
-
 A tiny checked instance: two actions (pause / act), one outcome, and a
 conflict between two time-results that is weakly but not strongly attainable.
 -/
-
 namespace Actions
 namespace Toy
 
