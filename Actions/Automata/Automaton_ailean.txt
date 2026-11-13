@@ -1,0 +1,5 @@
+`ActionAutomaton` carries $\tau$ (nonempty admissible sets) and $\pi$.
+`Admissible` is the inductive language of action strings;
+`language` is its set form. `nextState` records the corrected
+stimulus-indexed transition. `toActionSystem` embeds an automaton into the
+sixtuplet API with unit durations.

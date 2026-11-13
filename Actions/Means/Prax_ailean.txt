@@ -1,0 +1,4 @@
+`EffortDominated` is a same-length, pointwise pause-replacement reading of
+$\prec$. `Prax` and `PraxMin` are the corresponding filters on an arbitrary
+realizer set. `Prax_empty` and `EffortDominated.refl` are elementary
+sanity lemmas.

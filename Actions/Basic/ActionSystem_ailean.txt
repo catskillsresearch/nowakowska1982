@@ -1,0 +1,6 @@
+`ActionSystem` packages the sixtuplet with positivity of $\varphi$, the
+normalization $\varphi(\#)=1$, and the side condition that only strings in $L$ may
+stand in $R$. `stringDuration` is the sum of elementary durations;
+`pauseString n` is the $n$-fold pause, with
+`stringDuration_pauseString` proving its duration equals $n$. `Rinv`
+is equation (2)’s inverse image, and `Attainable` asserts nonemptiness.

@@ -1,0 +1,15 @@
+**Nowakowska, Theory of Actions (1982), pp. 159–160**
+
+Let us denote this set by $T$, and assume that $T$ satisfies the following condition :
+
+(a) if $xy \in L$, then $x \in T$ implies that $xy \in T$.
+
+… Let $\hat{T}$ stand for the set of all strings which have the above property. …
+
+Let $h(T) = \max \{ \varphi(x) : x \in \hat{T} \}$. The number $h(T)$ will be called the motivational horizon of the promise.
+
+**THEOREM.** Suppose that $L$ is a context free language, and that $T \subseteq L$ satisfies the condition (a). If $h(T) < \infty$, then $T$ is also a context free language.
+
+… (b) if $xyz \in L$, then the condition $y \in U$ implies $xyz \in U$.
+
+… Let $\hat{U}$ be the set of all first offenses …

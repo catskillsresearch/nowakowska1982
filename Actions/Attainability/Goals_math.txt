@@ -1,0 +1,13 @@
+**Nowakowska, Theory of Actions (1982), pp. 149–150**
+
+$$
+R^{-1}(s, t) = \{u \in L : uR(s, t)\} \tag{2}
+$$
+
+The time-result $(s, t)$ is therefore attainable, if $R^{-1}(s, t) \neq \varnothing$ ; otherwise it is not attainable.
+
+… the set of all strings of actions leading to $(s, t) \lor (s', t')$ is the union $R^{-1}(s, t) \cup R^{-1}(s', t')$, the set of strings of actions leading to $(s, t) \& (s', t')$ is the intersection $R^{-1}(s, t) \cap R^{-1}(s', t')$ and the set of strings leading to $\sim(s, t)$ is the complement $L \setminus R^{-1}(s, t)$.
+
+… while the corresponding acts $R^{-1}(f(C))$ become in these cases $\bigcup R^{-1}(s_i, t_i)$ and $\bigcap R^{-1}(s_i, t_i)$.
+
+If $\bigcup R^{-1}(s_i, t_i) \neq \varnothing$, one may say that the set is weakly attainable … while if $\bigcap R^{-1}(s_i, t_i) \neq \varnothing$, the set $C$ is strongly attainable, i.e., one can attain all its time-results.

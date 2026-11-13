@@ -1,0 +1,3 @@
+A finite checked instance with actions `pause`/`work` and a single outcome
+`done` illustrates attainability, motive conflict between incompatible times,
+and promise-closure for the set of strings containing `work`.

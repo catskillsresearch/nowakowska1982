@@ -1,0 +1,5 @@
+Section 4 defines attainability of time-results via $R^{-1}$, then lifts Boolean
+combinations of goals to unions, intersections, and complements of realizing
+strings. Weak attainability is a nonempty union; strong attainability is a
+nonempty intersection (correcting the printed union for “strongly”). Motive
+conflict is weak-but-not-strong attainability of a desirable set $C$.

@@ -1,0 +1,3 @@
+When several strings realize a goal, Nowakowska isolates praxiologically
+efficient ones: those not effort-dominated by replacing actions with pauses,
+and among those, the ones of minimal duration (`Prax min`).

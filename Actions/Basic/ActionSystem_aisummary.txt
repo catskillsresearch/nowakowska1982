@@ -1,0 +1,6 @@
+Nowakowska opens §2 by fixing the primitive vocabulary of the theory: elementary
+actions, a distinguished pause, a duration function, the language of admissible
+strings, a set of outcomes, and a causation relation linking strings to
+time-results. Interpretations of admissibility (physical, psychological, social,
+organizational, object-relative, methodological) are deferred; the Lean encoding
+records only the formal sixtuplet and the basic lemmas about duration.

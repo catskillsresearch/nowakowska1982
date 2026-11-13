@@ -1,0 +1,5 @@
+`PromiseClosed` and `OffenseClosed` are conditions (a) and (b).
+`HatT` / `HatU` are the minimal fulfilling strings and first offenses;
+`FiniteHorizon` packages bounded duration of $\hat T$. The context-free
+preservation theorems of the paper are not yet proved in Lean; the module
+checks the structural definitions and elementary closure lemmas only.

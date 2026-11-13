@@ -1,0 +1,41 @@
+# Lake / Lean
+.lake/
+
+# Local Palomar tooling cache
+.cache/
+
+# Python
+__pycache__/
+*.pyc
+.venv-ocr/
+
+# OCR scratch (regenerate with scripts/ocr_pdf_pipeline.py)
+/sources/pages/
+/sources/ocr_*.log
+
+# Scratch
+.tmp/
+.build/
+
+# Generated MD→TeX intermediates (rebuild via scripts/build_arxiv_pdf.sh)
+arxiv_with_code.md
+/arxiv.md
+arxiv.tex
+arxiv.pdf
+lean-listings/
+figures/
+dist/
+00README.json
+
+# LaTeX build artifacts (`Actions.pdf` / `view.pdf` are deliverables)
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.toc
+*.lof
+*.bbl
+*.blg
+*.synctex.gz
+texput.log

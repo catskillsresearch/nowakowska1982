@@ -1,0 +1,6 @@
+`RinvUnion` / `RinvInter` implement the weak and strong realizing sets;
+`WeaklyAttainable` and `StronglyAttainable` are their nonemptiness
+predicates. `strongly_implies_weakly` needs a nonempty goal list.
+`MotiveConflict` packages the weak-but-not-strong pattern.
+`weakly_iff_strongly_singleton` shows the two notions coincide on
+one-element goal sets.

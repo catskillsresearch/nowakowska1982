@@ -1,0 +1,3 @@
+`toy` is a concrete `ActionSystem`. `work_attains`, `twoGoals_conflict`,
+and `promiseT_closed` are fully checked; `Prax_empty_example` and
+`work_string_duration` are sanity checks on the means and duration APIs.

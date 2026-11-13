@@ -1,0 +1,6 @@
+**Nowakowska, Theory of Actions (1982), pp. 149–150 (worked instance)**
+
+Take $C = \{(s,1),(s,2)\}$ with a single outcome $s$ realized only by strings
+whose length equals the target time and that contain a distinguished “work”
+action. Then $C$ is weakly attainable (via a length-$1$ work string) but not
+strongly attainable, hence a motive conflict in the sense of §4.
