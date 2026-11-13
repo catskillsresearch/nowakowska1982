@@ -4,10 +4,10 @@
 
 @import "ActionSystem_math.txt" {code_block=false}
 
-**[Actions/ActionSystem.lean](ActionSystem.lean)**
-
-@import "ActionSystem.lean"
-
 **Formalization notes.**
 
 @import "ActionSystem_ailean.txt" {code_block=false}
+
+**[Actions/ActionSystem.lean](ActionSystem.lean)**
+
+@import "ActionSystem.lean"

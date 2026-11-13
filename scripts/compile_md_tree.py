@@ -528,7 +528,7 @@ def expand_import(
             if not convert:
                 return f"\n\n*Missing convert for SVG:* `{rel}`\n\n"
             proc = subprocess.run(
-                [convert, "-density", "150", str(target), str(png)],
+                [convert, "-density", "110", str(target), str(png)],
                 capture_output=True,
                 text=True,
                 check=False,
@@ -536,7 +536,20 @@ def expand_import(
             if proc.returncode != 0 or not png.is_file():
                 return f"\n\n*SVG convert failed:* `{rel}`\n\n"
         rel_png = png.relative_to(ROOT).as_posix()
-        return f"\n\n![{stem}]({rel_png})\n\n"
+        caption = None
+        if opts:
+            cm = re.search(r'caption\s*=\s*"([^"]+)"', opts)
+            if not cm:
+                cm = re.search(r"caption\s*=\s*'([^']+)'", opts)
+            if cm:
+                caption = cm.group(1).strip()
+        if not caption:
+            caption = (
+                "Theory of Actions"
+                if target.name == "Actions.svg"
+                else stem.replace("-", " ")
+            )
+        return f"\n\n![{caption}]({rel_png})\n\n"
 
     if suffix == ".lean":
         try:

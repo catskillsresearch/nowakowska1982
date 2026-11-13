@@ -40,9 +40,7 @@ LISTING_CHUNK_LINES = 400
 AUTHOR = "Lars Warren Ericson"
 COMPANY = "Catskills Research Company"
 GITHUB_URL = r"https://github.com/catskillsresearch/nowakowska1982"
-PALOMAR_URL = (
-    r"https://palomar-registry.org/entry?id=PALOMAR-2026-09-28-000003&version=1"
-)
+PALOMAR_URL = "TBD"
 ORCID = "0000-0001-8299-9361"
 EMAIL = "lars.ericson@catskillsresearch.com"
 
@@ -193,20 +191,73 @@ def extract_abstract(text: str) -> tuple[str, str]:
     return abstract_md, body
 
 
+def strip_lean_copyright(code: str) -> str:
+    """Drop the leading ``/- Copyright … -/`` block from Lean listings."""
+    text = code.lstrip("\n")
+    if not text.startswith("/-"):
+        return code
+    end = text.find("-/")
+    if end == -1:
+        return code
+    header = text[: end + 2]
+    if "Copyright" not in header:
+        return code
+    return text[end + 2 :].lstrip("\n")
+
+
 def write_listing(code: str, listing_name: str) -> tuple[str, int]:
     LISTINGS_DIR.mkdir(parents=True, exist_ok=True)
-    source = sanitize_lean_for_arxiv(code.rstrip("\n"))
+    source = sanitize_lean_for_arxiv(strip_lean_copyright(code).rstrip("\n"))
     listing_path = LISTINGS_DIR / listing_name
     listing_path.write_text(source + "\n", encoding="utf-8")
     rel_path = listing_path.relative_to(ROOT).as_posix()
     return rel_path, (len(source.splitlines()) if source else 0)
 
 
+def embed_lstlean(preamble: str) -> str:
+    """Inline ``\\input{lstlean}`` so the assembled ``arxiv.tex`` is self-contained."""
+    marker = "\\input{lstlean}"
+    if marker not in preamble:
+        return preamble
+    lstlean_path = SCRIPTS / "lstlean.tex"
+    if not lstlean_path.is_file():
+        raise FileNotFoundError(f"missing {lstlean_path} (required by tex preamble)")
+    return preamble.replace(marker, lstlean_path.read_text(encoding="utf-8"))
+
+
+_SOURCE_HEADER_RE = re.compile(
+    r"^\*\*(Nowakowska,\s*)Theory of Actions(\s*\(1982\).*?)\*\*\s*$",
+    re.MULTILINE,
+)
+
+
+def source_header_to_title(header: str) -> str:
+    """Turn ``**Nowakowska, Theory of Actions (1982), pp. …**`` into a box title."""
+    m = _SOURCE_HEADER_RE.match(header.strip())
+    if not m:
+        return "Nowakowska, \\emph{Theory of Actions} (1982)"
+    rest = m.group(2)
+    rest = rest.replace("–", "--").replace("—", "---")
+    rest = re.sub(r"\bpp\.\s*", "pp.~", rest)
+    return f"Nowakowska, \\emph{{Theory of Actions}}{rest}"
+
+
 def source_block_latex(markdown: str) -> str:
-    """Render a Nowakowska quotation as a breakable text box."""
-    inner = pandoc_to_latex(markdown.strip() + "\n", shift=False)
+    """Render a Nowakowska recap as a breakable text box; page line is the title."""
+    text = markdown.strip() + "\n"
+    lines = text.splitlines()
+    title = "Nowakowska, \\emph{Theory of Actions} (1982)"
+    body = text
+    if lines:
+        first = lines[0].strip()
+        if first.startswith("**Nowakowska") and first.endswith("**"):
+            title = source_header_to_title(first)
+            body = "\n".join(lines[1:]).lstrip("\n")
+            if not body.endswith("\n"):
+                body += "\n"
+    inner = pandoc_to_latex(body, shift=False)
     inner = cleanup_pandoc_latex(inner).strip()
-    return "\\begin{sourcequote}\n" + inner + "\n\\end{sourcequote}\n"
+    return f"\\begin{{sourcequote}}{{{title}}}\n{inner}\n\\end{{sourcequote}}\n"
 
 def lean_block_latex(code: str, listing_name: str) -> str:
     rel_path, line_count = write_listing(code, listing_name)
@@ -438,6 +489,12 @@ def break_lean_path_headings(latex: str) -> str:
 def cleanup_pandoc_latex(latex: str) -> str:
     latex = latex.replace("\\pandocbounded{", "{")
     latex = re.sub(r"\\tightlist\n?", "", latex)
+    # Markdown SVG→PNG figures often arrive without a width; keep them below text width.
+    latex = re.sub(
+        r"\\includegraphics\{(figures/[^}]+)\}",
+        r"\\includegraphics[width=0.72\\linewidth,keepaspectratio]{\1}",
+        latex,
+    )
     latex = break_texttt_paths(latex)
     latex = break_lean_path_headings(latex)
     for cmd in ("section", "subsection", "subsubsection", "paragraph"):
@@ -526,9 +583,7 @@ def build_title_page(abstract_latex: str) -> str:
         \\begin{{center}}
           \\small
           \\textbf{{ORCID:}} {ORCID} \\\\
-          \\textbf{{Primary Category:}} cs.LO (Logic in Computer Science) \\\\
-          \\textbf{{Secondary Categories:}} math.LO (Logic); cs.PL (Programming Languages) \\\\
-          \\textbf{{Palomar Registration:}} \\url{{{PALOMAR_URL}}}
+          \\textbf{{Palomar Registration:}} {PALOMAR_URL}
         \\end{{center}}
 
         \\begin{{abstract}}
@@ -581,7 +636,7 @@ def main() -> int:
     abstract_latex = pandoc_to_latex(github_math_to_tex(abstract_md), shift=False) if abstract_md else ""
     abstract_latex = cleanup_abstract_latex(abstract_latex)
 
-    preamble = PREAMBLE.read_text(encoding="utf-8")
+    preamble = embed_lstlean(PREAMBLE.read_text(encoding="utf-8"))
     title_page = build_title_page(abstract_latex)
     document = preamble + "\n\n" + title_page + "\n\n" + latex_body + "\n\n\\end{document}\n"
     OUT.write_text(document, encoding="utf-8")

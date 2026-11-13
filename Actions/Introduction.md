@@ -2,7 +2,7 @@
 
 <!-- Exception: root Actions.svg lives here (not in Actions.md) so the overview
      diagram appears under Introduction rather than above the TOC. -->
-@import "../Actions.svg" {code_block=false}
+@import "../Actions.svg" {code_block=false, caption="Theory of Actions"}
 
 This report formalizes Maria Nowakowska's *A Formal Theory of Actions:
 Syntax and Semantics of Behaviour* [@Nowakowska82], building on her earlier

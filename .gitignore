@@ -1,5 +1,6 @@
 # Lake / Lean
 .lake/
+/lstlean.tex
 
 # Local Palomar tooling cache
 .cache/

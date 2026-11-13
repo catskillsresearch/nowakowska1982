@@ -4,10 +4,10 @@
 
 @import "Goals_math.txt" {code_block=false}
 
-**[Actions/Attainability/Goals.lean](Goals.lean)**
-
-@import "Goals.lean"
-
 **Formalization notes.**
 
 @import "Goals_ailean.txt" {code_block=false}
+
+**[Actions/Attainability/Goals.lean](Goals.lean)**
+
+@import "Goals.lean"
