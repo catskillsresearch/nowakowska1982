@@ -51,8 +51,8 @@ status:
     note: >-
       Novel compared claim: paper asserts 113 conflict types without exhibiting
       the enumeration; decide proof confirms the labeled downset model.
-  - declaration: Actions.ActionAutomaton.toActionSystem_L
-    file: Actions/Automata/Automaton.lean
+  - declaration: Actions.ActionAutomaton.toActionSystem.L
+    file: Actions/Automata/ToActionSystem.lean
     sorry_count: 0
     axioms:
     - propext

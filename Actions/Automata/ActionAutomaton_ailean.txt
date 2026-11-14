@@ -1,0 +1,4 @@
+`ActionAutomaton` carries tau (nonempty admissible sets) and pi (tuple letters
+normalized from printed T/Pi). `Admissible` / `language` are the inductive
+language; `nextState` and `admissible_cons_nextState` record the corrected
+stimulus index $b_{j-1}$ (print $n_{j-1}$).

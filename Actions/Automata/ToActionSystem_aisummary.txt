@@ -1,0 +1,3 @@
+With a fixed start $(u_0,b_0)$, the automaton induces an action-system
+skeleton: language $=$ admissible runs, outcomes $=$ states, durations
+constantly $1$. Section 13 states this reading without a proof.

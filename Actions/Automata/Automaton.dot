@@ -1,0 +1,11 @@
+digraph Automaton {
+  rankdir=TB;
+  node [shape=box, style="rounded,filled", fillcolor="#dbeafe",
+        color="#1d4ed8", fontname="Helvetica", fontsize=11, fontcolor="#1e3a8a"];
+  edge [color="#334155"];
+
+  ActionAutomaton [label="ActionAutomaton"];
+  ToActionSystem [label="ToActionSystem"];
+
+  ToActionSystem -> ActionAutomaton;
+}

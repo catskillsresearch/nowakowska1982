@@ -21,6 +21,7 @@ public import Actions.Promise.Horizons
 public import Actions.Promise.PositiveCF
 public import Actions.Promise.OffenseCF
 public import Actions.Automata.Automaton
+public import Actions.Automata.ToActionSystem
 public import Actions.Choice.TotalPreorder
 public import Actions.Choice.Arrow
 public import Actions.Examples.ToyWorld

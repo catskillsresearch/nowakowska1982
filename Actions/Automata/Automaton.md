@@ -1,11 +1,10 @@
 # Action automaton
 
-@import "Automaton_aisummary.txt" {code_block=false}
+Section 13 reinterprets the action system as an automaton
+$\langle U,B,\Theta,D,\#,\tau,\pi\rangle$. The modules below package the
+automaton itself and the bridge into the sixtuplet API.
 
-@import "Automaton_math.txt" {code_block=false}
+@import "Automaton.svg" {code_block=false}
 
-@import "Automaton_ailean.txt" {code_block=false}
-
-**[Actions/Automata/Automaton.lean](Automaton.lean)**
-
-@import "Automaton.lean"
+- [Action automaton](ActionAutomaton.md)
+- [Bridge to action system](ToActionSystem.md)

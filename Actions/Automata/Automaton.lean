@@ -86,39 +86,4 @@ theorem mem_language_iff (u₀ : M.U) (b₀ : M.B) (ds : List M.D) :
 
 end ActionAutomaton
 
-/-- Bridge: an automaton with a fixed start induces an `ActionSystem`
-skeleton (duration constantly `1`, outcomes = states). -/
-noncomputable def ActionAutomaton.toActionSystem (M : ActionAutomaton)
-    (u₀ : M.U) (b₀ : M.B) : ActionSystem where
-  D := M.D
-  pause := M.pause
-  φ := fun _ => (1 : ℝ)
-  φ_pos := fun _ => by norm_num
-  φ_pause := rfl
-  S := M.U
-  L := M.language u₀ b₀
-  R := fun u s _t => u ∈ M.language u₀ b₀ ∧ s = u₀
-  R_mem_L := fun h => h.1
-
-/-- **Novel realization theorem** (1982 §13 states the reading; no proof is
-given there): the induced sixtuplet’s language is exactly the automaton
-language from `(u₀,b₀)`. -/
-theorem ActionAutomaton.toActionSystem_L (M : ActionAutomaton)
-    (u₀ : M.U) (b₀ : M.B) :
-    (M.toActionSystem u₀ b₀).L = M.language u₀ b₀ :=
-  rfl
-
-/-- Strings of the induced system are precisely the admissible runs. -/
-theorem ActionAutomaton.toActionSystem_mem_L_iff (M : ActionAutomaton)
-    (u₀ : M.U) (b₀ : M.B) (ds : List M.D) :
-    ds ∈ (M.toActionSystem u₀ b₀).L ↔ M.Admissible u₀ b₀ ds :=
-  Iff.rfl
-
-/-- Causation in the skeleton only holds for admissible strings (sixtuplet law). -/
-theorem ActionAutomaton.toActionSystem_R_mem_L (M : ActionAutomaton)
-    (u₀ : M.U) (b₀ : M.B) {u : List M.D} {s : M.U} {t : ℕ}
-    (h : (M.toActionSystem u₀ b₀).R u s t) :
-    u ∈ (M.toActionSystem u₀ b₀).L :=
-  (M.toActionSystem u₀ b₀).R_mem_L h
-
 end Actions

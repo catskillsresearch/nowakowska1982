@@ -1,0 +1,5 @@
+`toActionSystem` embeds an automaton into the sixtuplet API with unit
+durations. Members in `namespace toActionSystem`: `toActionSystem.L` (language
+equality), `toActionSystem.mem_L_iff`, and `toActionSystem.R_mem_L`.
+**Palomar novel:** these prove the realization reading that §13 states without
+proof.
