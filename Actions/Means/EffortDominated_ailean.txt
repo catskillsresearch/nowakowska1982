@@ -1,0 +1,6 @@
+Effort domination (`EffortDominated`) compares equal-length strings: $u'$
+effort-dominates $u$ when, at every index, the letters agree or else $u'$ has a
+pause where $u$ has a non-pause.
+
+**Theorem** (`EffortDominated.refl`). Reflexivity: equal strings dominate each
+other via the left disjunct at every index.

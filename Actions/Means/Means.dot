@@ -1,0 +1,12 @@
+digraph Means {
+  rankdir=TB;
+  node [shape=box, style="rounded,filled", fillcolor="#dbeafe",
+        color="#1d4ed8", fontname="Helvetica", fontsize=11, fontcolor="#1e3a8a"];
+  edge [color="#334155"];
+
+  // Labels = subsection titles. Edge A -> B means B imports A.
+  EffortDominated [label="Effort domination"];
+  Prax [label="Prax and Prax-min"];
+
+  EffortDominated -> Prax;
+}

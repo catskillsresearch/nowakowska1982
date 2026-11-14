@@ -9,7 +9,7 @@ bibliography: references.bib
 - [Action system (sixtuplet)](Actions/ActionSystem.md)
 - [Weak and strong attainability](Actions/Attainability/Goals.md)
 - [Four-motive conflict taxonomy](Actions/Attainability/Conflicts.md)
-- [Prax and Prax-min](Actions/Means/Prax.md)
+- [Prax and Prax-min](Actions/Means/Means.md)
 - [Motivational calculus (sampled)](Actions/Motivation/MotCalc.md)
 - [Verbal embedding and motivational consistency](Actions/Mixed/Mixed.md)
 - [Promise closure and horizons](Actions/Promise/PromiseClosure.md)

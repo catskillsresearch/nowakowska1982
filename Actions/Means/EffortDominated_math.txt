@@ -1,0 +1,4 @@
+**Nowakowska, Theory of Actions (1982), pp. 151–152**
+
+$u \prec u'$ when $u'$ results from $u$ by crossing out some of its actions and
+replacing them by $\#$.

@@ -30,5 +30,5 @@ $x$ remains in $xy$.
 
 In particular the singleton work string lies in $T$ (`work_mem_promiseT`), while
 the empty string does not (`nil_not_mem_promiseT`). The empty realizing set
-still has empty praxiological set (`Prax_empty_example`), and the duration of a
-lone work action is $2$ (`work_string_duration`).
+still has empty praxiological set (`Prax_empty_example`, via `Prax.empty`), and
+the duration of a lone work action is $2$ (`work_string_duration`).

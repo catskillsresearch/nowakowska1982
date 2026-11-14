@@ -98,7 +98,7 @@ theorem nil_not_mem_promiseT : ([] : List Act) ∉ promiseT := by
   simp [promiseT]
 
 theorem Prax_empty_example : toy.Prax (∅ : Set (List Act)) = ∅ :=
-  toy.Prax_empty
+  ActionSystem.Prax.empty toy
 
 /-- Duration of a single `work` action. -/
 theorem work_string_duration : toy.stringDuration [Act.work] = 2 := by

@@ -1,0 +1,2 @@
+Effort domination compares equal-length strings: one is obtained from the other
+by replacing some non-pause letters with pauses.

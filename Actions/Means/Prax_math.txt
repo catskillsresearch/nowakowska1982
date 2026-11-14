@@ -1,3 +1,5 @@
 **Nowakowska, Theory of Actions (1982), pp. 151–152**
 
-Among the strings that realize a goal, define *Prax* to be those that are not *effort-dominated*: no other realizer is obtained by replacing some letters of $u$ by the pause $\#$. Define *Prax min* to be the strings in Prax of minimal total duration $\varphi(u)$.
+$\mathrm{Prax}\,f(C)$ consists of realizers that are not effort-dominated.
+$\mathrm{Prax\,min}\,f(C)$ consists of those of minimal total duration
+$\varphi(u)$.
