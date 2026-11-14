@@ -23,9 +23,11 @@ Sorry-free library under `Actions/` (sixtuplet, attainability, Prax, MotCalc
 sample, verbal embedding / motivational consistency / satisfiability /
 $\psi(A)$, promise closure, automaton reading, Arrow packaging, toy world).
 `Challenge.lean` / `Solution.lean` / `comparator.json` expose the compared
-family for Palomar Comparator.
+family for Palomar Comparator: **all theorems-only dependency-graph sinks**
+(no successor, including isolates; see `docs/dependency_graph_theorems.svg`),
+plus `toActionSystem.L` and three clinical Arrow abbrevs.
 
-### Compared claims (Comparator)
+### Compared claims (Comparator) — headline sinks
 
 | Claim | Role |
 | --- | --- |
@@ -36,6 +38,7 @@ family for Palomar Comparator.
 | `PromiseClosed.isContextFree` | Novel reconstruction of 1973 Thm 1 / 1982 §7 |
 | `OffenseClosed.isContextFree` | Novel reconstruction of 1973 Thm 4 / 1982 §7 |
 
+Full name list (61 theorems × Challenge/Solution) is in `comparator.json`.
 Ch. 3 regular⇒CF and CF∩regular closures are **named hypotheses** on the CF
 theorems (not yet in Mathlib).
 

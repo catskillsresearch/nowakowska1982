@@ -14,18 +14,22 @@ project:
     speaker-world model, verbal embedding with motivational consistency /
     satisfiability / ψ(A), promise closure, an automaton reading of the
     sixtuplet, and Arrow-style choice with clinical corollary packaging,
-    with a small checked example. Compared Palomar claims: (i) novel
-    machine-checked count of 113 labeled four-motive conflict patterns;
-    (ii) novel automaton-to-sixtuplet realization theorem; (iii) Arrow
-    dictatorial-core inconsistency with clinical corollary packaging;
-    (iv) MotCalc sampled SemImp validity on the §2.2.4 epistemic model;
-    (v)–(vi) novel machine-checked promise/offense CF reconstructions from
-    1973 §5.3.2–5.3.3 (classical Ch. 3 CF∩regular closures as named
-    hypotheses). Maria Nowakowska did not participate in or endorse this
-    formalization. Lean was written with AI-agent assistance under Lars
-    Warren Ericson's direction and review. There is no sorry in the
-    Actions/ development, no project-defined axiom, and Mathlib is the
-    only Lake dependency. Palomar Registration: TBD.
+    with a small checked example. Compared Palomar claims are every theorem
+    that is a sink in the theorems-only dependency graph (no successor,
+    including isolates), plus toActionSystem.L and three clinical Arrow
+    abbrevs — among them: (i) novel machine-checked count of 113 labeled
+    four-motive conflict patterns; (ii) novel automaton-to-sixtuplet
+    realization theorem; (iii) Arrow dictatorial-core inconsistency with
+    clinical corollary packaging; (iv) MotCalc sampled SemImp validity on
+    the §2.2.4 epistemic model; (v)–(vi) novel machine-checked
+    promise/offense CF reconstructions from 1973 §5.3.2–5.3.3 (classical
+    Ch. 3 CF∩regular closures as named hypotheses); plus Prax, verbal
+    embedding / ψ, promise bridges, and toy-world sinks. Maria Nowakowska
+    did not participate in or endorse this formalization. Lean was written
+    with AI-agent assistance under Lars Warren Ericson's direction and
+    review. There is no sorry in the Actions/ development, no
+    project-defined axiom, and Mathlib is the only Lake dependency.
+    Palomar Registration: TBD.
   authors:
   - Lars Warren Ericson
   license: Apache-2.0
@@ -44,13 +48,12 @@ classification:
   - '68V20'
 status:
   scope: >-
-    Complete for the six compared theorems and three clinical definition
-    abbreviations named in comparator.json. Broader library (§§2, 4–7, 13
-    with MotCalc sample; verbal embedding from 1973 §§5.1–5.2;
-    satisfiability / ψ from §§5.3.1 / 5.3.5; Prax; toy world) is proved in
-    Actions/ but is not part of the advertised Comparator result unless
-    listed in comparator.json. Promise/offense CF theorems take
-    RegularImpliesCF and CFInterRegular as explicit hypotheses.
+    Complete for the Comparator family in comparator.json: all theorems-only
+    dependency-graph sinks (no successor, including isolates), plus
+    toActionSystem.L, and three clinical definition abbreviations.
+    Intermediate theorems that still have successors remain library-only.
+    Promise/offense CF theorems take RegularImpliesCF and CFInterRegular as
+    explicit hypotheses.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms:

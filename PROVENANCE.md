@@ -24,8 +24,11 @@ still say TBD).
 
 ## Compared claims
 
-The Palomar Comparator selects six theorems and three clinical definition
-abbreviations (see `Challenge.lean`, `Solution.lean`, `comparator.json`):
+The Palomar Comparator selects **every theorem that is a sink** in the
+theorems-only dependency graph (`docs/dependency_graph_theorems.svg`: nodes
+with no successor, including isolates), plus the automaton realization
+`toActionSystem.L`, and three clinical definition abbreviations (see
+`Challenge.lean`, `Solution.lean`, `comparator.json`). Headline sinks include:
 
 1. **113 conflict patterns** (`conflictPattern_card`) — novel machine-checked
    count of labeled four-motive conflict types; the 1982 paper states 113
@@ -47,14 +50,16 @@ abbreviations (see `Challenge.lean`, `Solution.lean`, `comparator.json`):
 6. **Offense CF** (`OffenseClosed.isContextFree`) — novel reconstruction of
    1973 Theorem 4 / 1982 §7 under the same Ch. 3 hypotheses.
 
+Further sinks cover Prax / EffortDominated, verbal embedding and $\psi$,
+promise bridges, scale-dictator / clinical packaging lemmas, automaton
+plumbing, and the toy-world checks. Full Comparator name lists are in
+`comparator.json`.
+
 ## Library beyond Comparator
 
-The sorry-free development lives under `Actions/`. It also formalizes the
-action-system sixtuplet, attainability, Prax / Prax-min, verbal embedding
-from 1973 §§5.1–5.2 (mixed system, $\pi$, $L_M$, motivational consistency),
-satisfiability and $\psi(A)$ from §§5.3.1 / 5.3.5, and a small toy instance.
-Those modules support the compared claims and the narrative report; they are
-not additional Comparator targets unless named in `comparator.json`.
+The sorry-free development lives under `Actions/`. Intermediate theorems that
+still have successors in the theorems-only graph remain library-only unless
+named in `comparator.json`.
 
 No project-defined axioms are introduced. Compared proofs use only
 `propext`, `Quot.sound`, and `Classical.choice`, as disclosed in
