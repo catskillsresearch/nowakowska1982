@@ -527,14 +527,13 @@ def cleanup_pandoc_latex(latex: str) -> str:
     # Keep overview / note diagrams under their section titles (no float drift).
     latex = re.sub(r"\\begin\{figure\}(?!\[)", r"\\begin{figure}[H]", latex)
     latex = re.sub(r"\\begin\{figure\}\[[^\]]*\]", r"\\begin{figure}[H]", latex)
-    # Note-tree SVG→PNG figures: keep natural size (1 SVG pt ≈ 1 TeX pt via
-    # density-72 convert) so Graphviz labels stay near body text; only cap
-    # wide diagrams. Do not stretch small import graphs to a fraction of
-    # \\linewidth (that made Arrow/MotCalc labels look huge).
+    # Note-tree figures (vector PDF from Graphviz, or high-DPI PNG fallback):
+    # keep natural size so labels stay near body text; only cap wide diagrams.
     latex = re.sub(
-        r"\\includegraphics\{(figures/[^}]+)\}",
+        r"\\includegraphics\{(figures/[^}]+\.(?:pdf|png|jpe?g))\}",
         r"\\includegraphics[max width=0.92\\linewidth,keepaspectratio]{\1}",
         latex,
+        flags=re.IGNORECASE,
     )
     # Each \\section starts on a fresh page (title page / abstract stays alone).
     latex = re.sub(

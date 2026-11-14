@@ -519,22 +519,6 @@ def expand_import(
             stem = target.stem
         if stem.lower().endswith(".svg"):
             stem = stem[:-4]
-        png = figures / f"{stem}-{digest}.png"
-        if not png.is_file():
-            convert = shutil.which("convert")
-            if not convert:
-                return f"\n\n*Missing convert for SVG:* `{rel}`\n\n"
-            # density 72 ⇒ 1 SVG pt → 1 PNG px → 1 TeX pt under graphicx,
-            # so Graphviz fontsize tracks article body text size.
-            proc = subprocess.run(
-                [convert, "-density", "72", str(target), str(png)],
-                capture_output=True,
-                text=True,
-                check=False,
-            )
-            if proc.returncode != 0 or not png.is_file():
-                return f"\n\n*SVG convert failed:* `{rel}`\n\n"
-        rel_png = png.relative_to(ROOT).as_posix()
         caption = None
         if opts:
             cm = re.search(r'caption\s*=\s*"([^"]+)"', opts)
@@ -548,7 +532,47 @@ def expand_import(
                 if target.name == "Actions.svg"
                 else stem.replace("-", " ")
             )
-        return f"\n\n![{caption}]({rel_png})\n\n"
+        # Prefer a sibling Graphviz .dot → vector PDF (crisp at any zoom).
+        # Rasterizing SVG at 72 dpi made import graphs look fuzzy in the PDF.
+        dot_src = target.with_suffix(".dot")
+        pdf = figures / f"{stem}-{digest}.pdf"
+        png = figures / f"{stem}-{digest}.png"
+        if dot_src.is_file() and shutil.which("dot"):
+            if not pdf.is_file():
+                proc = subprocess.run(
+                    ["dot", "-Tpdf", str(dot_src), "-o", str(pdf)],
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+                if proc.returncode != 0 or not pdf.is_file():
+                    return f"\n\n*dot→PDF failed:* `{rel}`\n\n"
+            return f"\n\n![{caption}]({pdf.relative_to(ROOT).as_posix()})\n\n"
+        if not png.is_file():
+            convert = shutil.which("convert")
+            if not convert:
+                return f"\n\n*Missing convert for SVG:* `{rel}`\n\n"
+            # High-DPI raster fallback (no .dot): dense pixels, print size via
+            # density metadata so labels stay near body text.
+            proc = subprocess.run(
+                [
+                    convert,
+                    "-density",
+                    "300",
+                    str(target),
+                    "-units",
+                    "PixelsPerInch",
+                    "-density",
+                    "300",
+                    str(png),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            if proc.returncode != 0 or not png.is_file():
+                return f"\n\n*SVG convert failed:* `{rel}`\n\n"
+        return f"\n\n![{caption}]({png.relative_to(ROOT).as_posix()})\n\n"
 
     if suffix == ".lean":
         try:
