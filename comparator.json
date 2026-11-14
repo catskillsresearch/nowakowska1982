@@ -3,17 +3,17 @@
   "solution_module": "Solution",
   "theorem_names": [
     "Challenge.conflictPattern_card",
-    "Challenge.toActionSystem_L",
-    "Challenge.arrow_impossibility_dictatorial_core",
-    "Challenge.epistemicModel_sampledSemImp",
-    "Challenge.promise_isContextFree",
-    "Challenge.offense_isContextFree",
+    "Challenge.toActionSystem.L",
+    "Challenge.ArrowPostulates2.impossibility_dictatorial_core",
+    "Challenge.SampledSemImp.epistemicModel",
+    "Challenge.PromiseClosed.isContextFree",
+    "Challenge.OffenseClosed.isContextFree",
     "Solution.conflictPattern_card",
-    "Solution.toActionSystem_L",
-    "Solution.arrow_impossibility_dictatorial_core",
-    "Solution.epistemicModel_sampledSemImp",
-    "Solution.promise_isContextFree",
-    "Solution.offense_isContextFree"
+    "Solution.toActionSystem.L",
+    "Solution.ArrowPostulates2.impossibility_dictatorial_core",
+    "Solution.SampledSemImp.epistemicModel",
+    "Solution.PromiseClosed.isContextFree",
+    "Solution.OffenseClosed.isContextFree"
   ],
   "definition_names": [
     "Challenge.CompulsiveOrHedonistic",
@@ -27,6 +27,7 @@
   "notes": {
     "batch_A": "113 conflicts (novel), automaton realization (novel), Arrow dictatorial core + clinical defs",
     "batch_B": "MotCalc SampledSemImp; promise/offense CF (novel reconstructions from 1973 §5.3; Ch.3 closures as hypotheses)",
+    "library_not_compared": "Verbal embedding §§5.1–5.2, satisfiability §5.3.1, ψ §5.3.5, Prax, toy world — in Actions/, not Comparator targets",
     "palomar_url": "TBD"
   }
 }

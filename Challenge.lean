@@ -20,11 +20,23 @@ public import Mathlib.Computability.ContextFreeGrammar
 open scoped Computability
 
 /-!
-# Palomar Challenge
+# Palomar Challenge (statement of record)
 
-Compared family: 113 conflict count (novel), automaton realization (novel),
-Arrow dictatorial core + clinical defs, MotCalc sampled SemImp validity,
-promise CF preservation (novel reconstructions from 1973 §5.3).
+Compared family for Palomar Comparator (see `comparator.json`,
+`formalization.yaml`, `PROVENANCE.md`):
+
+* `conflictPattern_card` — novel 113 labeled four-motive conflict count;
+* `toActionSystem.L` — novel automaton / sixtuplet language equality;
+* `ArrowPostulates2.impossibility_dictatorial_core` — dictatorial-core
+  inconsistency, with clinical abbrevs `CompulsiveOrHedonistic`,
+  `BlindObedience`, `NeuroticAllOrNothing`;
+* `SampledSemImp.epistemicModel` — MotCalc sample on the §2.2.4 model;
+* `PromiseClosed.isContextFree` / `OffenseClosed.isContextFree` — novel
+  reconstructions of 1973 Thm 1 / Thm 4 (1982 §7), with Ch. 3 closures as
+  named hypotheses.
+
+Wrappers re-export the sorry-free `Actions/` proofs. `Solution.lean` matches
+these declarations for Comparator. Palomar registration ID is pending.
 -/
 
 namespace Challenge

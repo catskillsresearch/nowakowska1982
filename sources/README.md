@@ -1,6 +1,8 @@
 # Source materials
 
-`nowakowska1982.pdf` is included for citation and transcription checking only.
+`nowakowska1982.pdf` and related 1973 extracts are included for citation and
+transcription checking only. They are **not** Apache-2.0; see the repository
+`NOTICE`.
 
 ## Vision OCR (triple pass + merge)
 

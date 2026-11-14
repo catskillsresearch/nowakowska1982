@@ -1,19 +1,31 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
-# nowakowska1982 — Palomar scaffolding (PALOMAR_URL still TBD).
+# nowakowska1982 — Palomar packaging (registration ID pending).
 version: v0.4
 project:
   name: Nowakowska Theory of Actions (1982) in Lean 4
   description: >-
-    Lean 4 / Mathlib (v4.36.0-rc2) formalization of Maria Nowakowska's
-    A Formal Theory of Actions (1982/1983), with MotCalc and promise-CF
-    proofs from Language of Motivation (1973). Compared claims:
-    (i) novel machine-checked count of 113 labeled four-motive conflict
-    patterns; (ii) novel automaton-to-sixtuplet realization theorem;
-    (iii) Arrow dictatorial-core inconsistency with clinical corollary
-    packaging; (iv) MotCalc sampled SemImp validity on the §2.2.4 epistemic
-    model; (v) novel machine-checked promise/offense CF reconstructions
-    from 1973 §5.3.2–5.3.3 (Ch. 3 closures as named hypotheses).
-    Palomar Registration: TBD.
+    A Lean 4 / Mathlib (v4.36.0-rc2) formalization of Maria Nowakowska's
+    A Formal Theory of Actions: Syntax and Semantics of Behaviour (chapter
+    dated 1982; Praxiological Studies, 1983), synthesizing the parts of
+    Language of Motivation and Language of Actions (1973) that 1982 cites
+    for omitted proofs and for the motivational calculus (here: §§2.1.4,
+    2.2.4, 5.1–5.3). The library covers the action-system sixtuplet, weak
+    and strong attainability, Prax / Prax-min, a sampled MotCalc
+    speaker-world model, verbal embedding with motivational consistency /
+    satisfiability / ψ(A), promise closure, an automaton reading of the
+    sixtuplet, and Arrow-style choice with clinical corollary packaging,
+    with a small checked example. Compared Palomar claims: (i) novel
+    machine-checked count of 113 labeled four-motive conflict patterns;
+    (ii) novel automaton-to-sixtuplet realization theorem; (iii) Arrow
+    dictatorial-core inconsistency with clinical corollary packaging;
+    (iv) MotCalc sampled SemImp validity on the §2.2.4 epistemic model;
+    (v)–(vi) novel machine-checked promise/offense CF reconstructions from
+    1973 §5.3.2–5.3.3 (classical Ch. 3 CF∩regular closures as named
+    hypotheses). Maria Nowakowska did not participate in or endorse this
+    formalization. Lean was written with AI-agent assistance under Lars
+    Warren Ericson's direction and review. There is no sorry in the
+    Actions/ development, no project-defined axiom, and Mathlib is the
+    only Lake dependency. Palomar Registration: TBD.
   authors:
   - Lars Warren Ericson
   license: Apache-2.0
@@ -26,13 +38,19 @@ classification:
   - math.LO
   - cs.LO
   msc2020:
-  - 03B70
-  - 68Q45
-  - 91B14
+  - '03B70'
+  - '68Q45'
+  - '91B14'
+  - '68V20'
 status:
   scope: >-
-    §§2,4–7,13 with MotCalc sample and promise CF reconstructions from
-    scanned 1973 ranges (§§2.1.4, 2.2.4, 5.3).
+    Complete for the six compared theorems and three clinical definition
+    abbreviations named in comparator.json. Broader library (§§2, 4–7, 13
+    with MotCalc sample; verbal embedding from 1973 §§5.1–5.2;
+    satisfiability / ψ from §§5.3.1 / 5.3.5; Prax; toy world) is proved in
+    Actions/ but is not part of the advertised Comparator result unless
+    listed in comparator.json. Promise/offense CF theorems take
+    RegularImpliesCF and CFInterRegular as explicit hypotheses.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms:
@@ -112,3 +130,135 @@ status:
       Novel machine-checked reconstruction of 1973 Thm 4 / 1982 §7 negative
       offense CF; same Ch. 3 closure hypotheses.
 comparator_config: comparator.json
+
+fidelity:
+  divergences: >-
+    Working sources: sources/nowakowska1982.pdf (1982/1983 chapter) and
+    scanned 1973 ranges under sources/nowakowska_1973_*. OCR drafts
+    (sources/*.md, *_vision.md) are navigation aids; Lean is authoritative.
+    Discrete sentence duration φ_M : M → ℕ is a modeling simplification of
+    the paper's real-valued φ on M. Satisfiability uses existential splits
+    and discrete utterance times rather than a full real-duration matching
+    obligation in every instance. Promise/offense CF proofs factor classical
+    Ch. 3 language facts as named hypotheses RegularImpliesCF /
+    CFInterRegular. Clinical Arrow readings are packaging of postulate
+    failure, not new psychology. Exact narrative alignment lives in the
+    Actions.md note tree / Actions.pdf rather than as additional compared
+    theorems.
+
+sources:
+  - title: "A Formal Theory of Actions: Syntax and Semantics of Behaviour"
+    authors: ["Maria Nowakowska"]
+    type: paper
+    location: >-
+      In W. Gasparski and T. Airaksinen (eds.), Praxiological Studies,
+      PWN—Polish Scientific Publishers, Warszawa, 1983, pp. 143–177
+      (chapter dated 1982). Working PDF: sources/nowakowska1982.pdf.
+    relationship: formalizes
+    note: >-
+      Primary source. Nowakowska did not participate in or endorse this
+      formalization.
+  - title: "Language of Motivation and Language of Actions"
+    authors: ["Maria Nowakowska"]
+    type: book
+    location: "Mouton, The Hague, 1973. §§2.1.4, 2.2.4, 5.1–5.3 used here."
+    relationship: formalizes
+    note: >-
+      Source for MotCalc sample, verbal embedding, satisfiability / ψ, and
+      promise/offense CF proofs that 1982 defers.
+  - title: "Social Choice and Individual Values"
+    authors: ["Kenneth J. Arrow"]
+    type: book
+    location: "Wiley, New York, 1963."
+    relationship: background
+    note: "Background for the §5 Arrow reading and clinical packaging."
+
+related_formalizations: []
+
+automation:
+  methods:
+  - method: agent
+    models: ["Cursor Grok 4.7"]
+    framework: Cursor
+    role: >-
+      Primary agent for Lean 4 / Mathlib formalization, lake build repair,
+      vision-OCR transcription, narrative note tree, and Palomar packaging.
+  - method: agent
+    models: ["Cursor Composer 2.5"]
+    framework: Cursor
+    role: "Routine scaffolding and medium-complexity proof obligations."
+  - method: agent
+    models: ["Google Gemini 3.8"]
+    framework: Cursor
+    role: "Exploratory and support passes."
+  - method: manual
+    models: []
+    role: >-
+      Lars Warren Ericson chose the formalization route and reviewed the
+      Lean development. The human author takes responsibility for the
+      report's mathematical claims.
+  notes: >-
+    Palomar Challenge / Solution / comparator / formalization.yaml packaging
+    follows the scott1980 / scott1964 / cardb template. Registration ID TBD.
+
+review:
+  status: self-assessed
+  reviewers:
+  - Lars Warren Ericson
+  notes: >-
+    Lars Warren Ericson directed and reviewed the Lean development. This is
+    not recorded as an independent external review. Every proof step is
+    checked by the Lean kernel.
+
+known_gaps:
+  - >-
+    Classical Ch. 3 facts RegularImpliesCF and CFInterRegular remain named
+    hypotheses on PromiseClosed.isContextFree and
+    OffenseClosed.isContextFree (not yet available as Mathlib theorems in
+    the form used here).
+  - >-
+    MotCalc covers a sampled SemImp bundle on the §2.2.4 epistemic model,
+    not the full published rule inventory.
+  - >-
+    Verbal-embedding duration is discrete (pause-units) for sentences; full
+    real-valued φ on M is not reconstructed in every lemma.
+
+limitations:
+  - >-
+    No external mathematical review has been performed.
+  - >-
+    Source PDFs and OCR transcriptions are not Apache-2.0; see NOTICE.
+
+alignment:
+  namespace: Actions
+  statements:
+  - source: "§4 four-motive conflict count (113 types)"
+    lean: Conflicts.conflictPattern_card
+    module: Actions.Conflicts
+    status: proved
+    note: "Novel machine-checked enumeration of the labeled downset model."
+  - source: "§13 automaton reading of the sixtuplet"
+    lean: ActionAutomaton.toActionSystem.L
+    module: Actions.ActionAutomaton
+    status: proved
+    note: "Novel L-equality; paper states the correspondence without proof."
+  - source: "§5 Arrow postulates / dictatorial core"
+    lean: Arrow.ArrowPostulates2.impossibility_dictatorial_core
+    module: Actions.Arrow
+    status: proved
+    note: "Clinical abbrevs are packaging of postulate failure."
+  - source: "1973 §2.1.4 / §2.2.4 MotCalc sample"
+    lean: MotCalc.SampledSemImp.epistemicModel
+    module: Actions.MotCalc
+    status: proved
+    note: "Sampled rules only."
+  - source: "1973 Thm 1 / 1982 §7 positive promise CF"
+    lean: ActionSystem.PromiseClosed.isContextFree
+    module: Actions.ActionSystem
+    status: proved
+    note: "Ch. 3 closures as hypotheses."
+  - source: "1973 Thm 4 / 1982 §7 offense CF"
+    lean: ActionSystem.OffenseClosed.isContextFree
+    module: Actions.ActionSystem
+    status: proved
+    note: "Ch. 3 closures as hypotheses."

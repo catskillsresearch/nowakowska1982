@@ -21,6 +21,9 @@ open scoped Computability
 
 /-!
 # Palomar Solution
+
+Sorry-free re-exports matching `Challenge.lean` for Comparator
+(`comparator.json`). See `PROVENANCE.md`.
 -/
 
 namespace Solution

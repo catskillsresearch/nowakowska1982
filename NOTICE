@@ -1,0 +1,23 @@
+This repository's original Lean, scripts, and author-written documentation
+are licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Third-party source material (not Apache-2.0)
+--------------------------------------------
+
+`sources/nowakowska1982.pdf` (and related page extracts under `sources/`)
+reproduce Maria Nowakowska, *A Formal Theory of Actions: Syntax and
+Semantics of Behaviour*, in W. Gasparski and T. Airaksinen (eds.),
+*Praxiological Studies*, PWN—Polish Scientific Publishers, Warszawa, 1983,
+pp. 143–177 (chapter dated 1982). Copyright remains with the publisher /
+rights holders. Included only as the cited primary source for this
+formalization. Palomar and other redistributors must not treat it as
+licensed under Apache-2.0.
+
+`sources/nowakowska_1973_*.pdf` / `*.md` and related OCR intermediates are
+working copies or transcriptions of Maria Nowakowska, *Language of
+Motivation and Language of Actions*, Mouton, The Hague, 1973 (and related
+1973 materials). Nowakowska's wording remains under the original copyright.
+YAML headers, page markers, and editorial notes in transcriptions are part
+of this repository's documentation.
+
+See `sources/README.md`.
