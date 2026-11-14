@@ -1,0 +1,2 @@
+`RegularImpliesCF` and `CFInterRegular` are the two Ch. 3 closure hypotheses
+passed into `PromiseClosed.isContextFree` and `OffenseClosed.isContextFree`.

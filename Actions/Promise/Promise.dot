@@ -10,6 +10,7 @@ digraph Promise {
   HatT [label="Minimal fulfilling strings"];
   HatU [label="First offenses"];
   promiseSuffixLang [label="Promise suffix language"];
+  LanguageHypotheses [label="Language hypotheses"];
   offenseSuffixLang [label="Offense suffix language"];
   PromiseClosed [label="Promise closed"];
   OffenseClosed [label="Offense closed"];
@@ -21,6 +22,8 @@ digraph Promise {
   HatU -> offenseSuffixLang;
   HatT -> PromiseClosed;
   promiseSuffixLang -> PromiseClosed;
+  LanguageHypotheses -> PromiseClosed;
   HatU -> OffenseClosed;
   offenseSuffixLang -> OffenseClosed;
+  LanguageHypotheses -> OffenseClosed;
 }
