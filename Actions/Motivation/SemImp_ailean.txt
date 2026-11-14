@@ -1,0 +1,4 @@
+`SemImp` is the implication packaging. Individual rules live in
+`namespace SemImp` (`SemImp.K_and`, `SemImp.Cr_and`, …,
+`SemImp.G_Know_or_Think`). Not a full 79-rule calculus — scoped to the
+Batch B MotCalc sample.

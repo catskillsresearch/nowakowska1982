@@ -1,0 +1,3 @@
+`GladModel` extends `EpistemicModel` by `vG` and `vG_disjoint_vT`.
+`GladModel.Glad` is the (48)-style reading: $v_T\subseteq\alpha$ or
+($v_G\subseteq\alpha$ and $P(\alpha)=1$).

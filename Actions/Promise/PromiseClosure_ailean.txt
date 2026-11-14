@@ -1,9 +1,0 @@
-`PromiseClosed` / `OffenseClosed` are conditions (a)/(b); `HatT` / `HatU` are
-minimal fulfillments and first offenses; `FiniteHorizon` /
-`FiniteOffenseHorizon` package the finiteness hypotheses. Over a finite
-alphabet, `promiseSuffixLang_isRegular` / `offenseSuffixLang_isRegular` are
-Myhill–Nerode proofs of the 1973 regular envelopes; `promise_isContextFree`
-and `offense_isContextFree` intersect with CF `L`, taking classical Ch. 3
-closures as named hypotheses (`RegularImpliesCF`, `CFInterRegular`).
-**Palomar novel compared claims:** 1982 §7 states CF preservation without
-proof; the machine-checked reconstruction is sourced from 1973 §5.3.2–5.3.3.

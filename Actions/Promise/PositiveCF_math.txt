@@ -1,0 +1,13 @@
+**Nowakowska, Theory of Actions (1982), pp. 159–160**
+
+**THEOREM.** Suppose that $L$ is a context free language, and that
+$T\subseteq L$ satisfies condition (a). If $h(T)<\infty$, then $T$ is also a
+context free language. The complete proof may be found in [5], and will be
+omitted here.
+
+**Nowakowska, Language of Motivation and Language of Actions (1973), §5.3.2, pp. 204–210**
+
+Assume $D_+^*$ is context-free. If $H_O(\alpha,k)<\infty$, then
+$O_{(\alpha,k)}$ is context-free (Thm 1): the suffix language
+$C=\{uv:u\in\bar O\}$ is regular by Myhill–Nerode (finite horizon ⇒ finitely
+many short non-members), and $O=D_+^*\cap C$.

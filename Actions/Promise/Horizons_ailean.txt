@@ -1,0 +1,7 @@
+`PromiseClosed` / `OffenseClosed` are conditions (a)/(b); `HatT` / `HatU` are
+minimal fulfillments and first offenses; `FiniteHorizon` /
+`FiniteOffenseHorizon` package the finiteness hypotheses; `OffensePrime` is
+the 1973 primality side condition. Duration helpers live in
+`namespace stringDuration` (`append`, `nonneg`, `pos_of_ne_nil`); subset facts
+are `HatT.subset` / `HatU.subset`. Classical Ch. 3 hypotheses
+`RegularImpliesCF` and `CFInterRegular` are named here for the CF modules.

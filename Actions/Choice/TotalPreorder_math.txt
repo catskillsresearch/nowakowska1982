@@ -1,0 +1,6 @@
+**Nowakowska, Theory of Actions (1982), pp. 152–153**
+
+The social choice function assigns a social preference $\succsim_{\mathrm{soc}}$ to
+individual preferences $\succsim_x,\succsim_y,\ldots$, all assumed transitive and
+connected on the option set $A,B,C,\ldots$. Strict preference and indifference
+are derived in the usual way from those total preorders.

@@ -1,6 +1,0 @@
-Section 7 studies structural properties of strings that fulfill or break a
-promise. Condition (a) is right-closure under admissible continuation;
-$\hat T$ collects minimal fulfilling strings and $h(T)$ is their duration
-horizon. Condition (b) is two-sided embedding closure for offenses, with
-$\hat U$ the first offenses. (Print “is”→“if” and $T\in L$→$T\subseteq L$ are
-applied editorially in the source transcription.)

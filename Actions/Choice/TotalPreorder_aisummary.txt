@@ -1,0 +1,3 @@
+Arrow’s reading needs transitive, reflexive, connected preferences on the
+option set. Total preorders are the thin carrier for those individual and
+social rankings before the social-welfare function is imposed.

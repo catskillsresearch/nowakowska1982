@@ -1,0 +1,22 @@
+**Nowakowska, Language of Motivation and Language of Actions (1973), §2.2.4, pp. 79–89**
+
+Formally, the model is an ordered set of six objects
+$$
+\langle X, P, v_T, v_B, v_{Cr}, v_D \rangle
+$$
+with $v_T \subset v_B \cap v_{Cr} \cap v_D$. Propositional arguments are sets in
+$X$; $\sim$, $\&$, $\lor$ on those arguments are complement, intersection, and
+union. The functors are interpreted by
+$$
+\begin{aligned}
+K\alpha &\equiv P(\alpha)=1, &
+Cr\alpha &\equiv \alpha \supset v_{Cr}, &
+T\alpha &\equiv \alpha \supset v_T, \\
+T'\alpha &\equiv \alpha \subset v_T^{c}, &
+B\alpha &\equiv \alpha \supset v_B, &
+B'\alpha &\equiv \alpha \subset v_B^{c}, \\
+D\alpha &\equiv \alpha \subset v_D^{c},
+\end{aligned}
+$$
+and $K'(\alpha,\beta)$ when $\alpha\cap\beta=\emptyset$, $\alpha\cup\beta=X$, and both
+have positive $P$-mass.

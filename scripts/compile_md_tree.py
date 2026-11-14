@@ -524,8 +524,10 @@ def expand_import(
             convert = shutil.which("convert")
             if not convert:
                 return f"\n\n*Missing convert for SVG:* `{rel}`\n\n"
+            # density 72 ⇒ 1 SVG pt → 1 PNG px → 1 TeX pt under graphicx,
+            # so Graphviz fontsize tracks article body text size.
             proc = subprocess.run(
-                [convert, "-density", "110", str(target), str(png)],
+                [convert, "-density", "72", str(target), str(png)],
                 capture_output=True,
                 text=True,
                 check=False,

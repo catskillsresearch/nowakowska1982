@@ -1,0 +1,4 @@
+The epistemic half of the §2.2.4 model is a speaker-world sixtuplet
+$\langle X,P,v_T,v_B,v_{Cr},v_D\rangle$ with the nesting
+$v_T\subset v_B\cap v_{Cr}\cap v_D$. Functors $K$, $Cr$, $T$, $T'$, $B$,
+$B'$, $D$, and $K'$ are read set-theoretically from $P$ and those regions.

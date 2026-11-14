@@ -1,7 +1,0 @@
-`TotalPreorder`, `SWF2`, and the postulate predicates formalize the §5 reading
-on two scales / three options. `CompulsiveOrHedonistic`, `BlindObedience`, and
-`NeuroticAllOrNothing` are disclosed library corollaries (not new psychology).
-`scale1Dictator` / `scale2Dictator` satisfy unanimity, IIA, and sovereignty but
-fail lack of dictator; `arrow_impossibility_dictatorial_core` records that
-compared inconsistency. Full “every U+IIA rule is dictatorial” for arbitrary
-`F` remains classical background, not a Comparator target in Batch A.

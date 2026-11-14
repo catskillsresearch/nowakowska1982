@@ -4,6 +4,7 @@ Released under Apache-2.0 license as described in file LICENSE.
 -/
 module
 
+public import Actions.Choice.TotalPreorder
 public import Mathlib.Tactic
 
 @[expose] public section
@@ -11,26 +12,15 @@ public import Mathlib.Tactic
 /-!
 # Arrow’s theorem and clinical corollaries (§5)
 
-Nowakowska (1982), pp. 152–156. Thin formalization of total preorders, Arrow
-postulates on 2 motivational scales / 3 options, named clinical failure modes,
-and the dictatorial-core inconsistency used in her §5 reading.
+Nowakowska (1982), pp. 152–156. Thin formalization of Arrow postulates on
+2 motivational scales / 3 options, named clinical failure modes, and the
+dictatorial-core inconsistency used in her §5 reading.
 
 Clinical names are interpretive library packaging, not new psychology theorems.
 -/
 
 namespace Actions
 namespace Arrow
-
-structure TotalPreorder (α : Type*) where
-  le : α → α → Prop
-  refl : ∀ a, le a a
-  trans : ∀ {a b c}, le a b → le b c → le a c
-  total : ∀ a b, le a b ∨ le b a
-
-namespace TotalPreorder
-variable {α : Type*} (p : TotalPreorder α)
-def lt (a b : α) : Prop := p.le a b ∧ ¬ p.le b a
-end TotalPreorder
 
 abbrev Ranking3 := Fin 3 → Fin 3
 
@@ -74,84 +64,93 @@ def CompulsiveOrHedonistic (F : SWF2) : Prop := ∃ i, IsDictator F i
 def BlindObedience (F : SWF2) : Prop := ¬ Sovereignty F
 def NeuroticAllOrNothing (F : SWF2) : Prop := ¬ IIA F
 
-theorem compulsive_of_not_lack {F : SWF2} (h : ¬ LackOfDictator F) :
+namespace CompulsiveOrHedonistic
+theorem of_not_lack {F : SWF2} (h : ¬ LackOfDictator F) :
     CompulsiveOrHedonistic F := by
   unfold LackOfDictator at h
   push Not at h
   exact h
+theorem of_dictator {F : SWF2} {i : Fin 2} (h : IsDictator F i) :
+    CompulsiveOrHedonistic F := ⟨i, h⟩
+end CompulsiveOrHedonistic
 
-theorem blind_of_not_sovereignty {F : SWF2} (h : ¬ Sovereignty F) :
+namespace BlindObedience
+theorem of_not_sovereignty {F : SWF2} (h : ¬ Sovereignty F) :
     BlindObedience F := h
+end BlindObedience
 
-theorem neurotic_of_not_IIA {F : SWF2} (h : ¬ IIA F) :
+namespace NeuroticAllOrNothing
+theorem of_not_IIA {F : SWF2} (h : ¬ IIA F) :
     NeuroticAllOrNothing F := h
+end NeuroticAllOrNothing
 
 def scale1Dictator : SWF2 := fun π => π.1
 def scale2Dictator : SWF2 := fun π => π.2
 
-theorem scale1_isDictator : IsDictator scale1Dictator 0 := fun _ _ _ h => h
-theorem scale2_isDictator : IsDictator scale2Dictator 1 := fun _ _ _ h => h
-
-theorem scale1_unanimity : Unanimity scale1Dictator := fun _ _ _ h₁ _ => h₁
-theorem scale2_unanimity : Unanimity scale2Dictator := fun _ _ _ _ h₂ => h₂
-
-theorem scale1_IIA : IIA scale1Dictator := by
+namespace scale1Dictator
+theorem isDictator : IsDictator scale1Dictator 0 := fun _ _ _ h => h
+theorem unanimity : Unanimity scale1Dictator := fun _ _ _ h₁ _ => h₁
+theorem IIA : IIA scale1Dictator := by
   intro π π' a b h1 _ _ _
   simpa [scale1Dictator, rankingPreorder] using h1
+theorem not_lack : ¬ LackOfDictator scale1Dictator := fun h =>
+  h 0 isDictator
+theorem compulsive : CompulsiveOrHedonistic scale1Dictator :=
+  ⟨0, isDictator⟩
+end scale1Dictator
 
-theorem scale2_IIA : IIA scale2Dictator := by
+namespace scale2Dictator
+theorem isDictator : IsDictator scale2Dictator 1 := fun _ _ _ h => h
+theorem unanimity : Unanimity scale2Dictator := fun _ _ _ _ h₂ => h₂
+theorem IIA : IIA scale2Dictator := by
   intro π π' a b _ _ h2 _
   simpa [scale2Dictator, rankingPreorder] using h2
-
-theorem scale1_not_lack : ¬ LackOfDictator scale1Dictator := fun h =>
-  h 0 scale1_isDictator
-
-theorem scale2_not_lack : ¬ LackOfDictator scale2Dictator := fun h =>
-  h 1 scale2_isDictator
-
-theorem scale1_compulsive : CompulsiveOrHedonistic scale1Dictator :=
-  ⟨0, scale1_isDictator⟩
-
-theorem scale2_compulsive : CompulsiveOrHedonistic scale2Dictator :=
-  ⟨1, scale2_isDictator⟩
+theorem not_lack : ¬ LackOfDictator scale2Dictator := fun h =>
+  h 1 isDictator
+theorem compulsive : CompulsiveOrHedonistic scale2Dictator :=
+  ⟨1, isDictator⟩
+end scale2Dictator
 
 /-- Pairwise ranking with `a` best, `b` second, other option last. -/
 def prefer (a b : Fin 3) : Ranking3 := fun x =>
   if x = a then (0 : Fin 3) else if x = b then (1 : Fin 3) else (2 : Fin 3)
 
-theorem prefer_lt {a b : Fin 3} (hne : a ≠ b) :
+namespace prefer
+theorem lt {a b : Fin 3} (hne : a ≠ b) :
     (rankingPreorder (prefer a b)).lt a b := by
   dsimp [TotalPreorder.lt, rankingPreorder, prefer]
   simp [Ne.symm hne]
+end prefer
 
-theorem scale1_sovereignty : Sovereignty scale1Dictator := by
+namespace scale1Dictator
+theorem sovereignty : Sovereignty scale1Dictator := by
   intro a b hne
   constructor
-  · exact ⟨(prefer a b, prefer a b), by simpa [scale1Dictator] using prefer_lt hne⟩
-  · exact ⟨(prefer b a, prefer b a), by simpa [scale1Dictator] using prefer_lt (Ne.symm hne)⟩
+  · exact ⟨(prefer a b, prefer a b), by simpa [scale1Dictator] using prefer.lt hne⟩
+  · exact ⟨(prefer b a, prefer b a), by simpa [scale1Dictator] using prefer.lt (Ne.symm hne)⟩
+end scale1Dictator
 
-theorem scale2_sovereignty : Sovereignty scale2Dictator := by
+namespace scale2Dictator
+theorem sovereignty : Sovereignty scale2Dictator := by
   intro a b hne
   constructor
-  · exact ⟨(prefer a b, prefer a b), by simpa [scale2Dictator] using prefer_lt hne⟩
-  · exact ⟨(prefer b a, prefer b a), by simpa [scale2Dictator] using prefer_lt (Ne.symm hne)⟩
+  · exact ⟨(prefer a b, prefer a b), by simpa [scale2Dictator] using prefer.lt hne⟩
+  · exact ⟨(prefer b a, prefer b a), by simpa [scale2Dictator] using prefer.lt (Ne.symm hne)⟩
+end scale2Dictator
 
-/-- Dictatorship violates the Arrow bundle via postulate (1). -/
-theorem not_arrowPostulates_of_dictator {F : SWF2} {i : Fin 2}
+namespace ArrowPostulates2
+theorem not_of_dictator {F : SWF2} {i : Fin 2}
     (h : IsDictator F i) : ¬ ArrowPostulates2 F := by
   rintro ⟨hLack, _, _, _⟩
   exact hLack i h
 
 /-- **Compared claim (dictatorial core):** the pure scale dictators — the
 §5 compulsive/hedonistic solutions — do not satisfy `ArrowPostulates2`. -/
-theorem arrow_impossibility_dictatorial_core :
+theorem impossibility_dictatorial_core :
     ¬ ArrowPostulates2 scale1Dictator ∧ ¬ ArrowPostulates2 scale2Dictator :=
-  ⟨not_arrowPostulates_of_dictator scale1_isDictator,
-    not_arrowPostulates_of_dictator scale2_isDictator⟩
-
-/-- Clinical packaging of postulate (1) failure. -/
-theorem compulsive_of_dictator {F : SWF2} {i : Fin 2} (h : IsDictator F i) :
-    CompulsiveOrHedonistic F := ⟨i, h⟩
+  ⟨not_of_dictator scale1Dictator.isDictator,
+    not_of_dictator scale2Dictator.isDictator⟩
+end ArrowPostulates2
 
 end Arrow
 end Actions

@@ -1,0 +1,2 @@
+`TotalPreorder` packages `le` with reflexivity, transitivity, and totality.
+`TotalPreorder.lt` is the asymmetric part used by the Arrow postulates.

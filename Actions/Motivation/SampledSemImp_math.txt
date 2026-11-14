@@ -1,0 +1,5 @@
+**Nowakowska, Language of Motivation and Language of Actions (1973), §2.2.4**
+
+Under the epistemic reading of §2.2.4, the sampled semantic implications of
+§2.1.4 become true set-theoretic statements on every speaker-world model
+$\langle X,P,v_T,v_B,v_{Cr},v_D\rangle$.

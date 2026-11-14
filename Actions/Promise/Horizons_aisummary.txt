@@ -1,0 +1,6 @@
+Condition (a) is right-closure under admissible continuation for fulfilling
+strings $T$; $\hat T$ collects minimal fulfilling strings and $h(T)$ is their
+duration horizon. Condition (b) is two-sided embedding closure for offenses
+$U$, with $\hat U$ the first offenses and $k(U)$ their duration bound.
+(Print “is”→“if” and $T\in L$→$T\subseteq L$ are applied editorially in the
+source transcription.)

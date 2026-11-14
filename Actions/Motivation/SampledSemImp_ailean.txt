@@ -1,0 +1,3 @@
+`SampledSemImp` is the Prop bundle of sampled one-direction SemImp facts.
+`SampledSemImp.epistemicModel` constructs an instance for every
+`EpistemicModel`, using the theorems in `namespace SemImp`.

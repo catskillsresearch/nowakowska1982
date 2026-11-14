@@ -1,0 +1,5 @@
+`EpistemicModel` packages $P$, the four regions, the nesting axioms, and a
+thin probability interface (`P_univ`, `P_empty`, `P_inter_one`,
+`P_one_disjoint`). The namespace `EpistemicModel` defines `Know`, `Certain`,
+`Think`, `DontThink`, `Believe`, `DontBelieve`, `Doubt`, and
+`DontKnowWhether` exactly as the §2.2.4 reading above.

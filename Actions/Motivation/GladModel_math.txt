@@ -1,0 +1,9 @@
+**Nowakowska, Language of Motivation and Language of Actions (1973), §2.2.4 (c); §2.1.4.5**
+
+Add to the epistemic model a set $v_G\subset X$ with $v_G\cap v_T=\emptyset$.
+Rule (48) states
+$$
+G(a,P)\xrightarrow{s}K_3(a,P)\lor T_3(a,P):
+$$
+‘I am glad that $a$ is $P$’ implies that the speaker either knows that $a$ is
+$P$, or at least thinks so.

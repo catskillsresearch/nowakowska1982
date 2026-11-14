@@ -1,4 +1,0 @@
-Section 6 of the 1982 paper points to the 1973 motivational calculus. Here we
-sample the §2.2.4 epistemic speaker-world model and a dozen §2.1.4 semantic
-implications (K/Cr/T, can/prefer/want packaging), checking that the model
-validates the sampled rules.

@@ -1,0 +1,3 @@
+Gladness extends the epistemic sixtuplet by a region $v_G$ disjoint from
+$v_T$. The sampled reading of $G$ used for rule (48) forces think-containment
+or (when the gladness seed sits in the argument) knowledge.

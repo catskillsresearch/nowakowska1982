@@ -1,0 +1,6 @@
+`offenseSuffixLang` mirrors the positive envelope; members
+`suffix_closed`, `none_of_long`, and `isRegular` are the Myhill–Nerode facts.
+`HatU.exists_prefix` and `OffenseClosed.eq_L_inter_suffix` identify $U$ with
+$L\cap C'$. The compared claim is `OffenseClosed.isContextFree`, with
+`OffensePrime` and the same Ch. 3 hypotheses. **Palomar novel reconstruction**
+of 1973 Thm 4 / 1982 §7.

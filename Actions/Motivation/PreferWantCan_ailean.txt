@@ -1,0 +1,3 @@
+`PreferWantCan` is a structure of relations plus the sampled axioms
+`prefer_asymm`, `want_not_dont`, `can_not_cannot`, `must_imp_ought`, and
+`prefer_imp_want`.

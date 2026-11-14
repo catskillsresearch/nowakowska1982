@@ -62,7 +62,7 @@ status:
     note: >-
       Novel realization theorem: 1982 §13 states the automaton reading; this
       library supplies the machine-checked L-equality.
-  - declaration: Actions.Arrow.arrow_impossibility_dictatorial_core
+  - declaration: Actions.Arrow.ArrowPostulates2.impossibility_dictatorial_core
     file: Actions/Choice/Arrow.lean
     sorry_count: 0
     axioms:
@@ -74,8 +74,8 @@ status:
     note: >-
       Dictatorial-core inconsistency for pure scale dictators; clinical defs
       are disclosed library corollaries, not new psychological theorems.
-  - declaration: Actions.MotCalc.epistemicModel_sampledSemImp
-    file: Actions/Motivation/MotCalc.lean
+  - declaration: Actions.MotCalc.SampledSemImp.epistemicModel
+    file: Actions/Motivation/SampledSemImp.lean
     sorry_count: 0
     axioms:
     - propext
@@ -86,8 +86,8 @@ status:
     note: >-
       Sampled §2.1.4 SemImp rules validated on the §2.2.4 epistemic model;
       not a full 79-rule calculus.
-  - declaration: Actions.ActionSystem.promise_isContextFree
-    file: Actions/Promise/Promise.lean
+  - declaration: Actions.ActionSystem.PromiseClosed.isContextFree
+    file: Actions/Promise/PositiveCF.lean
     sorry_count: 0
     axioms:
     - propext
@@ -99,8 +99,8 @@ status:
       Novel machine-checked reconstruction of 1973 Thm 1 / 1982 §7 positive
       promise CF; RegularImpliesCF and CFInterRegular are explicit Ch. 3
       hypotheses (not yet in Mathlib).
-  - declaration: Actions.ActionSystem.offense_isContextFree
-    file: Actions/Promise/Promise.lean
+  - declaration: Actions.ActionSystem.OffenseClosed.isContextFree
+    file: Actions/Promise/OffenseCF.lean
     sorry_count: 0
     axioms:
     - propext

@@ -1,0 +1,18 @@
+digraph MotCalc {
+  rankdir=TB;
+  node [shape=box, style="rounded,filled", fillcolor="#dbeafe",
+        color="#1d4ed8", fontname="Helvetica", fontsize=11, fontcolor="#1e3a8a"];
+  edge [color="#334155"];
+
+  EpistemicModel [label="EpistemicModel"];
+  GladModel [label="GladModel"];
+  SemImp [label="SemImp"];
+  SampledSemImp [label="SampledSemImp"];
+  PreferWantCan [label="PreferWantCan"];
+
+  GladModel -> EpistemicModel;
+  SemImp -> EpistemicModel;
+  SemImp -> GladModel;
+  SampledSemImp -> SemImp;
+  PreferWantCan -> EpistemicModel;
+}

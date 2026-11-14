@@ -1,11 +1,11 @@
 # Promise closure and horizons
 
-@import "PromiseClosure_aisummary.txt" {code_block=false}
+Section 7 studies structural properties of strings that fulfill or break a
+promise. The modules below package conditions (a)/(b), hats and horizons, then
+the positive and offense context-free reconstructions.
 
-@import "PromiseClosure_math.txt" {code_block=false}
+@import "Promise.svg" {code_block=false}
 
-@import "PromiseClosure_ailean.txt" {code_block=false}
-
-**[Actions/Promise/Promise.lean](Promise.lean)**
-
-@import "Promise.lean"
+- [Motivational horizons](Horizons.md)
+- [Positive promise CF](PositiveCF.md)
+- [Offense CF](OffenseCF.md)

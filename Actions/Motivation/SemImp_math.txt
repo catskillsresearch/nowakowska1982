@@ -1,0 +1,25 @@
+**Nowakowska, Theory of Actions (1982), pp. 156–157**
+
+An expression is inadmissible if there is no context in which it may be
+meaningfully applied. Semantic implication $A\to_s B$ means that ‘$A$ and
+not $B$’ is inadmissible. The motivational calculus consists of semantic
+implications concerning sentences with motivational functors.
+
+**Nowakowska, Language of Motivation and Language of Actions (1973), §2.1.4 (sampled)**
+
+Among the rules of semantic inference:
+$$
+\begin{aligned}
+(2)/(5)&\quad K(p\&q)\leftrightarrow Kp\& Kq,\\
+(3)/(6)&\quad Cr(p\&q)\leftrightarrow Cr\,p\& Cr\,q,\\
+(4)/(7)&\quad T(p\&q)\leftrightarrow Tp\& Tq,\\
+(11)&\quad K'(p,q)\xrightarrow{s}\sim Kp,\\
+(16)&\quad Cr\,p\xrightarrow{s}\sim T\,\sim p,\\
+(18)&\quad Tp\xrightarrow{s}T'\,\sim p,\\
+(22)&\quad T'p\& T'q\xrightarrow{s}T'(p\lor q),\\
+(23)&\quad T'p\xrightarrow{s}\sim Tp,\\
+(26)&\quad B'p\xrightarrow{s}T\,\sim p,\\
+(30)&\quad Dp\xrightarrow{s}T'p,\\
+(48)&\quad G(a,P)\xrightarrow{s}K_3(a,P)\lor T_3(a,P).
+\end{aligned}
+$$

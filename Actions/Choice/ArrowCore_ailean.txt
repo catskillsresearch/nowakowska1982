@@ -1,0 +1,7 @@
+`ArrowPostulates2` packages lack of dictator, unanimity, IIA, and sovereignty
+on two scales / three options. Clinical names live as defs; corollaries are
+`CompulsiveOrHedonistic.of_not_lack`, `BlindObedience.of_not_sovereignty`,
+`NeuroticAllOrNothing.of_not_IIA`. Dictators `scale1Dictator` /
+`scale2Dictator` have members `isDictator`, `unanimity`, `IIA`, `sovereignty`,
+`not_lack`. The compared claim is
+`ArrowPostulates2.impossibility_dictatorial_core`.

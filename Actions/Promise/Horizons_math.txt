@@ -1,0 +1,11 @@
+**Nowakowska, Theory of Actions (1982), pp. 159–160**
+
+Let $T\subseteq L$ be the set of strings that *fulfill* a promise, and require
+$$
+xy\in L\ \text{and}\ x\in T\quad\Rightarrow\quad xy\in T.
+$$
+Let $\hat{T}$ be the *minimal fulfilling strings* (no nonempty proper prefix
+still in $T$), and define the *motivational horizon* by
+$h(T)=\sup\{\varphi(x):x\in\hat{T}\}$. For a set $U$ of *breaking* strings,
+require that if $xyz\in L$ and $y\in U$, then $xyz\in U$; write $\hat{U}$ for
+the *first offenses*, with $k(U)=\max\{\varphi(x):x\in\hat{U}\}$.

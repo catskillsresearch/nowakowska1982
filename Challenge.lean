@@ -7,8 +7,9 @@ module
 public import Actions.Attainability.Conflicts
 public import Actions.Automata.Automaton
 public import Actions.Choice.Arrow
-public import Actions.Motivation.MotCalc
-public import Actions.Promise.Promise
+public import Actions.Motivation.SampledSemImp
+public import Actions.Promise.PositiveCF
+public import Actions.Promise.OffenseCF
 public import Mathlib.Computability.ContextFreeGrammar
 
 @[expose] public section
@@ -33,22 +34,22 @@ theorem toActionSystem_L (M : Actions.ActionAutomaton) (u₀ : M.U) (b₀ : M.B)
     (M.toActionSystem u₀ b₀).L = M.language u₀ b₀ :=
   Actions.ActionAutomaton.toActionSystem_L M u₀ b₀
 
-theorem arrow_impossibility_dictatorial_core :
+theorem ArrowPostulates2.impossibility_dictatorial_core :
     ¬ Actions.Arrow.ArrowPostulates2 Actions.Arrow.scale1Dictator ∧
       ¬ Actions.Arrow.ArrowPostulates2 Actions.Arrow.scale2Dictator :=
-  Actions.Arrow.arrow_impossibility_dictatorial_core
+  Actions.Arrow.ArrowPostulates2.impossibility_dictatorial_core
 
 abbrev CompulsiveOrHedonistic := Actions.Arrow.CompulsiveOrHedonistic
 abbrev BlindObedience := Actions.Arrow.BlindObedience
 abbrev NeuroticAllOrNothing := Actions.Arrow.NeuroticAllOrNothing
 
 /-- MotCalc sample: every epistemic model validates the sampled SemImp bundle. -/
-theorem epistemicModel_sampledSemImp {X : Type*} (M : Actions.MotCalc.EpistemicModel X) :
+theorem SampledSemImp.epistemicModel {X : Type*} (M : Actions.MotCalc.EpistemicModel X) :
     Actions.MotCalc.SampledSemImp X M :=
-  Actions.MotCalc.epistemicModel_sampledSemImp M
+  Actions.MotCalc.SampledSemImp.epistemicModel M
 
 /-- Positive promise CF (hypotheses: Ch. 3 closures). -/
-theorem promise_isContextFree
+theorem PromiseClosed.isContextFree
     (A : Actions.ActionSystem) [Fintype A.D] [Nonempty A.D]
     {T : Set (List A.D)}
     (hSub : T ⊆ A.L) (ha : A.PromiseClosed T) (hFin : A.FiniteHorizon T)
@@ -56,10 +57,10 @@ theorem promise_isContextFree
     (hRegCF : Actions.ActionSystem.RegularImpliesCF A.D)
     (hInter : Actions.ActionSystem.CFInterRegular A.D) :
     Language.IsContextFree (T : Language A.D) :=
-  A.promise_isContextFree hSub ha hFin hL hRegCF hInter
+  Actions.ActionSystem.PromiseClosed.isContextFree A hSub ha hFin hL hRegCF hInter
 
 /-- Negative / offense CF (hypotheses: Ch. 3 closures). -/
-theorem offense_isContextFree
+theorem OffenseClosed.isContextFree
     (A : Actions.ActionSystem) [Fintype A.D] [Nonempty A.D]
     {U : Set (List A.D)}
     (hSub : U ⊆ A.L) (hb : A.OffenseClosed U) (hFin : A.FiniteOffenseHorizon U)
@@ -68,6 +69,6 @@ theorem offense_isContextFree
     (hRegCF : Actions.ActionSystem.RegularImpliesCF A.D)
     (hInter : Actions.ActionSystem.CFInterRegular A.D) :
     Language.IsContextFree (U : Language A.D) :=
-  A.offense_isContextFree hSub hb hFin hPrime hL hRegCF hInter
+  Actions.ActionSystem.OffenseClosed.isContextFree A hSub hb hFin hPrime hL hRegCF hInter
 
 end Challenge

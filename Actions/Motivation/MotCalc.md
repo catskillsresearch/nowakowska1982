@@ -1,11 +1,14 @@
 # Motivational calculus (sampled)
 
-@import "MotCalc_aisummary.txt" {code_block=false}
+Section 6 of the 1982 paper points to the 1973 motivational calculus. The
+modules below sample the §2.2.4 epistemic speaker-world model, gladness,
+§2.1.4 semantic implications, the sampled SemImp bundle, and a thin
+prefer/want/can packaging.
 
-@import "MotCalc_math.txt" {code_block=false}
+@import "MotCalc.svg" {code_block=false}
 
-@import "MotCalc_ailean.txt" {code_block=false}
-
-**[Actions/Motivation/MotCalc.lean](MotCalc.lean)**
-
-@import "MotCalc.lean"
+- [Epistemic model](EpistemicModel.md)
+- [Gladness model](GladModel.md)
+- [Semantic implications](SemImp.md)
+- [Sampled SemImp bundle](SampledSemImp.md)
+- [Prefer / want / can](PreferWantCan.md)

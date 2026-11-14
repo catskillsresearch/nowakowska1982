@@ -1,0 +1,2 @@
+The compared MotCalc claim packages the sampled §2.1.4 rules as a single
+Prop bundle and shows that every epistemic model validates it.

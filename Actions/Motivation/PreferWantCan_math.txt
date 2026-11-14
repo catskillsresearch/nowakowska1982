@@ -1,0 +1,6 @@
+**Nowakowska, Language of Motivation and Language of Actions (1973), §2.1.4.4–2.1.4.6**
+
+Proper motivational functors include $Pf$ (‘I prefer’), $W$ / $W'$ (‘I want’ /
+‘I don't want’), and $C$ / $C'$ (‘I can’ / ‘I cannot’), together with deontic
+packaging such as ‘I ought’ / ‘I must’. The library records only a shallow
+cross-functor sample, not the full rule lists of those subsections.

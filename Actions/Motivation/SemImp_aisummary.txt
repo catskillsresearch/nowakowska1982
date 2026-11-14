@@ -1,0 +1,4 @@
+Semantic implication $A\xrightarrow{s}B$ is the primitive of motivational
+calculus: the sentence ‘$A$ and not $B$’ is inadmissible. A sample of
+§2.1.4 rules for $K$, $Cr$, $T$, $T'$, $B'$, $D$, $K'$, and gladness (48)
+is proved on every `EpistemicModel` / `GladModel`.
