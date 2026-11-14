@@ -1,3 +1,3 @@
-**Nowakowska (1973), §5.2.2**
+**Nowakowska, Language of Motivation and Language of Actions (1973), §5.2.2**
 
 Def. 1 and Prop. 1: consistency implies $\bigcup W_k\cap\bigcup W'_k=\emptyset$.

@@ -250,7 +250,8 @@ def source_header_to_title(header: str) -> str:
     rest = rest.replace("–", "--").replace("—", "---")
     rest = re.sub(r"\bpp\.\s*", "pp.~", rest)
     emph = _SOURCE_WORK_EMPH.get(work, f"\\emph{{{work}}}")
-    return f"Nowakowska, {emph}{rest}"
+    # Keep a space before "(YEAR)…" (rest already includes the paren).
+    return f"Nowakowska, {emph} {rest.lstrip()}"
 
 
 def _one_sourcequote(title: str, body: str) -> str:
