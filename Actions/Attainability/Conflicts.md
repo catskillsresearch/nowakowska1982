@@ -6,6 +6,8 @@
 
 @import "Conflicts_ailean.txt" {code_block=false}
 
+@import "Conflicts_decide_note.txt" {code_block=false}
+
 **[Actions/Attainability/Conflicts.lean](Conflicts.lean)**
 
 @import "Conflicts.lean"

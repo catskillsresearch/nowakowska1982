@@ -20,7 +20,7 @@ Arrow dictatorial core + clinical defs. MotCalc / promise CF: Batch B TBD.
 namespace Challenge
 
 theorem conflictPattern_card :
-    Actions.Conflicts.conflictPatterns.length = 113 :=
+    Actions.Conflicts.conflictPatternCount = 113 :=
   Actions.Conflicts.conflictPattern_card
 
 theorem toActionSystem_L (M : Actions.ActionAutomaton) (u₀ : M.U) (b₀ : M.B) :

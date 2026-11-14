@@ -1,0 +1,66 @@
+### Palomar, con-ron, and rewriting `native_decide`
+
+The four-motive count is a finite Boolean enumeration: there are
+$2^{16}=65536$ candidate 16-bit family masks on the power set of four motives.
+Filtering those masks for downsets that contain all atoms and omit the top is a
+one-liner for Lean's **`native_decide`**, which evaluates the closed term in a
+fast native runtime and trusts the result in the proof. That is the natural
+first proof:
+
+```lean
+/-- Naive sweep: all 2^16 family masks, filter conflict patterns, count. -/
+def allFamMasks : List ℕ := List.range (2 ^ 16)
+
+def conflictPatterns : List ℕ :=
+  allFamMasks.filter isConflictPattern
+
+theorem conflictPattern_card : conflictPatterns.length = 113 := by
+  native_decide
+```
+
+This form is **rejected by the Palomar pipeline**. Palomar [@PalomarAbout]
+replays compared Solution proofs through Lean's kernel and through independent
+checkers; among them, **con-ron** [@ConRon] is attempted after the mandatory
+kernel checks [@PalomarContributing]. The failure mode is that `native_decide`
+emits **private axioms** recording the trusted native evaluation, and con-ron
+treats those private axioms the same as `sorry`---so the Solution is not
+regarded as a complete kernel proof
+[@ZulipConRonNativeDecide; @ZulipNativeDecideSubmit]. For a compared claim that
+is meant to be Palomar-registrable, the 113 theorem therefore cannot rest on
+`native_decide`.
+
+Kernel **`decide`** on the same $2^{16}$ filter hits Lean's
+`maximum recursion depth` (the kernel reduces the entire list term). The
+library therefore **factors** the count to what is free once atoms are fixed
+in and the top is fixed out:
+
+* $2^{6}=64$ choices for which of the six doubletons appear;
+* for each such choice, if a tripleton's three edges are present it may be
+  included or not, contributing a factor $2^{k}$ where $k\le 4$ is the
+  number of allowed tripletons;
+* sum those contributions over the 64 doubleton words.
+
+That sum is small enough for kernel `decide` (tens of arithmetic steps instead
+of reducing a filtered list of length $65536$), and it enumerates the same
+labeled downset class. The shipped proof is:
+
+```lean
+def doubletons : List ℕ := [3, 5, 6, 9, 10, 12]
+
+def tripleRequirements : List (ℕ × List ℕ) :=
+  [(7, [3, 5, 6]), (11, [3, 9, 10]), (13, [5, 9, 12]), (14, [6, 10, 12])]
+
+def patternsFor (w : ℕ) : ℕ :=
+  2 ^ allowedTripleCount w
+
+def conflictPatternCount : ℕ :=
+  ((List.range 64).map patternsFor).sum
+
+theorem conflictPattern_card : conflictPatternCount = 113 := by
+  decide
+```
+
+So the interesting methodological point is not only that Nowakowska's count of
+113 survives machine check, but that Palomar's con-ron constraint changes the
+shape of the formalization: a one-line native_decide over $2^{16}$ masks
+becomes a factored $64\times 2^{k}$ sum proved by ordinary decide.
