@@ -1,2 +1,16 @@
-`HatT` is the minimal-fulfillment set; `HatT.subset` and `HatT.exists_prefix`
-are the structural facts. `horizon` and `FiniteHorizon` package $h(T)$.
+For a set $T$ of fulfilling strings, the minimal fulfilling set $\hat T$
+(`HatT`) consists of those $x\in T$ that have no proper prefix still in $T$
+obtained by splitting off a positive-duration suffix.
+
+**Theorem** (`HatT.subset`). $\hat T\subseteq T$. *Proof.* Immediate from the
+definition.
+
+**Theorem** (`HatT.exists_prefix`). Every member of $T$ has a prefix in $\hat T$.
+*Proof.* Induct on string length. If $x$ itself has no positive-duration proper
+prefix in $T$, it lies in $\hat T$. Otherwise some proper prefix $x_1\in T$ is
+shorter, and the inductive hypothesis supplies a minimal prefix of $x_1$, hence
+of $x$.
+
+The horizon of $T$ (`horizon`) is the supremum of durations of members of
+$\hat T$. Finite horizon (`FiniteHorizon`) means some real $M$ bounds all those
+durations.

@@ -1,1 +1,6 @@
-`minφ` is the Finset infimum of `A.φ`. Member `minφ.pos` records positivity.
+When the action alphabet is finite and nonempty, the minimum elementary
+duration (`minφ`) is the infimum of $\varphi$ over all elementary actions.
+
+**Theorem** (`minφ.pos`). This minimum is strictly positive. *Proof.* It equals
+$\varphi(d)$ for some action $d$, and every elementary duration is positive by the
+action-system axioms.

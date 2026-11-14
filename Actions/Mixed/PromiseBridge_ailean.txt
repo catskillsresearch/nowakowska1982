@@ -1,1 +1,16 @@
-`O_promiseClosed` and `O'_offenseClosed`.
+**Theorem** (`O_promiseClosed`). For every sentence $\alpha$ and time $k$, the
+obligation set $O(\alpha,k)$ satisfies the abstract right-closure condition used
+by the promise-CF development: if $xy\in L$ and $x\in O(\alpha,k)$, then
+$xy\in O(\alpha,k)$.
+
+*Proof.* Assumption (11) gives right-closure whenever $xy$ embeds in some
+member of $L$. Taking empty outer extensions, $xy\in L$ is such an embedding,
+so $xy\in O(\alpha,k)$.
+
+**Theorem** (`O'_offenseClosed`). For every $\alpha$ and $k$, the prohibition set
+$O'(\alpha,k)$ satisfies the abstract two-sided closure condition used by the
+offense-CF development: if $xyz\in L$ and $y\in O'(\alpha,k)$, then
+$xyz\in O'(\alpha,k)$.
+
+*Proof.* Assumption (12) likewise closes under embeddings in $L$; empty outer
+extensions reduce to the hypothesis $xyz\in L$.

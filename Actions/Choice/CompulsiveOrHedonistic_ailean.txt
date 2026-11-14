@@ -1,4 +1,13 @@
-`CompulsiveOrHedonistic` means some scale is a dictator.
-`CompulsiveOrHedonistic.of_not_lack` / `of_dictator` are the packaging lemmas;
-`scale1Dictator.compulsive` / `scale2Dictator.compulsive` record the pure
-scale cases.
+Compulsive-or-hedonistic packaging (`CompulsiveOrHedonistic`) names the clinical
+reading of dictator failure: some scale is a dictator (a dominating Superego or
+Id continuum).
+
+**Theorem** (`CompulsiveOrHedonistic.of_not_lack`). Failure of lack-of-dictator
+is exactly this packaging. *Proof.* Negating a universal yields an existential
+dictator witness.
+
+**Theorem** (`CompulsiveOrHedonistic.of_dictator`). Any concrete dictator witness
+yields the packaging. *Proof.* Existential introduction.
+
+In particular both pure scale dictators are compulsive-or-hedonistic
+(`scale1Dictator.compulsive`, `scale2Dictator.compulsive`).

@@ -1,5 +1,17 @@
-`toActionSystem` embeds an automaton into the sixtuplet API with unit
-durations. Members in `namespace toActionSystem`: `toActionSystem.L` (language
-equality), `toActionSystem.mem_L_iff`, and `toActionSystem.R_mem_L`.
-**Palomar novel:** these prove the realization reading that §13 states without
-proof.
+Fixing a start state and stimulus, an action automaton induces an action-system
+skeleton (`toActionSystem`): the same action alphabet and pause, constant unit
+duration, outcomes identified with states, language equal to the automaton
+language from that start, and a causation relation that holds only for
+admissible strings (here tied to the start state as a trivial outcome reading).
+
+**Theorem** (`toActionSystem.L`, realization). The induced language equals the
+automaton language from the chosen start. *Proof.* By construction of the
+skeleton.
+
+**Theorem** (`toActionSystem.mem_L_iff`). A string lies in the induced language
+if and only if it is an admissible run from the start. *Proof.* Unfolding the
+language definition.
+
+**Theorem** (`toActionSystem.R_mem_L`). Causation in the skeleton obeys the
+sixtuplet law that only admissible strings stand in $R$. *Proof.* Inherited from
+the action-system axioms of the construction.

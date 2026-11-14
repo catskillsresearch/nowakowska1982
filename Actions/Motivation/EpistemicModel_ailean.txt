@@ -1,5 +1,15 @@
-`EpistemicModel` packages $P$, the four regions, the nesting axioms, and a
-thin probability interface (`P_univ`, `P_empty`, `P_inter_one`,
-`P_one_disjoint`). The namespace `EpistemicModel` defines `Know`, `Certain`,
-`Think`, `DontThink`, `Believe`, `DontBelieve`, `Doubt`, and
-`DontKnowWhether` exactly as the §2.2.4 reading above.
+An epistemic model (`EpistemicModel`) over a speaker-world $X$ (with
+propositions as sets, `PropSet`) consists of a set-function $P$ together with
+regions $v_T$, $v_B$, $v_{Cr}$, and $v_D$, subject to the nesting
+$v_T\subseteq v_B\cap v_{Cr}\cap v_D$. The function $P$ normalizes the universe to
+$1$ and the empty set to $0$, splits certainty under intersection
+($P(p\cap q)=1$ iff both factors have $P=1$), and sends any set disjoint from a
+certainty-$1$ set to probability $0$.
+
+Knowledge of $\alpha$ (`Know`) means $P(\alpha)=1$. Certainty (`Certain`) means
+$v_{Cr}\subseteq\alpha$. Thinking (`Think`) means $v_T\subseteq\alpha$; not-thinking
+(`DontThink`) means $\alpha\subseteq v_T^c$. Belief (`Believe`) and its negation
+(`DontBelieve`) are the analogous containments for $v_B$; doubt (`Doubt`) is
+containment of $\alpha$ in $v_D^c$. Not-knowing-whether (`DontKnowWhether`)
+between complementary $\alpha$ and $\beta$ means they partition the universe and
+both receive strictly positive $P$.

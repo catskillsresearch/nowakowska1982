@@ -1,5 +1,24 @@
-`conflictPatternCount` sums $2^{k}$ over the $2^{6}$ doubleton words;
-`conflictPattern_card` proves the total is **113** by kernel `decide`.
-**Palomar novel compared claim:** the paper asserts 113 without exhibiting the
-enumeration. Motives are *labeled* (no $S_4$ quotient). See the note below on
-why the original `native_decide` $2^{16}$ sweep was rewritten for con-ron.
+When four labeled motives fail to be jointly strongly attainable, a conflict
+pattern records which nonempty proper subsets remain strongly attainable.
+Strong attainability is downward closed, so a pattern is an order ideal
+(downset) in the Boolean lattice on four atoms that contains every singleton
+and omits the full four-set.
+
+With atoms fixed in and the top fixed out, a pattern is determined by which of
+the six doubletons (`doubletons`) and four tripletons (`tripleRequirements`)
+are included, subject to: a tripleton may appear only if all three of its
+supporting doubletons do (`doubletonChosen`, `allowedTripleCount`). Summing,
+over all $2^6=64$ choices of doubleton sets, the quantity $2^{k}$
+(`patternsFor`) where $k$ is the number of tripletons allowed by that choice,
+yields the total number of patterns (`conflictPatternCount`).
+
+**Theorem** (`conflictPattern_card`). There are exactly $113$ such labeled
+four-motive conflict patterns. *Proof.* The finite sum described above
+evaluates to $113$ by exhaustive decision of the arithmetic.
+
+As sanity checks: the empty doubleton choice allows no tripletons and
+contributes $2^0=1$ pattern (`patternsFor_zero`); choosing all six doubletons
+allows all four tripletons and contributes $2^4=16$ patterns
+(`patternsFor_allDoubletons`). A Boolean recognizer on $16$-bit family masks
+(`isDownset`, `hasAllAtoms`, `hasTop`, `isConflictPattern`) decides membership
+of any given mask (`isConflictPattern_decide`).

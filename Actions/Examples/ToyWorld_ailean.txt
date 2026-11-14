@@ -1,3 +1,34 @@
-`toy` is a concrete `ActionSystem`. `work_attains`, `twoGoals_conflict`,
-and `promiseT_closed` are fully checked; `Prax_empty_example` and
-`work_string_duration` are sanity checks on the means and duration APIs.
+A miniature action system (`toy`) has two elementary actions (`Act`: pause and
+work) and one outcome (`Out`). Durations are $\varphi(\mathrm{pause})=1$
+(`toy_pause_duration`) and $\varphi(\mathrm{work})=2$ (`toy_work_duration`).
+Every string is admissible. Causation holds for the outcome at time $t$
+precisely when $t$ equals the length of the string and the string contains
+work.
+
+**Theorem** (`work_attains`). The singleton string consisting of work attains
+the time-result $(\mathrm{done},1)$. *Proof.* Length one, work present, and the
+causation clause apply.
+
+Consider the two-goal configuration $\{(\mathrm{done},1),(\mathrm{done},2)\}$
+(`twoGoals`; membership `mem_twoGoals_1`, `mem_twoGoals_2`).
+
+**Theorem** (`twoGoals_weakly`). This configuration is weakly attainable.
+*Proof.* The string of a single work realizes $(\mathrm{done},1)$, hence lies in
+the union.
+
+**Theorem** (`twoGoals_not_strongly`). It is not strongly attainable. *Proof.* A
+common realizer would need length equal to both $1$ and $2$, which is
+impossible.
+
+**Corollary** (`twoGoals_conflict`). The configuration exhibits motive conflict.
+
+Let $T$ be the set of all strings that contain work (`promiseT`).
+
+**Theorem** (`promiseT_closed`). $T$ is right-closed in the sense of promise
+closure: if $x\in T$ and $xy$ is admissible, then $xy\in T$. *Proof.* Work in
+$x$ remains in $xy$.
+
+In particular the singleton work string lies in $T$ (`work_mem_promiseT`), while
+the empty string does not (`nil_not_mem_promiseT`). The empty realizing set
+still has empty praxiological set (`Prax_empty_example`), and the duration of a
+lone work action is $2$ (`work_string_duration`).

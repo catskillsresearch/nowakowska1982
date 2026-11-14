@@ -1,2 +1,21 @@
-`promiseSuffixLang` is the envelope; members `suffix_closed`, `none_of_long`,
-and `isRegular` are the Myhill–Nerode facts.
+The promise suffix language of $T$ (`promiseSuffixLang`) consists of all strings
+that begin with some minimal fulfiller from $\hat T$ (arbitrary continuation
+afterward).
+
+**Theorem** (`promiseSuffixLang.suffix_closed`). The language is closed under
+appending an arbitrary suffix. *Proof.* If $x=uv$ with $u\in\hat T$, then
+$xy=u(vy)$.
+
+**Theorem** (`promiseSuffixLang.none_of_long`). If every minimal fulfiller has
+duration at most $M$, and $x$ lies outside the suffix language with
+$\varphi(x)>M$, then no extension $xy$ enters the language. *Proof.* Any
+factorization through a minimal fulfiller $u$ would force either $x$ itself to
+begin with a short enough minimal fulfiller (contradicting exclusion) or a
+duration contradiction via additivity.
+
+**Theorem** (`promiseSuffixLang.isRegular`). Under finite horizon (and a finite
+nonempty alphabet), the promise suffix language is regular. *Proof.*
+Myhill–Nerode: left quotients of strings fall into finitely many classes—those
+already in the language (quotient universal), those longer than the horizon and
+outside it (quotient empty), and those of duration at most the horizon
+(finitely many such strings, each contributing one quotient).

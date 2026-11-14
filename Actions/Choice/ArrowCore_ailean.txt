@@ -1,4 +1,13 @@
-`rankingPreorder` lifts a `Ranking3` to a `TotalPreorder`. The individual
-postulates are `LackOfDictator`, `Unanimity`, `IIA`, and `Sovereignty`;
-`IsDictator` classifies pure scale dictators. The packaged conjunction lives
-in `ArrowPostulates2`.
+A three-option ranking (`Ranking3`) assigns each option a rank value in
+$\{0,1,2\}$. The induced total preorder (`rankingPreorder`) compares options by
+numerical rank. A two-scale profile (`Profile2`) is a pair of rankings; a social
+welfare function (`SWF2`) maps profiles to social rankings.
+
+Scale $i$ is a dictator (`IsDictator`) when every strict preference of that
+scale is copied into the social ranking. Lack of a dictator (`LackOfDictator`)
+means neither scale is dictatorial. Unanimity (`Unanimity`) requires that shared
+strict preferences of both scales appear socially. Independence of irrelevant
+alternatives (`IIA`) requires that the social comparison of a pair depend only
+on the two scales’ comparisons of that same pair. Sovereignty (`Sovereignty`)
+requires that for every distinct pair of options, each orientation of the social
+strict order is realized by some profile.

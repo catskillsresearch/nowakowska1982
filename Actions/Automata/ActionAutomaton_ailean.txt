@@ -1,4 +1,21 @@
-`ActionAutomaton` carries tau (nonempty admissible sets) and pi (tuple letters
-normalized from printed T/Pi). `Admissible` / `language` are the inductive
-language; `nextState` and `admissible_cons_nextState` record the corrected
-stimulus index $b_{j-1}$ (print $n_{j-1}$).
+An action automaton (`ActionAutomaton`) comprises internal states $U$, stimuli
+$B$ with a null stimulus $\Theta$, elementary actions $D$ with a pause, a
+nonempty admissibility map $\tau(u,b)\subseteq D$, and a transition map
+$\pi(u,b,d)$.
+
+A string is admissible (`Admissible`) from a start $(u_0,b_0)$ when the empty
+string is always admissible, and a nonempty string beginning with letter $d$ is
+admissible when $d\in\tau(u,b)$ and the remainder is admissible from the next
+state $\pi(u,b,d)$ under a (possibly new) stimulus. The language from
+$(u_0,b_0)$ (`language`) is the set of all such admissible strings.
+
+**Theorem** (`nil_mem_language`). The empty string belongs to every such
+language. *Proof.* The nil constructor.
+
+**Theorem** (`singleton_admissible`). A singleton $\{d\}$ is admissible whenever
+$d\in\tau(u,b)$. *Proof.* One cons-step ending in the empty continuation.
+
+The next-state operation (`nextState`, equality `nextState_eq`) is exactly $\pi$
+indexed by the prior stimulus (not a time index). One cons-step may be phrased
+via next-state (`admissible_cons_nextState`). Membership in the language is
+synonymous with inductive admissibility (`mem_language_iff`).

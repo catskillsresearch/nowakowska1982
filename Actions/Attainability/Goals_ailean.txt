@@ -1,6 +1,21 @@
-`RinvUnion` / `RinvInter` implement the weak and strong realizing sets;
-`WeaklyAttainable` and `StronglyAttainable` are their nonemptiness
-predicates. `strongly_implies_weakly` needs a nonempty goal list.
-`MotiveConflict` packages the weak-but-not-strong pattern.
-`weakly_iff_strongly_singleton` shows the two notions coincide on
-one-element goal sets.
+A finite goal configuration $C$ (`GoalSet`) is a list of time-results. The weak
+realizing set (`RinvUnion`) is the union of the individual inverse images; the
+strong realizing set (`RinvInter`) is their intersection. Weak attainability
+(`WeaklyAttainable`) means the union is nonempty (at least one time-result in
+$C$ can be brought about); strong attainability (`StronglyAttainable`) means the
+intersection is nonempty (some single string realizes every member of $C$).
+
+**Theorem** (`strongly_implies_weakly`). If $C$ is nonempty and strongly
+attainable, then it is weakly attainable. *Proof.* A common realizer of every
+member of $C$ realizes, in particular, the first member, hence lies in the
+union.
+
+The negation of a time-result $(s,t)$ (`RinvNeg`) consists of the admissible
+strings that do not cause $(s,t)$. Motive conflict (`MotiveConflict`) is the
+pattern “weakly but not strongly attainable”: each desideratum is separately
+achievable, but no string achieves them all at once.
+
+**Theorem** (`weakly_iff_strongly_singleton`). On a singleton goal set
+$\{(s,t)\}$, weak and strong attainability coincide. *Proof.* The union and
+intersection of a one-element family are the same set, so nonemptiness is
+equivalent.

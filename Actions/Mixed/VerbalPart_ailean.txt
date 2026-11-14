@@ -1,1 +1,25 @@
-`VerbalOcc` / `verbalOccs` with reconstruct lemma and W/O snapshots at each occurrence.
+An utterance occurrence (`VerbalOcc`) is a triple $(\alpha,u,v)$ consisting of a
+sentence $\alpha$ together with a mixed prefix $u$ and suffix $v$. Reconstructing
+the host string (`VerbalOcc.reconstruct`) yields $u\,\alpha\,v$. The behavioural
+prefix and suffix are $\pi(u)$ and $\pi(v)$ (`piPrefix`, `piSuffix`). The
+discrete time of the occurrence (`VerbalOcc.time`) is the sum, over letters of
+$u$, of floor durations of actions and pause-unit durations of sentences
+(`letterTime`). Wanted, unwanted, obligation, and prohibition sets at the
+occurrence (`W_at`, `W'_at`, `O_at`, `O'_at`) are those of $\alpha$ evaluated at
+that discrete time.
+
+Scanning a mixed string from left to right produces the list of its successive
+utterance occurrences (`verbalOccs`, via `verbalOccsAux`): each sentence letter
+contributes an occurrence whose prefix is everything already seen and whose
+suffix is the unread remainder; action letters merely extend the scanning
+prefix.
+
+**Theorem** (`verbalOccs.reconstruct`). Every occurrence produced by scanning a
+string $x$ reconstructs to $x$. *Proof.* Strengthen to: every occurrence
+recorded while scanning a remainder $r$ under an accumulated prefix $p$
+reconstructs to $pr$. Induction on $r$: the empty remainder contributes nothing;
+an action letter extends the prefix and the inductive hypothesis applies; a
+sentence $\alpha$ either is the head occurrence (prefix $p$, suffix the rest),
+which reconstructs as $p\,\alpha\,(\mathrm{rest})=pr$, or else appears later, in
+which case the inductive hypothesis after extending the prefix by $\alpha$
+applies. Starting the scan with empty prefix yields the claim for $x$.

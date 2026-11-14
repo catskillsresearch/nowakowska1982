@@ -1,2 +1,20 @@
-`scale1Dictator` is `fun p => p.1`. Members: `isDictator`, `unanimity`, `IIA`,
-`sovereignty`, `not_lack`.
+The pure first-scale social welfare function (`scale1Dictator`) returns the
+first ranking of the profile.
+
+**Theorem** (`scale1Dictator.isDictator`). The first scale is a dictator.
+*Proof.* Social strict preferences are exactly those of the first scale.
+
+**Theorem** (`scale1Dictator.unanimity`). Unanimity holds. *Proof.* A shared
+strict preference of both scales is in particular a preference of the first
+scale.
+
+**Theorem** (`scale1Dictator.IIA`). Independence of irrelevant alternatives
+holds. *Proof.* The social comparison of a pair is the first scale’s comparison,
+which is assumed invariant between the two profiles.
+
+**Theorem** (`scale1Dictator.not_lack`). Lack of a dictator fails. *Proof.* The
+first scale is a dictator.
+
+**Theorem** (`scale1Dictator.sovereignty`). Sovereignty holds. *Proof.* For
+distinct $a,b$, the profile that prefers $a$ to $b$ on both scales (resp.\ $b$ to
+$a$) yields the corresponding social orientation.

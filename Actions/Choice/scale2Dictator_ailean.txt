@@ -1,2 +1,7 @@
-`scale2Dictator` is `fun p => p.2`. Members: `isDictator`, `unanimity`, `IIA`,
-`sovereignty`, `not_lack`.
+The pure second-scale social welfare function (`scale2Dictator`) returns the
+second ranking of the profile. The same arguments as for the first-scale
+dictator show: the second scale is a dictator (`scale2Dictator.isDictator`);
+unanimity (`scale2Dictator.unanimity`) and independence of irrelevant
+alternatives (`scale2Dictator.IIA`) hold; lack of a dictator fails
+(`scale2Dictator.not_lack`); and sovereignty holds
+(`scale2Dictator.sovereignty`) by swapping the preferred pair in both scales.

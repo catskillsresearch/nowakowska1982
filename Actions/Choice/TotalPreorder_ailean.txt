@@ -1,2 +1,3 @@
-`TotalPreorder` packages `le` with reflexivity, transitivity, and totality.
-`TotalPreorder.lt` is the asymmetric part used by the Arrow postulates.
+A total preorder (`TotalPreorder`) on a type is a reflexive, transitive, and
+total binary relation. The associated strict order (`lt`) holds between $a$ and
+$b$ when $a\le b$ but not $b\le a$.

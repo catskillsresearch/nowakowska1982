@@ -1,2 +1,4 @@
-`prefer a b` ranks `a` best and `b` second. Member `prefer.lt` records the
-induced strict preference.
+The pairwise ranking (`prefer`) that places $a$ first, $b$ second, and the
+remaining option last induces a total preorder in which $a$ is strictly
+preferred to $b$ whenever $a\neq b$ (`prefer.lt`). *Proof.* The rank of $a$ is
+$0$ and of $b$ is $1$, so $a\le b$ holds numerically while $b\le a$ fails.

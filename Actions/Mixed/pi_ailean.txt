@@ -1,1 +1,31 @@
-`pi` / `piGo` with `pi.map_append` homomorphism and `pi.pure_actions`.
+The behavioural projection $\pi:(D\cup M)^*\to D^*$ (`pi`) replaces each run of
+sentences by a block of pauses whose length equals the total sentence duration
+in pause-units, while action letters pass through unchanged.
+
+Concretely, an auxiliary map (`piGo`) carries a pending pause count: on the
+empty string it emits that many pauses; on an action letter it flushes the
+pending pauses, writes the action, and continues with pending count zero; on a
+sentence $\alpha$ it adds $\varphi_M(\alpha)$ to the pending count and continues.
+Then $\pi(x)$ is the auxiliary map started with pending count zero.
+
+**Lemma** (`pi.go_add_pending`). For pending counts $p,q$ and any mixed string
+$x$,
+$$
+\pi_{p+q}(x)=\#^p\,\pi_q(x),
+$$
+where $\#^p$ denotes a block of $p$ pauses. *Proof.* By induction on $x$. The
+empty case is the rule $\#^{p+q}=\#^p\#^q$. An action letter flushes
+$\#^{p+q}$ at once, which factors as $\#^p\#^q$ followed by the letter and the
+continuation at pending zero. A sentence absorbs into the pending count, and
+associativity of addition finishes the inductive step.
+
+**Theorem** (`pi.map_append`). $\pi(xy)=\pi(x)\pi(y)$ for all mixed strings
+$x,y$. *Proof.* Strengthen to: for every pending count $p$,
+$\pi_p(xy)=\pi_p(x)\,\pi(y)$. Induction on $x$ uses the previous lemma when $x$
+is empty, and follows the action/sentence cases of the auxiliary map when $x$
+begins with a letter. Setting $p=0$ yields the claim.
+
+The empty string projects to the empty string (`pi.nil`). Pure action strings
+(no sentences) are fixed by $\pi$ (`pi.pure_actions`): writing each action as a
+mixed letter and projecting recovers the original string, again by an easy
+induction.

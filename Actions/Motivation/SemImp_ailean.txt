@@ -1,4 +1,42 @@
-`SemImp` is the implication packaging. Individual rules live in
-`namespace SemImp` (`SemImp.K_and`, `SemImp.Cr_and`, …,
-`SemImp.G_Know_or_Think`). Not a full 79-rule calculus — scoped to the
-Batch B MotCalc sample.
+Semantic implication (`SemImp`) between propositions is ordinary entailment. The
+following sampled §2.1.4 rules hold in every epistemic model.
+
+**Theorem** (`SemImp.K_and`). Knowledge of a conjunction is equivalent to
+knowledge of both conjuncts. *Proof.* That is the intersection axiom for $P=1$.
+
+**Theorem** (`SemImp.Cr_and`). Certainty of a conjunction is equivalent to
+certainty of both conjuncts. *Proof.* Subset containment of $v_{Cr}$ in an
+intersection splits and reassembles.
+
+**Theorem** (`SemImp.T_and`). Thinking of a conjunction is equivalent to thinking
+of both conjuncts. *Proof.* As for certainty, with $v_T$.
+
+**Theorem** (`SemImp.Tprime_not_T`). If $v_T$ is nonempty, not-thinking of $p$
+precludes thinking of $p$. *Proof.* A point of $v_T$ cannot lie both in $p$ and
+in $v_T^c$.
+
+**Theorem** (`SemImp.Cr_not_T_not`). If $v_T$ is nonempty, certainty of $p$
+precludes thinking of $\neg p$. *Proof.* Nesting sends a thinker into $v_{Cr}$,
+hence into $p$, so it cannot witness thinking of the complement.
+
+**Theorem** (`SemImp.T_Tprime_not`). Thinking of $p$ yields not-thinking of
+$\neg p$. *Proof.* Every point of $v_T$ lies in $p$, hence outside $\neg p$.
+
+**Theorem** (`SemImp.D_Tprime`). Doubt of $p$ yields not-thinking of $p$.
+*Proof.* Nesting places $v_T$ inside $v_D$, so a point of $v_T$ cannot lie in
+$v_D^c$.
+
+**Theorem** (`SemImp.Tprime_or`). Not-thinking is closed under disjunction.
+*Proof.* A point of a union lies in one summand, hence outside $v_T$.
+
+**Theorem** (`SemImp.Kprime_not_K`). Not-knowing-whether between complementary
+$p$ and $q$ precludes knowledge of $p$. *Proof.* Certainty $1$ for $p$ would
+force $P(q)=0$ by disjointness, contradicting positivity of $P(q)$.
+
+**Theorem** (`SemImp.Bprime_T_not`). Not-belief of $p$ yields thinking of
+$\neg p$. *Proof.* Nesting places $v_T$ inside $v_B$, so every thinker lies
+outside $p$.
+
+**Theorem** (`SemImp.G_Know_or_Think`). Gladness of $p$ yields knowledge or
+thinking of $p$. *Proof.* The two disjuncts in the gladness reading are exactly
+thinking-containment and knowledge.

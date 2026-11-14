@@ -1,3 +1,28 @@
-`stringDuration` is the sum of elementary durations. Namespace members:
-`append`, `nonneg`, `pos_of_ne_nil`, `nil_not_pos`. Length comparison and
-`finite_bounded_duration` use `minφ` from the preceding leaf.
+The duration of a string (`stringDuration`) is the sum of the durations of its
+letters. The empty string has duration zero (`stringDuration_nil`); prepending a
+letter $d$ adds $\varphi(d)$ (`stringDuration_cons`).
+
+**Theorem** (`stringDuration_pauseString`). A pause string of length $n$ has
+duration $n$. *Proof.* Induction on $n$, using $\varphi(\#)=1$.
+
+**Theorem** (`stringDuration.append`). Duration is additive under concatenation:
+$\varphi(xy)=\varphi(x)+\varphi(y)$. *Proof.* Induction on $x$.
+
+**Theorem** (`stringDuration.nil_not_pos`). The empty string does not have
+strictly positive duration.
+
+**Theorem** (`stringDuration.nonneg`). Duration is always nonnegative. *Proof.*
+Induction, using positivity of elementary durations.
+
+**Theorem** (`stringDuration.pos_of_ne_nil`). Every nonempty string has strictly
+positive duration. *Proof.* The head letter contributes a positive amount and
+the remainder is nonnegative.
+
+**Theorem** (`le_stringDuration_length`). For a finite nonempty alphabet,
+$|x|\cdot\min\varphi\le\varphi(x)$. *Proof.* Induction, using that $\min\varphi$
+lower-bounds every elementary duration.
+
+**Theorem** (`finite_bounded_duration`). For any real bound $M$, only finitely
+many strings have duration at most $M$. *Proof.* If $M<0$ the set is empty.
+Otherwise length is bounded by a function of $M/\min\varphi$, and there are
+finitely many strings of bounded length over a finite alphabet.

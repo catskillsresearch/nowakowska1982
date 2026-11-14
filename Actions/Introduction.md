@@ -11,7 +11,9 @@ treatments in [@Nowakowska73a; @Nowakowska73b]. The paper presents behaviour as 
 The Lean 4 library `Actions` (toolchain and Mathlib `v4.36.0-rc2`) checks
 definitions, lemmas, and examples for the mathematical core of §§2, 4–7, and
 13, drawing MotCalc and promise-CF proofs from scanned 1973 ranges
-(§§2.1.4, 2.2.4, 5.1–5.3). Brief mathematical English recaps sit beside the Lean;
+(§§2.1.4, 2.2.4, 5.1–5.3). Beside each Lean module, mathematical English describes
+every definition and states and proves every theorem, with Lean names in
+typewriter font in parentheses;
 other prose without checked mathematics appears as short AI summaries only.
 Novel compared claims include the 113 conflict enumeration, the automaton
 realization reading stated without proof in §13, and machine-checked promise

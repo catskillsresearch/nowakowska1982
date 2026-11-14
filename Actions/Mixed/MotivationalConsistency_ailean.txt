@@ -1,1 +1,28 @@
-`MotivationalConsistency` and `wanted_unwanted_disjoint` (Prop. 1).
+A mixed string $x$ is motivationally consistent (`MotivationalConsistency`) when
+it lies in $L_M$, contains at least one utterance, and for every utterance
+occurrence $(\alpha,u,v)$ in $x$ the following four conditions hold (vacuously if
+the corresponding set is empty):
+
+- if the wanted set $W$ at that occurrence is nonempty, then $\pi(x)$ realizes
+  every time-result in $W$ (i.e.\ $\pi(x)\in\hat R^{-1}(W)$);
+- if the unwanted set $W'$ is nonempty, then $\pi(x)$ realizes none of them
+  (i.e.\ $\pi(x)\notin R^{-1}(W')$);
+- if the obligation set $O$ is nonempty, then the behavioural suffix $\pi(v)$
+  belongs to $O$;
+- if the prohibition set $O'$ is nonempty, then $\pi(v)$ does not belong to
+  $O'$.
+
+Write $\bigcup W_k$ (`wantedUnion`) for the union of wanted time-results across
+all occurrences of $x$, and $\bigcup W'_k$ (`unwantedUnion`) for the
+corresponding unwanted union.
+
+**Proposition 1 (§5.2.2)** (`wanted_unwanted_disjoint`). If $x$ is
+motivationally consistent, then $\bigcup W_k\cap\bigcup W'_k=\emptyset$.
+
+*Proof.* Suppose a time-result $(s,n)$ lies in both unions. Then some
+occurrence contributes $(s,n)$ to its wanted set $W_1$, and some (possibly
+other) occurrence contributes $(s,n)$ to its unwanted set $W'_2$. Both sets are
+therefore nonempty, so consistency forces $\pi(x)\in\hat R^{-1}(W_1)$ and
+$\pi(x)\notin R^{-1}(W'_2)$. The first membership yields $\pi(x)\in R^{-1}(s,n)$,
+hence $\pi(x)\in R^{-1}(W'_2)$, contradicting the second. Thus the intersection
+is empty.

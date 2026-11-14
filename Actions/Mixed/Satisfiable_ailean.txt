@@ -1,1 +1,15 @@
-`Satisfiable` / `Realizes` with `of_motivationalConsistency`.
+A mixed string $x$ realizes (`Realizes`) a timed sentence list
+$(\alpha_1,\ldots,\alpha_m)$ with times $(k_1,\ldots,k_m)$ when the successive
+utterance occurrences of $x$ have exactly those sentences in order and exactly
+those discrete utterance times.
+
+**Theorem** (`Realizes.of_refl`). Every mixed string realizes the timed list
+extracted from its own occurrences (the identity witness).
+
+A timed sentence list is satisfiable (`Satisfiable`) when there exists a
+motivationally consistent mixed string that realizes it.
+
+**Proposition 1 (§5.3.1)** (`Satisfiable.of_motivationalConsistency`). Every
+motivationally consistent mixed string determines a satisfiable utterance
+system—namely the timed list of its own occurrences, with the string itself as
+witness.

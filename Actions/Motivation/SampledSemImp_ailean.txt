@@ -1,3 +1,12 @@
-`SampledSemImp` is the Prop bundle of sampled one-direction SemImp facts.
-`SampledSemImp.epistemicModel` constructs an instance for every
-`EpistemicModel`, using the theorems in `namespace SemImp`.
+A sampled semantic-implication bundle (`SampledSemImp`) records the
+one-directional halves of the §2.1.4 rules validated by an epistemic model
+(conjunction elimination for knowledge, certainty, and thinking; thinking
+implies not-thinking of the complement; doubt implies not-thinking;
+not-thinking is closed under disjunction; not-knowing-whether precludes
+knowledge; not-belief yields thinking of the complement; and, when $v_T$ is
+nonempty, certainty precludes thinking of the complement while not-thinking
+precludes thinking).
+
+**Theorem** (`SampledSemImp.epistemicModel`). Every epistemic model carries such
+a bundle. *Proof.* Instantiate each clause by the corresponding
+semantic-implication theorem.

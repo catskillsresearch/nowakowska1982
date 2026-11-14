@@ -1,3 +1,5 @@
-`GladModel` extends `EpistemicModel` by `vG` and `vG_disjoint_vT`.
-`GladModel.Glad` is the (48)-style reading: $v_T\subseteq\alpha$ or
-($v_G\subseteq\alpha$ and $P(\alpha)=1$).
+A gladness model (`GladModel`) extends an epistemic model by a gladness seed
+$v_G$ disjoint from $v_T$. Gladness of $\alpha$ (`Glad`) is read as: either
+$v_T\subseteq\alpha$, or else $v_G\subseteq\alpha$ together with $P(\alpha)=1$. Thus
+gladness forces think-style containment or (when the gladness seed sits in
+$\alpha$) knowledge.

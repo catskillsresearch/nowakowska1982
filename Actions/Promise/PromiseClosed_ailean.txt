@@ -1,3 +1,19 @@
-`PromiseClosed` is condition (a). Members: `mono`, `eq_L_inter_suffix`, and
-`isContextFree` (Palomar novel reconstruction; `RegularImpliesCF` and
-`CFInterRegular` are explicit hypotheses).
+Promise closure (`PromiseClosed`, condition (a)) asserts that if $x\in T$ and
+the concatenation $xy$ is admissible, then $xy\in T$: fulfillment is preserved
+under admissible right continuation.
+
+**Theorem** (`PromiseClosed.mono`). Closure applied to admissible $xy$ with
+$x\in T$ yields $xy\in T$. *Proof.* That is the defining universal property.
+
+**Theorem** (`PromiseClosed.eq_L_inter_suffix`). If $T\subseteq L$ is
+promise-closed, then $T=L\cap C$ where $C$ is the promise suffix language of $T$.
+*Proof.* Every $x\in T$ has a minimal prefix in $\hat T$, so $x\in C$ and
+$x\in L$. Conversely, if $x\in L\cap C$ then $x=uv$ with $u\in\hat T\subseteq T$,
+and closure upgrades $u$ along the admissible continuation $v$.
+
+**Theorem** (`PromiseClosed.isContextFree`, positive promise CF). If
+$T\subseteq L$ is promise-closed with finite horizon, $L$ is context-free, and
+context-free languages are closed under intersection with regular languages,
+then $T$ is context-free. *Proof.* Write $T=L\cap C$ as above; $C$ is regular by
+the finite-horizon argument; the classical intersection hypothesis finishes the
+proof.

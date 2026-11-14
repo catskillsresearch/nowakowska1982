@@ -1,3 +1,17 @@
-`OffenseClosed` is condition (b). Members: `eq_L_inter_suffix` and
-`isContextFree` (Palomar novel reconstruction; same Ch. 3 hypotheses as the
-positive case).
+Offense closure (`OffenseClosed`, condition (b)) asserts that if $y\in U$ and
+the two-sided extension $xyz$ is admissible, then $xyz\in U$: breaking is
+preserved under admissible embedding.
+
+**Theorem** (`OffenseClosed.eq_L_inter_suffix`). If $U\subseteq L$ is
+offense-closed, then $U=L\cap C$ where $C$ is the offense suffix language of $U$.
+*Proof.* Every breaker has a first-offense prefix, hence lies in $C$.
+Conversely, $x=uv$ with $u\in\hat U\subseteq U$ and $x\in L$ upgrades by closure
+with empty left context.
+
+**Theorem** (`OffenseClosed.isContextFree`, offense CF). If $U\subseteq L$ is
+offense-closed with finite offense horizon, $L$ is context-free, and
+context-free languages are closed under intersection with regular languages,
+then $U$ is context-free. *Proof.* Write $U=L\cap C$ with $C$ regular, and apply
+the classical intersection hypothesis. (Offense-primality is carried as an
+additional hypothesis in the development but is not required for this
+intersection argument.)

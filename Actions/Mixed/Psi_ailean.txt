@@ -1,1 +1,32 @@
-`Psi`, `antitone`, and `pi_mem_of_motivationalConsistency`.
+For a set $A$ of utterance indices, define (`Psi`)
+$$
+\psi(A)=\{u\in L\mid u\text{ is consistent with every pair in }A\}.
+$$
+Membership is exactly that conjunction of admissibility and set-consistency
+(`Psi.mem_iff`).
+
+**Proposition 5 (§5.3.5)** (`Psi.antitone`). The map $A\mapsto\psi(A)$ is
+antitone: if $A\subseteq B$, then $\psi(B)\subseteq\psi(A)$. *Proof.* Any string
+consistent with every index in $B$ is, a fortiori, consistent with every index
+in the subset $A$.
+
+The utterance set $A(x)$ of a mixed string $x$ (`utterancesOf`) is the set of
+pairs $(\alpha,k)$ arising from its successive utterance occurrences (sentence
+together with discrete occurrence time).
+
+**Theorem** (`Psi.pi_mem_of_motivationalConsistency`). If $x$ is motivationally
+consistent, then $\pi(x)\in\psi(A(x))$.
+
+*Proof.* Consistency of $x$ places $\pi(x)$ in $L$. Fix an occurrence
+$(\alpha,u,v)$ of $x$, and write $k$ for its discrete time, so
+$(\alpha,k)\in A(x)$. Reconstruction gives $x=u\,\alpha\,v$. The homomorphism
+property of $\pi$ and the rule that a leading sentence of duration
+$\varphi_M(\alpha)$ contributes a pause block yield
+$$
+\pi(x)=\bigl(\pi(u)\,\#^{\varphi_M(\alpha)}\bigr)\,\pi(v).
+$$
+The four consistency clauses at this occurrence supply the wanted, unwanted,
+obligation, and prohibition halves of consistency of $\pi(x)$ with $(\alpha,k)$,
+using the displayed split with suffix $\pi(v)$. Since the occurrence was
+arbitrary, $\pi(x)$ is consistent with every member of $A(x)$, hence lies in
+$\psi(A(x))$.

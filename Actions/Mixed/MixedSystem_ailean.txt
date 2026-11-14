@@ -1,1 +1,26 @@
-`MixedSystem` wraps `ActionSystem` plus verbal primitives; `φM` is discrete pause-units.
+A mixed system (`MixedSystem`) is an action sixtuplet together with a sentence
+alphabet $M$, a discrete sentence-duration map $\varphi_M:M\to\mathbb{N}$
+(pause-units; zero allowed), and four utterance relations: wanted time-results
+$W(\alpha,k)$, unwanted results $W'_\mathrm{res}(\alpha,k)$, obligation sets
+$O(\alpha,k)$, and prohibition sets $O'(\alpha,k)$, for each sentence $\alpha$
+and discrete time $k$. The underlying sixtuplet is recovered as `base` (with
+abbreviations `D`, `L`, `TimeResult`).
+
+Assumption (7) asserts that no single utterance is self-contradictory on wants:
+if $(s,n)\in W(\alpha,k)$ then $s\notin W'_\mathrm{res}(\alpha,k)$. Extending
+unwanted results to all times by
+$W'(\alpha,k)=\{(s,n)\mid s\in W'_\mathrm{res}(\alpha,k)\}$ (`W'`) yields
+$W(\alpha,k)\cap W'(\alpha,k)=\emptyset$ (`W_disjoint`).
+
+Assumption (11) is right-closure of obligations inside non-parasitic strings:
+if $u\in O(\alpha,k)$ and some extension of the concatenation $uv$ lies in $L$,
+then $uv\in O(\alpha,k)$. Assumption (12) is two-sided closure of prohibitions:
+if $v\in O'(\alpha,k)$ and some extension of $uvw$ lies in $L$, then
+$uvw\in O'(\alpha,k)$. Assumption (13) requires that every utterance asserts at
+least one of the four relations nontrivially.
+
+Letters of a mixed string (`Letter`) are either actions or sentences. The
+duration of one letter is `letterDuration`; the duration of a mixed string
+(`mixedDuration`) is their sum (with `mixedDuration_nil` and
+`mixedDuration_cons`). The discrete utterance time of an action prefix
+(`utteranceTime`) is the floor of its continuous duration.

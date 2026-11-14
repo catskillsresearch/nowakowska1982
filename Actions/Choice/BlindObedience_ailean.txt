@@ -1,2 +1,3 @@
-`BlindObedience` is `¬ Sovereignty`. `BlindObedience.of_not_sovereignty` is
-the packaging lemma.
+Blind-obedience packaging (`BlindObedience`) names the clinical reading of
+sovereignty failure: sovereignty does not hold. The packaging is definitionally
+identical to the negation of sovereignty (`BlindObedience.of_not_sovereignty`).

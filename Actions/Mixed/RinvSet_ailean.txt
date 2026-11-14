@@ -1,1 +1,17 @@
-`RinvWanted` / `RinvUnwanted` package the set-level inverse images.
+For a set $W$ of time-results, the wanted inverse image (`RinvWanted`) is the
+intersection
+$$
+\hat R^{-1}(W)=\bigcap_{(s,n)\in W}R^{-1}(s,n).
+$$
+A string $u$ belongs to this set precisely when it realizes every time-result
+in $W$ (`RinvWanted.mem_iff`). When $W$ is empty the intersection is the
+universe of all strings (`RinvWanted.empty`).
+
+For a set $W'$ of unwanted time-results, the unwanted inverse image
+(`RinvUnwanted`) is the union
+$$
+R^{-1}(W')=\bigcup_{(s,n)\in W'}R^{-1}(s,n).
+$$
+Thus $u$ lies in $R^{-1}(W')$ when it realizes at least one member of $W'$
+(`RinvUnwanted.mem_iff`). When $W'$ is empty the union is empty
+(`RinvUnwanted.empty`).

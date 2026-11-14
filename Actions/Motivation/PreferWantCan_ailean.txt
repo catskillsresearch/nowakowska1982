@@ -1,3 +1,4 @@
-`PreferWantCan` is a structure of relations plus the sampled axioms
-`prefer_asymm`, `want_not_dont`, `can_not_cannot`, `must_imp_ought`, and
-`prefer_imp_want`.
+A prefer/want/can sample (`PreferWantCan`) packages binary preference together
+with unary want, not-want, can, cannot, ought, and must, subject to: preference
+is asymmetric; want excludes not-want; can excludes cannot; must implies ought;
+and preference of $p$ over $q$ forces want of $p$.

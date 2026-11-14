@@ -1,4 +1,19 @@
-`EffortDominated` is a same-length, pointwise pause-replacement reading of
-$\prec$. `Prax` and `PraxMin` are the corresponding filters on an arbitrary
-realizer set. `Prax_empty` and `EffortDominated.refl` are elementary
-sanity lemmas.
+Effort domination (`EffortDominated`) compares equal-length strings: $u'$
+effort-dominates $u$ when, at every index, the letters agree or else $u'$ has a
+pause where $u$ has a non-pause. Reflexivity (`EffortDominated.refl`) is
+immediate: equal strings dominate each other via the left disjunct at every
+index.
+
+Given a set of realizing strings, the praxiological set (`Prax`) consists of
+those realizers that are not effort-dominated by a different realizer. The
+praxiological minimum (`PraxMin`) further restricts to those of minimal duration
+among the praxiological strings.
+
+**Theorem** (`Prax_subset`). Every praxiological string is a realizer. *Proof.*
+By definition of the subset.
+
+**Theorem** (`PraxMin_subset_Prax`). Every praxiological minimum is
+praxiological. *Proof.* Again by definition of the subset.
+
+**Theorem** (`Prax_empty`). The empty realizing set has empty praxiological set.
+*Proof.* No string can belong to the empty set of realizers.

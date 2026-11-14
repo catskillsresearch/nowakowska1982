@@ -1,1 +1,15 @@
-`LM` is `{x | pi x ∈ L}`; `hasUtterance` marks strings with sentences.
+The mixed language (`LM`) is the inverse image
+$$
+L_M=\pi^{-1}(L)=\{x\in(D\cup M)^*\mid \pi(x)\in L\}.
+$$
+Thus a mixed string is physically admissible precisely when its behavioural
+projection is an admissible action string (`LM.mem_iff`).
+
+**Theorem** (`LM.of_pure_actions`). Every purely behavioural string from $L$
+embeds into $L_M$: mapping each action letter into the mixed alphabet and
+applying $\pi$ recovers the original string, so membership in $L$ transfers.
+
+A mixed string is said to contain an utterance (`hasUtterance`) when at least
+one of its letters is a sentence. The domain of motivational consistency
+(`LM_minus_L`) is the subset of $L_M$ consisting of those strings that contain
+at least one utterance.

@@ -1,3 +1,10 @@
-`ArrowPostulates2` is the conjunction of lack of dictator, unanimity, IIA, and
-sovereignty. Members: `not_of_dictator` and the compared claim
-`impossibility_dictatorial_core`.
+The packaged Arrow postulates for two scales (`ArrowPostulates2`) are the
+conjunction of lack of a dictator, unanimity, independence of irrelevant
+alternatives, and sovereignty.
+
+**Theorem** (`ArrowPostulates2.not_of_dictator`). No dictatorial social welfare
+function satisfies the package. *Proof.* A dictator falsifies lack of a
+dictator.
+
+**Corollary** (`ArrowPostulates2.impossibility_dictatorial_core`). Neither pure
+scale dictator satisfies the package.

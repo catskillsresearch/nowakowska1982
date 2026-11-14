@@ -1,3 +1,14 @@
-`HatU` is the first-offense set; `HatU.subset` and `HatU.exists_prefix` are
-the structural facts. `FiniteOffenseHorizon` and `OffensePrime` support the
-offense CF packaging.
+For a set $U$ of breaking (offense) strings, the first-offense set $\hat U$
+(`HatU`) consists of those $v\in U$ with no proper prefix still in $U$ obtained
+by splitting off a positive-duration suffix.
+
+**Theorem** (`HatU.subset`). $\hat U\subseteq U$. *Proof.* Immediate.
+
+**Theorem** (`HatU.exists_prefix`). Every member of $U$ has a prefix in $\hat U$.
+*Proof.* The same length induction as for minimal fulfillers: either the string
+is already first-offense, or a strictly shorter prefix in $U$ supplies a first
+offense by induction.
+
+Finite offense horizon (`FiniteOffenseHorizon`) means some real bounds all
+durations of first offenses. Offense-primality (`OffensePrime`) asserts that
+whenever a concatenation lies in $U$, at least one of the two factors does.

@@ -1,1 +1,15 @@
-`ConsistentWith` / `ConsistentWithSet` on pure action strings.
+Utterance indices (`Lambda`) are pairs $(\alpha,k)$ with $\alpha$ a sentence and
+$k$ a discrete time. An admissible action string $x\in L$ is consistent with
+$(\alpha,k)$ (`ConsistentWith`) when:
+
+- if $W(\alpha,k)$ is nonempty, then $x\in\hat R^{-1}(W(\alpha,k))$;
+- if $W'(\alpha,k)$ is nonempty, then $x\notin R^{-1}(W'(\alpha,k))$;
+- there is a split $x=uv$ such that, whenever $O(\alpha,k)$ (resp.\ $O'(\alpha,k)$)
+  is nonempty, the suffix $v$ lies in $O(\alpha,k)$ (resp.\ does not lie in
+  $O'(\alpha,k)$).
+
+(The paper’s exact duration constraint $\varphi(u)=k$ is left to instances in which
+duration is discrete; the split itself is existential.)
+
+Consistency with respect to a set $A$ of utterance indices
+(`ConsistentWithSet`) means consistency with every pair in $A$.

@@ -1,2 +1,4 @@
-`NeuroticAllOrNothing` is `¬ IIA`. `NeuroticAllOrNothing.of_not_IIA` is the
-packaging lemma.
+Neurotic all-or-nothing packaging (`NeuroticAllOrNothing`) names the clinical
+reading of independence failure: independence of irrelevant alternatives does
+not hold. The packaging is definitionally identical to the negation of that
+postulate (`NeuroticAllOrNothing.of_not_IIA`).

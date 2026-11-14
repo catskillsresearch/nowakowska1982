@@ -1,2 +1,11 @@
-`RegularImpliesCF` and `CFInterRegular` are the two Ch. 3 closure hypotheses
-passed into `PromiseClosed.isContextFree` and `OffenseClosed.isContextFree`.
+Two classical hypotheses from the language-theoretic background are packaged for
+the promise and offense arguments.
+
+Regular-implies-context-free (`RegularImpliesCF`) asserts that every regular
+language over the alphabet is context-free. Context-free-meet-regular
+(`CFInterRegular`) asserts that the intersection of a context-free language with
+a regular language is again context-free.
+
+These are the only external language facts invoked when concluding that
+promise-closed or offense-closed subsets of a context-free $L$ remain
+context-free under finite horizon.

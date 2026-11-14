@@ -1,6 +1,16 @@
-`ActionSystem` packages the sixtuplet with positivity of $\varphi$, the
-normalization $\varphi(\#)=1$, and the side condition that only strings in $L$ may
-stand in $R$. `stringDuration` is the sum of elementary durations;
-`pauseString n` is the $n$-fold pause, with
-`stringDuration_pauseString` proving its duration equals $n$. `Rinv`
-is equation (2)’s inverse image, and `Attainable` asserts nonemptiness.
+An action system (`ActionSystem`) is a sixtuplet $\langle D,\#,\varphi,L,S,R\rangle$: an
+alphabet $D$ of elementary actions with a distinguished pause $\#$; a duration
+map $\varphi:D\to\mathbb{R}$ that is strictly positive on every action and
+satisfies $\varphi(\#)=1$; a set $S$ of outcomes; a language $L\subseteq D^*$ of
+physically admissible strings; and a causation relation $R$ relating strings,
+outcomes, and discrete times. Only strings from $L$ may stand in $R$.
+
+A pause string of length $n$ (`pauseString`) is the $n$-fold concatenation of
+$\#$. A time-result (`TimeResult`) is a pair $(s,t)$ with $s\in S$ and
+$t\in\mathbb{N}$. The inverse image $R^{-1}(s,t)$ (`Rinv`) is the set of strings
+$u$ such that $R(u,s,t)$ holds.
+
+**Theorem** (`Rinv_subset_L`). $R^{-1}(s,t)\subseteq L$ for every time-result.
+*Proof.* Immediate from the side condition that only members of $L$ stand in $R$.
+
+A time-result is attainable (`Attainable`) when its inverse image is nonempty.

@@ -1,1 +1,11 @@
-`NonParasitic u` means some extension places `u` in `L`.
+A string $u$ over the action alphabet is called non-$L$-parasitic
+(`NonParasitic`) when there exist strings $w_1$ and $w_2$ such that the
+concatenation $w_1uw_2$ belongs to $L$. Equivalently, $u$ occurs as a contiguous
+factor of some physically admissible string.
+
+**Theorem** (`NonParasitic.of_mem_L`). Every member of $L$ is non-$L$-parasitic:
+take both extensions empty.
+
+**Theorem** (`NonParasitic.append_left_right`). More generally, if a concrete
+sandwich $w_1uw_2$ already lies in $L$, those same extensions witness that $u$
+is non-$L$-parasitic.
