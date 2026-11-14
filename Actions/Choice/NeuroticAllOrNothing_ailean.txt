@@ -1,0 +1,2 @@
+`NeuroticAllOrNothing` is `¬ IIA`. `NeuroticAllOrNothing.of_not_IIA` is the
+packaging lemma.

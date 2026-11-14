@@ -6,6 +6,12 @@ digraph Arrow {
 
   TotalPreorder [label="TotalPreorder"];
   Arrow [label="Arrow"];
+  CompulsiveOrHedonistic [label="CompulsiveOrHedonistic"];
+  BlindObedience [label="BlindObedience"];
+  NeuroticAllOrNothing [label="NeuroticAllOrNothing"];
 
   Arrow -> TotalPreorder;
+  CompulsiveOrHedonistic -> Arrow;
+  BlindObedience -> Arrow;
+  NeuroticAllOrNothing -> Arrow;
 }

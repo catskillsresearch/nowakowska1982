@@ -1,0 +1,2 @@
+`BlindObedience` is `¬ Sovereignty`. `BlindObedience.of_not_sovereignty` is
+the packaging lemma.

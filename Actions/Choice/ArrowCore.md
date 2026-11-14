@@ -1,4 +1,4 @@
-# Arrow postulates and clinical packaging
+# Arrow postulates
 
 @import "ArrowCore_aisummary.txt" {code_block=false}
 

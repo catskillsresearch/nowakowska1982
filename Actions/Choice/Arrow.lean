@@ -10,13 +10,11 @@ public import Mathlib.Tactic
 @[expose] public section
 
 /-!
-# Arrow’s theorem and clinical corollaries (§5)
+# Arrow’s theorem (§5 postulates)
 
 Nowakowska (1982), pp. 152–156. Thin formalization of Arrow postulates on
-2 motivational scales / 3 options, named clinical failure modes, and the
-dictatorial-core inconsistency used in her §5 reading.
-
-Clinical names are interpretive library packaging, not new psychology theorems.
+2 motivational scales / 3 options, and the dictatorial-core inconsistency.
+Clinical failure-mode packaging lives in companion modules.
 -/
 
 namespace Actions
@@ -60,30 +58,6 @@ def Sovereignty (F : SWF2) : Prop :=
 def ArrowPostulates2 (F : SWF2) : Prop :=
   LackOfDictator F ∧ Unanimity F ∧ IIA F ∧ Sovereignty F
 
-def CompulsiveOrHedonistic (F : SWF2) : Prop := ∃ i, IsDictator F i
-def BlindObedience (F : SWF2) : Prop := ¬ Sovereignty F
-def NeuroticAllOrNothing (F : SWF2) : Prop := ¬ IIA F
-
-namespace CompulsiveOrHedonistic
-theorem of_not_lack {F : SWF2} (h : ¬ LackOfDictator F) :
-    CompulsiveOrHedonistic F := by
-  unfold LackOfDictator at h
-  push Not at h
-  exact h
-theorem of_dictator {F : SWF2} {i : Fin 2} (h : IsDictator F i) :
-    CompulsiveOrHedonistic F := ⟨i, h⟩
-end CompulsiveOrHedonistic
-
-namespace BlindObedience
-theorem of_not_sovereignty {F : SWF2} (h : ¬ Sovereignty F) :
-    BlindObedience F := h
-end BlindObedience
-
-namespace NeuroticAllOrNothing
-theorem of_not_IIA {F : SWF2} (h : ¬ IIA F) :
-    NeuroticAllOrNothing F := h
-end NeuroticAllOrNothing
-
 def scale1Dictator : SWF2 := fun π => π.1
 def scale2Dictator : SWF2 := fun π => π.2
 
@@ -95,8 +69,6 @@ theorem IIA : IIA scale1Dictator := by
   simpa [scale1Dictator, rankingPreorder] using h1
 theorem not_lack : ¬ LackOfDictator scale1Dictator := fun h =>
   h 0 isDictator
-theorem compulsive : CompulsiveOrHedonistic scale1Dictator :=
-  ⟨0, isDictator⟩
 end scale1Dictator
 
 namespace scale2Dictator
@@ -107,8 +79,6 @@ theorem IIA : IIA scale2Dictator := by
   simpa [scale2Dictator, rankingPreorder] using h2
 theorem not_lack : ¬ LackOfDictator scale2Dictator := fun h =>
   h 1 isDictator
-theorem compulsive : CompulsiveOrHedonistic scale2Dictator :=
-  ⟨1, isDictator⟩
 end scale2Dictator
 
 /-- Pairwise ranking with `a` best, `b` second, other option last. -/

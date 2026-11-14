@@ -1,0 +1,4 @@
+`CompulsiveOrHedonistic` means some scale is a dictator.
+`CompulsiveOrHedonistic.of_not_lack` / `of_dictator` are the packaging lemmas;
+`scale1Dictator.compulsive` / `scale2Dictator.compulsive` record the pure
+scale cases.

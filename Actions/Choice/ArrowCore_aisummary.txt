@@ -1,4 +1,3 @@
-Violating lack of dictator yields compulsive (Superego) or hedonistic (Id)
-dominance; sovereignty failure is blind obedience; IIA failure is neurotic
-all-or-nothing. The library packages these clinical readings as named defs and
-checks that pure scale dictators cannot satisfy the full postulate bundle.
+Arrow’s postulates on two motivational scales / three options are jointly
+inconsistent. The library checks that pure scale dictators cannot satisfy the
+full postulate bundle; clinical failure-mode names are companion modules.

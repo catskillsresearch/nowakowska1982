@@ -24,5 +24,8 @@ public import Actions.Automata.Automaton
 public import Actions.Automata.ToActionSystem
 public import Actions.Choice.TotalPreorder
 public import Actions.Choice.Arrow
+public import Actions.Choice.CompulsiveOrHedonistic
+public import Actions.Choice.BlindObedience
+public import Actions.Choice.NeuroticAllOrNothing
 public import Actions.Examples.ToyWorld
 
