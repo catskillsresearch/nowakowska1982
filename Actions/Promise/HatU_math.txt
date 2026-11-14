@@ -1,0 +1,5 @@
+**Nowakowska, Theory of Actions (1982), pp. 160–161**
+
+If $z\in U$ breaks a promise and $z=uvw$ with $v\in U$ and $u\notin U$, then
+$v$ is a *first offense*. Let $\hat U$ be the set of all first offenses, and
+$k(U)=\max\{\varphi(x):x\in\hat U\}$.

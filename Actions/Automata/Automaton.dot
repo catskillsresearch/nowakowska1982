@@ -6,7 +6,7 @@ digraph Automaton {
 
   // Labels = subsection titles. Edge A -> B means B imports A.
   ActionAutomaton [label="Action automaton"];
-  ToActionSystem [label="Bridge to action system"];
+  toActionSystem [label="Bridge to action system"];
 
-  ActionAutomaton -> ToActionSystem;
+  ActionAutomaton -> toActionSystem;
 }

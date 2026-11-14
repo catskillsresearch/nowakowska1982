@@ -1,0 +1,3 @@
+`PromiseClosed` is condition (a). Members: `mono`, `eq_L_inter_suffix`, and
+`isContextFree` (Palomar novel reconstruction; `RegularImpliesCF` and
+`CFInterRegular` are explicit hypotheses).

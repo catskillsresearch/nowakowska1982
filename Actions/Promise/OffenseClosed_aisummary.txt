@@ -1,0 +1,3 @@
+Condition (b) is two-sided embedding closure for breaking strings. With finite
+offense horizon and primality, it yields the offense CF theorem (1973 Thm 4 /
+1982 §7).

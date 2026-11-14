@@ -5,10 +5,22 @@ digraph Promise {
   edge [color="#334155"];
 
   // Labels = subsection titles. Edge A -> B means B imports A.
-  Horizons [label="Motivational horizons"];
-  PositiveCF [label="Positive promise CF"];
-  OffenseCF [label="Offense CF"];
+  minφ [label="Minimum elementary duration"];
+  stringDuration [label="String duration"];
+  HatT [label="Minimal fulfilling strings"];
+  HatU [label="First offenses"];
+  promiseSuffixLang [label="Promise suffix language"];
+  offenseSuffixLang [label="Offense suffix language"];
+  PromiseClosed [label="Promise closed"];
+  OffenseClosed [label="Offense closed"];
 
-  Horizons -> PositiveCF;
-  Horizons -> OffenseCF;
+  minφ -> stringDuration;
+  stringDuration -> HatT;
+  stringDuration -> HatU;
+  HatT -> promiseSuffixLang;
+  HatU -> offenseSuffixLang;
+  HatT -> PromiseClosed;
+  promiseSuffixLang -> PromiseClosed;
+  HatU -> OffenseClosed;
+  offenseSuffixLang -> OffenseClosed;
 }

@@ -1,0 +1,5 @@
+**Nowakowska, Language of Motivation and Language of Actions (1973), §5.3.2**
+
+The suffix language $C=\{uv:u\in\bar O\}$ is regular by Myhill–Nerode (finite
+horizon ⇒ finitely many short non-members), and the fulfilling set meets
+$D_+^*\cap C$.

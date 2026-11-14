@@ -1,0 +1,5 @@
+**Nowakowska, Theory of Actions (1982), pp. 152–154**
+
+Sovereignty requires that for distinct options $a,b$ some profile yields
+social $a\succ b$ and some yields $b\succ a$. Pairwise rankings that put $a$
+above $b$ (or the reverse) are the standard witnesses.

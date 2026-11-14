@@ -1,0 +1,2 @@
+`HatT` is the minimal-fulfillment set; `HatT.subset` and `HatT.exists_prefix`
+are the structural facts. `horizon` and `FiniteHorizon` package $h(T)$.

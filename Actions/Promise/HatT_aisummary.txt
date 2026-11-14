@@ -1,0 +1,3 @@
+$\hat T$ collects strings that fulfill a promise at their termination but not
+before. The motivational horizon $h(T)$ is the supremum of their durations;
+`FiniteHorizon` packages finiteness of that bound.

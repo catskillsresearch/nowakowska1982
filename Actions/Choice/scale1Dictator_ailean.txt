@@ -1,0 +1,2 @@
+`scale1Dictator` is `fun p => p.1`. Members: `isDictator`, `unanimity`, `IIA`,
+`sovereignty`, `not_lack`.

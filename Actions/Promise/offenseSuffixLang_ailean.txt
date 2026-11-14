@@ -1,0 +1,2 @@
+`offenseSuffixLang` mirrors the positive envelope; members `suffix_closed`,
+`none_of_long`, and `isRegular` are the Myhill–Nerode facts.

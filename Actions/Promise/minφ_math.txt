@@ -1,0 +1,4 @@
+**Nowakowska, Theory of Actions (1982), §7**
+
+Elementary durations $\varphi(d)$ are positive. Their minimum on a finite
+alphabet yields a linear lower bound of string duration by length.

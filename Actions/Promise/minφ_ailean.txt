@@ -1,0 +1,1 @@
+`minφ` is the Finset infimum of `A.φ`. Member `minφ.pos` records positivity.

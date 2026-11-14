@@ -5,14 +5,14 @@ Released under Apache-2.0 license as described in file LICENSE.
 module
 
 public import Actions.Attainability.Conflicts
-public import Actions.Automata.ToActionSystem
-public import Actions.Choice.Arrow
+public import Actions.Automata.toActionSystem
+public import Actions.Choice.ArrowPostulates2
 public import Actions.Choice.CompulsiveOrHedonistic
 public import Actions.Choice.BlindObedience
 public import Actions.Choice.NeuroticAllOrNothing
 public import Actions.Motivation.SampledSemImp
-public import Actions.Promise.PositiveCF
-public import Actions.Promise.OffenseCF
+public import Actions.Promise.PromiseClosed
+public import Actions.Promise.OffenseClosed
 public import Mathlib.Computability.ContextFreeGrammar
 
 @[expose] public section

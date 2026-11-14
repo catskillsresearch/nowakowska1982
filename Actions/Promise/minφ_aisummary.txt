@@ -1,0 +1,2 @@
+The minimum positive elementary duration bounds string length from duration,
+which makes duration-bounded languages finite over a finite alphabet.

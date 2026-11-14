@@ -1,7 +1,0 @@
-`promiseSuffixLang` is the regular envelope; members
-`promiseSuffixLang.suffix_closed`, `none_of_long`, and `isRegular` are the
-Myhill–Nerode facts. `HatT.exists_prefix` and
-`PromiseClosed.eq_L_inter_suffix` identify $T$ with $L\cap C$. The compared
-claim is `PromiseClosed.isContextFree`, taking `RegularImpliesCF` and
-`CFInterRegular` as explicit hypotheses. **Palomar novel reconstruction** of
-1973 Thm 1 / 1982 §7.

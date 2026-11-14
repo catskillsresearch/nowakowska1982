@@ -1,0 +1,3 @@
+`HatU` is the first-offense set; `HatU.subset` and `HatU.exists_prefix` are
+the structural facts. `FiniteOffenseHorizon` and `OffensePrime` support the
+offense CF packaging.

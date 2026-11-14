@@ -1,0 +1,3 @@
+$\hat U$ collects first offenses in breaking strings. Finite max duration on
+$\hat U$ is `FiniteOffenseHorizon`; `OffensePrime` is the 1973 primality side
+condition used for the offense CF theorem.

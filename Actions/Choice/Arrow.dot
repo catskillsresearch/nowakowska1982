@@ -7,12 +7,22 @@ digraph Arrow {
   // Labels = subsection titles. Edge A -> B means B imports A.
   TotalPreorder [label="Total preorder"];
   Arrow [label="Arrow postulates"];
+  prefer [label="Prefer ranking"];
+  scale1Dictator [label="Scale-1 dictator"];
+  scale2Dictator [label="Scale-2 dictator"];
+  ArrowPostulates2 [label="Arrow postulates package"];
   CompulsiveOrHedonistic [label="Compulsive or hedonistic"];
   BlindObedience [label="Blind obedience"];
   NeuroticAllOrNothing [label="Neurotic all-or-nothing"];
 
   TotalPreorder -> Arrow;
-  Arrow -> CompulsiveOrHedonistic;
+  Arrow -> prefer;
+  prefer -> scale1Dictator;
+  prefer -> scale2Dictator;
+  scale1Dictator -> ArrowPostulates2;
+  scale2Dictator -> ArrowPostulates2;
+  scale1Dictator -> CompulsiveOrHedonistic;
+  scale2Dictator -> CompulsiveOrHedonistic;
   Arrow -> BlindObedience;
   Arrow -> NeuroticAllOrNothing;
 }

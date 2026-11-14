@@ -1,0 +1,3 @@
+Promise and offense horizons are stated in terms of string duration. The
+definition, additivity/nonnegativity lemmas, and the finite-alphabet bound
+used by the regular-envelope arguments live here.

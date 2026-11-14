@@ -1,0 +1,2 @@
+The pure first-scale dictator copies scale 1’s ranking to the social output. It
+satisfies unanimity, IIA, and sovereignty, but fails lack of dictator.

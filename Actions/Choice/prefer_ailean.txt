@@ -1,0 +1,2 @@
+`prefer a b` ranks `a` best and `b` second. Member `prefer.lt` records the
+induced strict preference.

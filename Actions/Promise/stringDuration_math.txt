@@ -1,0 +1,5 @@
+**Nowakowska, Theory of Actions (1982), pp. 144–145, 159–160**
+
+Elementary durations $\varphi:D\to\mathbb{R}_{>0}$ extend additively to strings;
+horizons are expressed with $\varphi(x)$ for $x\in\hat T$ or $\hat U$. Over a
+finite alphabet, strings of bounded duration form a finite set.

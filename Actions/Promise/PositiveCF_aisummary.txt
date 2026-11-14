@@ -1,4 +1,0 @@
-When $L$ is context-free and the motivational horizon $h(T)$ is finite, the
-set $T$ of strings fulfilling a positive promise is itself context-free. The
-1982 §7 statement omits the proof; the machine-checked reconstruction follows
-1973 Theorem 1 via a regular suffix envelope.

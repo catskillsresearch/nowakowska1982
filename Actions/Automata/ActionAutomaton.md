@@ -6,6 +6,6 @@
 
 @import "ActionAutomaton_ailean.txt" {code_block=false}
 
-**[Actions/Automata/Automaton.lean](Automaton.lean)**
+**[Actions/Automata/ActionAutomaton.lean](ActionAutomaton.lean)**
 
-@import "Automaton.lean"
+@import "ActionAutomaton.lean"

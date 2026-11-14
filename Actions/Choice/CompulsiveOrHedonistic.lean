@@ -4,7 +4,8 @@ Released under Apache-2.0 license as described in file LICENSE.
 -/
 module
 
-public import Actions.Choice.Arrow
+public import Actions.Choice.scale1Dictator
+public import Actions.Choice.scale2Dictator
 import Mathlib.Tactic
 
 @[expose] public section

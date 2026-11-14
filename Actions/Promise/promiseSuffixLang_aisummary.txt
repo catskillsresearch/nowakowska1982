@@ -1,0 +1,3 @@
+The regular envelope $C=\{uv:u\in\hat T\}$ is the Myhill–Nerode object used to
+prove positive promise CF: under finite horizon it is regular, and $T=L\cap C$
+when condition (a) holds.

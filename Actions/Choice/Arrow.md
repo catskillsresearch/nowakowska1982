@@ -8,6 +8,10 @@ package.
 
 - [Total preorder](TotalPreorder.md)
 - [Arrow postulates](ArrowCore.md)
+- [Prefer ranking](prefer.md)
+- [Scale-1 dictator](scale1Dictator.md)
+- [Scale-2 dictator](scale2Dictator.md)
+- [Arrow postulates package](ArrowPostulates2.md)
 - [Compulsive or hedonistic](CompulsiveOrHedonistic.md)
 - [Blind obedience](BlindObedience.md)
 - [Neurotic all-or-nothing](NeuroticAllOrNothing.md)

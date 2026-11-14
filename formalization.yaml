@@ -52,7 +52,7 @@ status:
       Novel compared claim: paper asserts 113 conflict types without exhibiting
       the enumeration; decide proof confirms the labeled downset model.
   - declaration: Actions.ActionAutomaton.toActionSystem.L
-    file: Actions/Automata/ToActionSystem.lean
+    file: Actions/Automata/toActionSystem.lean
     sorry_count: 0
     axioms:
     - propext
@@ -63,7 +63,7 @@ status:
       Novel realization theorem: 1982 §13 states the automaton reading; this
       library supplies the machine-checked L-equality.
   - declaration: Actions.Arrow.ArrowPostulates2.impossibility_dictatorial_core
-    file: Actions/Choice/Arrow.lean
+    file: Actions/Choice/ArrowPostulates2.lean
     sorry_count: 0
     axioms:
     - propext
@@ -87,7 +87,7 @@ status:
       Sampled §2.1.4 SemImp rules validated on the §2.2.4 epistemic model;
       not a full 79-rule calculus.
   - declaration: Actions.ActionSystem.PromiseClosed.isContextFree
-    file: Actions/Promise/PositiveCF.lean
+    file: Actions/Promise/PromiseClosed.lean
     sorry_count: 0
     axioms:
     - propext
@@ -100,7 +100,7 @@ status:
       promise CF; RegularImpliesCF and CFInterRegular are explicit Ch. 3
       hypotheses (not yet in Mathlib).
   - declaration: Actions.ActionSystem.OffenseClosed.isContextFree
-    file: Actions/Promise/OffenseCF.lean
+    file: Actions/Promise/OffenseClosed.lean
     sorry_count: 0
     axioms:
     - propext

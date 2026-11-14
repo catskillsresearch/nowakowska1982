@@ -1,0 +1,11 @@
+**Nowakowska, Theory of Actions (1982), pp. 160–161**
+
+(b) if $xyz\in L$, then $y\in U$ implies $xyz\in U$.
+
+**THEOREM.** If $L$ is a context free language, and $U$ satisfies condition
+(b) with $k(U)<\infty$, then $U$ is also a context free language.
+
+**Nowakowska, Language of Motivation and Language of Actions (1973), §5.3.3**
+
+Thm 4: under primality and finite max $\varphi$ on first offenses,
+$O'_{(\alpha,k)}$ is context-free.

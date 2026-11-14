@@ -7,4 +7,4 @@ automaton itself and the bridge into the sixtuplet API.
 @import "Automaton.svg" {code_block=false}
 
 - [Action automaton](ActionAutomaton.md)
-- [Bridge to action system](ToActionSystem.md)
+- [Bridge to action system](toActionSystem.md)

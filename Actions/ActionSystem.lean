@@ -45,36 +45,9 @@ namespace ActionSystem
 
 variable (A : ActionSystem)
 
-/-- Duration of a composite string (sum of elementary durations). -/
-noncomputable def stringDuration (u : List A.D) : ℝ :=
-  (u.map A.φ).sum
-
-@[simp] theorem stringDuration_nil :
-    A.stringDuration [] = 0 := by
-  simp [stringDuration]
-
-@[simp] theorem stringDuration_cons (d : A.D) (u : List A.D) :
-    A.stringDuration (d :: u) = A.φ d + A.stringDuration u := by
-  simp [stringDuration]
-
 /-- Longer pauses are concatenations of the pause action. -/
 def pauseString (n : ℕ) : List A.D :=
   List.replicate n A.pause
-
-theorem stringDuration_pauseString (n : ℕ) :
-    A.stringDuration (A.pauseString n) = n := by
-  induction n with
-  | zero => simp [pauseString]
-  | succ n ih =>
-      calc
-        A.stringDuration (A.pauseString (n + 1))
-            = A.stringDuration (A.pause :: A.pauseString n) := by
-              simp [pauseString, List.replicate_succ]
-        _ = A.φ A.pause + A.stringDuration (A.pauseString n) := by
-              simp [stringDuration]
-        _ = 1 + A.stringDuration (A.pauseString n) := by rw [A.φ_pause]
-        _ = 1 + (n : ℝ) := by rw [ih]
-        _ = ((n + 1 : ℕ) : ℝ) := by push_cast; ring
 
 /-- A time-result is a pair `(s, t)`. -/
 abbrev TimeResult := A.S × ℕ

@@ -1,0 +1,12 @@
+**Nowakowska, Theory of Actions (1982), pp. 159–160**
+
+(a) if $xy\in L$, then $x\in T$ implies $xy\in T$.
+
+**THEOREM.** Suppose that $L$ is a context free language, and that
+$T\subseteq L$ satisfies condition (a). If $h(T)<\infty$, then $T$ is also a
+context free language.
+
+**Nowakowska, Language of Motivation and Language of Actions (1973), §5.3.2**
+
+Thm 1: under finite horizon, $O_{(\alpha,k)}$ is context-free via
+$O=D_+^*\cap C$ with $C$ regular.

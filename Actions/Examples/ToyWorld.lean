@@ -5,7 +5,7 @@ Released under Apache-2.0 license as described in file LICENSE.
 module
 public import Actions.Attainability.Goals
 public import Actions.Means.Prax
-public import Actions.Promise.Horizons
+public import Actions.Promise.PromiseClosed
 import Mathlib.Tactic
 @[expose] public section
 /-!

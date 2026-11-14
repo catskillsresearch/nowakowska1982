@@ -1,4 +1,4 @@
-`ArrowPostulates2` packages lack of dictator, unanimity, IIA, and sovereignty
-on two scales / three options. Dictators `scale1Dictator` / `scale2Dictator`
-have members `isDictator`, `unanimity`, `IIA`, `sovereignty`, `not_lack`. The
-compared claim is `ArrowPostulates2.impossibility_dictatorial_core`.
+`rankingPreorder` lifts a `Ranking3` to a `TotalPreorder`. The individual
+postulates are `LackOfDictator`, `Unanimity`, `IIA`, and `Sovereignty`;
+`IsDictator` classifies pure scale dictators. The packaged conjunction lives
+in `ArrowPostulates2`.
