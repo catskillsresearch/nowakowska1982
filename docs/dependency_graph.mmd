@@ -1,0 +1,202 @@
+%% Nowakowska formalization — dependency graph of structures, defs, theorems.
+%% Edge A --> B means B depends on / imports / uses A.
+%% Shapes: stadium = structure; rect = def/abbrev; hex = theorem/lemma.
+flowchart TB
+  classDef str fill:#dbeafe,stroke:#1d4ed8,color:#1e3a8a
+  classDef def fill:#ecfdf5,stroke:#047857,color:#065f46
+  classDef thm fill:#fef3c7,stroke:#b45309,color:#92400e
+  classDef mod fill:#f1f5f9,stroke:#475569,color:#0f172a
+
+  %% ========== §2 Action system ==========
+  subgraph S2["§2 Action system"]
+    ActionSystem[["ActionSystem"]]:::str
+    pauseString["pauseString"]:::def
+    TimeResult["TimeResult"]:::def
+    Rinv["Rinv"]:::def
+    Attainable["Attainable"]:::def
+    Rinv_subset_L{{"Rinv_subset_L"}}:::thm
+    ActionSystem --> pauseString --> TimeResult --> Rinv
+    Rinv --> Rinv_subset_L
+    Rinv --> Attainable
+  end
+
+  %% ========== §4 Attainability / conflicts / Prax ==========
+  subgraph S4["§4 Goals, conflicts, Prax"]
+    GoalSet["GoalSet"]:::def
+    RinvUnion["RinvUnion"]:::def
+    RinvInter["RinvInter"]:::def
+    WeaklyAttainable["WeaklyAttainable"]:::def
+    StronglyAttainable["StronglyAttainable"]:::def
+    MotiveConflict["MotiveConflict"]:::def
+    strongly_implies_weakly{{"strongly_implies_weakly"}}:::thm
+    weakly_iff_strongly_singleton{{"weakly_iff_strongly_singleton"}}:::thm
+    conflictPattern_card{{"conflictPattern_card = 113"}}:::thm
+    EffortDominated["EffortDominated"]:::def
+    ED_refl{{"EffortDominated.refl"}}:::thm
+    Prax["Prax"]:::def
+    PraxMin["Prax.Min"]:::def
+    Prax_subset{{"Prax.subset"}}:::thm
+    Prax_Min_subset{{"Prax.Min_subset"}}:::thm
+    Prax_empty{{"Prax.empty"}}:::thm
+    Rinv --> GoalSet --> RinvUnion & RinvInter
+    RinvUnion --> WeaklyAttainable
+    RinvInter --> StronglyAttainable
+    WeaklyAttainable --> MotiveConflict
+    StronglyAttainable --> MotiveConflict
+    StronglyAttainable --> strongly_implies_weakly
+    WeaklyAttainable --> weakly_iff_strongly_singleton
+    StronglyAttainable --> weakly_iff_strongly_singleton
+    ActionSystem --> EffortDominated --> ED_refl
+    EffortDominated --> Prax --> PraxMin
+    Prax --> Prax_subset & Prax_empty
+    PraxMin --> Prax_Min_subset
+  end
+
+  %% ========== MotCalc 1973 §2.1.4 / 2.2.4 ==========
+  subgraph Mot["MotCalc §2.1.4 / §2.2.4"]
+    EpistemicModel[["EpistemicModel"]]:::str
+    Know["Know / Certain / Think / …"]:::def
+    GladModel[["GladModel"]]:::str
+    Glad["Glad"]:::def
+    PreferWantCan[["PreferWantCan"]]:::str
+    SemImp["SemImp"]:::def
+    SemImp_rules{{"K_and, Cr_and, T_and, …"}}:::thm
+    SampledSemImp[["SampledSemImp"]]:::str
+    epistemicModel{{"SampledSemImp.epistemicModel"}}:::thm
+    EpistemicModel --> Know
+    EpistemicModel --> GladModel --> Glad
+    EpistemicModel --> PreferWantCan
+    EpistemicModel --> SemImp --> SemImp_rules
+    GladModel --> SemImp_rules
+    SemImp_rules --> SampledSemImp --> epistemicModel
+  end
+
+  %% ========== 1973 §5.1–5.2 Mixed / consistency ==========
+  subgraph M51["§5.1–5.2 Verbal embedding"]
+    NonParasitic["NonParasitic"]:::def
+    NP_of_mem{{"NonParasitic.of_mem_L"}}:::thm
+    RinvWanted["RinvWanted"]:::def
+    RinvUnwanted["RinvUnwanted"]:::def
+    MixedSystem[["MixedSystem"]]:::str
+    W_disjoint{{"W_disjoint"}}:::thm
+    pi["pi / piGo"]:::def
+    map_append{{"pi.map_append"}}:::thm
+    LM["LM"]:::def
+    VerbalOcc[["VerbalOcc"]]:::str
+    verbalOccs["verbalOccs"]:::def
+    reconstruct{{"verbalOccs.reconstruct"}}:::thm
+    MotivationalConsistency["MotivationalConsistency"]:::def
+    wanted_unwanted_disjoint{{"wanted_unwanted_disjoint Prop.1"}}:::thm
+    ActionSystem --> NonParasitic --> NP_of_mem
+    Rinv --> RinvWanted & RinvUnwanted
+    NonParasitic --> MixedSystem
+    RinvWanted --> MixedSystem
+    MixedSystem --> W_disjoint
+    MixedSystem --> pi --> map_append --> LM
+    LM --> VerbalOcc --> verbalOccs --> reconstruct
+    verbalOccs --> MotivationalConsistency
+    RinvWanted --> MotivationalConsistency
+    MotivationalConsistency --> wanted_unwanted_disjoint
+  end
+
+  %% ========== 1973 §5.3.1 / 5.3.5 ==========
+  subgraph M53["§5.3.1 Satisfiability / §5.3.5 ψ"]
+    Realizes["Realizes"]:::def
+    Realizes_refl{{"Realizes.of_refl"}}:::thm
+    Satisfiable["Satisfiable"]:::def
+    Sat_of_MC{{"Satisfiable.of_motivationalConsistency Prop.1"}}:::thm
+    ConsistentWith["ConsistentWith"]:::def
+    Psi["Psi"]:::def
+    Psi_antitone{{"Psi.antitone Prop.5"}}:::thm
+    pi_mem{{"Psi.pi_mem_of_motivationalConsistency"}}:::thm
+    verbalOccs --> Realizes --> Realizes_refl
+    Realizes --> Satisfiable
+    MotivationalConsistency --> Satisfiable --> Sat_of_MC
+    MixedSystem --> ConsistentWith --> Psi --> Psi_antitone
+    MotivationalConsistency --> pi_mem
+    Psi --> pi_mem
+  end
+
+  %% ========== §7 Promise / offense ==========
+  subgraph S7["§7 Promise / offense CF"]
+    minφ["minφ"]:::def
+    stringDuration["stringDuration"]:::def
+    HatT["HatT"]:::def
+    HatU["HatU"]:::def
+    FiniteHorizon["FiniteHorizon"]:::def
+    promiseSuffixLang["promiseSuffixLang"]:::def
+    offenseSuffixLang["offenseSuffixLang"]:::def
+    RegularImpliesCF["RegularImpliesCF"]:::def
+    CFInterRegular["CFInterRegular"]:::def
+    PromiseClosed["PromiseClosed"]:::def
+    OffenseClosed["OffenseClosed"]:::def
+    promise_isCF{{"PromiseClosed.isContextFree"}}:::thm
+    offense_isCF{{"OffenseClosed.isContextFree"}}:::thm
+    O_promiseClosed{{"O_promiseClosed bridge"}}:::thm
+    O_offenseClosed{{"O'_offenseClosed bridge"}}:::thm
+    ActionSystem --> minφ --> stringDuration
+    stringDuration --> HatT & HatU
+    HatT --> FiniteHorizon & promiseSuffixLang
+    HatU --> offenseSuffixLang
+    HatT --> PromiseClosed
+    promiseSuffixLang --> PromiseClosed
+    RegularImpliesCF --> PromiseClosed
+    CFInterRegular --> PromiseClosed
+    PromiseClosed --> promise_isCF
+    HatU --> OffenseClosed
+    offenseSuffixLang --> OffenseClosed
+    RegularImpliesCF --> OffenseClosed
+    CFInterRegular --> OffenseClosed
+    OffenseClosed --> offense_isCF
+    MixedSystem --> O_promiseClosed & O_offenseClosed
+    PromiseClosed --> O_promiseClosed
+    OffenseClosed --> O_offenseClosed
+    stringDuration --> Prax
+  end
+
+  %% ========== §13 Automaton ==========
+  subgraph S13["§13 Automaton"]
+    ActionAutomaton[["ActionAutomaton"]]:::str
+    Admissible["Admissible"]:::def
+    language["language"]:::def
+    toActionSystem["toActionSystem"]:::def
+    toAS_L{{"toActionSystem.L"}}:::thm
+    ActionSystem --> ActionAutomaton --> Admissible --> language
+    ActionAutomaton --> toActionSystem --> toAS_L
+    language --> toAS_L
+  end
+
+  %% ========== §5 Arrow ==========
+  subgraph Arr["§5 Arrow / clinical"]
+    TotalPreorder[["TotalPreorder"]]:::str
+    Ranking3["Ranking3 / SWF2"]:::def
+    IsDictator["IsDictator / Lack / Unanimity / IIA / Sovereignty"]:::def
+    prefer["prefer"]:::def
+    scale1Dictator["scale1Dictator"]:::def
+    scale2Dictator["scale2Dictator"]:::def
+    ArrowPostulates2["ArrowPostulates2"]:::def
+    impossibility{{"impossibility_dictatorial_core"}}:::thm
+    CompulsiveOrHedonistic["CompulsiveOrHedonistic"]:::def
+    BlindObedience["BlindObedience"]:::def
+    NeuroticAllOrNothing["NeuroticAllOrNothing"]:::def
+    TotalPreorder --> Ranking3 --> IsDictator
+    Ranking3 --> prefer --> scale1Dictator & scale2Dictator
+    scale1Dictator --> ArrowPostulates2
+    scale2Dictator --> ArrowPostulates2
+    ArrowPostulates2 --> impossibility
+    IsDictator --> CompulsiveOrHedonistic
+    IsDictator --> BlindObedience
+    IsDictator --> NeuroticAllOrNothing
+  end
+
+  %% ========== Toy ==========
+  subgraph Toy["Toy world example"]
+    toy[["toy : ActionSystem"]]:::str
+    twoGoals_conflict{{"twoGoals_conflict"}}:::thm
+    promiseT_closed{{"promiseT_closed"}}:::thm
+    ActionSystem --> toy
+    WeaklyAttainable --> twoGoals_conflict
+    MotiveConflict --> twoGoals_conflict
+    PromiseClosed --> promiseT_closed
+    Prax --> toy
+  end
