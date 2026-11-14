@@ -1,0 +1,16 @@
+**Nowakowska, Language of Motivation and Language of Actions (1973), §2.2.4, pp. 79–89**
+
+An epistemic model is a sixtuplet $\langle X,P,v_T,v_B,v_{Cr},v_D\rangle$ with
+$v_T\subset v_B\cap v_{Cr}\cap v_D$. Functors are interpreted by
+$Kp\equiv P(p)=1$, $Cr\,p\equiv v_{Cr}\subset p$, $Tp\equiv v_T\subset p$,
+$T'p\equiv p\subset v_T^{c}$, and likewise for $B$, $B'$, $D$. Under this
+reading the sampled semantic implications of §2.1.4 (e.g.
+$K(p\&q)\leftrightarrow Kp\& Kq$, $T'p\& T'q\to T'(p\lor q)$,
+$Cr\,p\to\sim T\sim p$, $Gp\to Kp\lor Tp$) become true set-theoretic
+statements. Prefer/want/can appear as thin additional relations with the
+cross-functor samples used in the library.
+
+**Nowakowska, Language of Motivation and Language of Actions (1973), §2.1.4 (sampled)**
+
+Rules for $K$, $Cr$, $T$, $T'$, $B'$, $D$, $K'$, and the gladness rule
+$G(a,P)\xrightarrow{s}K_3(a,P)\lor T_3(a,P)$ are the compared MotCalc sample.

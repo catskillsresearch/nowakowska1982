@@ -10,6 +10,7 @@ bibliography: references.bib
 - [Weak and strong attainability](Actions/Attainability/Goals.md)
 - [Four-motive conflict taxonomy](Actions/Attainability/Conflicts.md)
 - [Prax and Prax-min](Actions/Means/Prax.md)
+- [Motivational calculus (sampled)](Actions/Motivation/MotCalc.md)
 - [Promise closure and horizons](Actions/Promise/PromiseClosure.md)
 - [Action automaton](Actions/Automata/Automaton.md)
 - [Arrow typology and clinical corollaries](Actions/Choice/Arrow.md)

@@ -1,0 +1,5 @@
+`EpistemicModel` packages the §2.2.4 nesting of $v_T,v_B,v_{Cr},v_D$ with a
+thin probability interface. `SampledSemImp` / `epistemicModel_sampledSemImp`
+check about ten §2.1.4 rules; `GladModel` covers the (48)-style
+$G\to K\lor T$ reading; `PreferWantCan` is a shallow cross-functor sample.
+Not a full 79-rule calculus — scoped to the Batch B MotCalc sample.
