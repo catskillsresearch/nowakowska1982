@@ -1,0 +1,1 @@
+Enrich the sixtuplet by sentence alphabet M and relations W, W', O, O' with assumptions (7), (11)–(13).

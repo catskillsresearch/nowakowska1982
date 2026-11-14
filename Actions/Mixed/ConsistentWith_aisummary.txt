@@ -1,0 +1,1 @@
+An action string in L meets the want/avoid/ought constraints of one utterance pair.

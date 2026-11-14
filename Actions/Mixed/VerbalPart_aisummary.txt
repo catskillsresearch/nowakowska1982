@@ -1,0 +1,1 @@
+Successive utterance occurrences with prefixes, suffixes, and discrete utterance times.

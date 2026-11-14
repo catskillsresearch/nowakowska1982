@@ -1,0 +1,1 @@
+`VerbalOcc` / `verbalOccs` with reconstruct lemma and W/O snapshots at each occurrence.

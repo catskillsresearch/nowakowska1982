@@ -1,0 +1,1 @@
+Admissible mixed strings are those whose behavioural projection lies in L.

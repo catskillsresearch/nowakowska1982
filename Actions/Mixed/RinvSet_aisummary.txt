@@ -1,0 +1,1 @@
+Lift R-inverse from single time-results to wanted intersections and unwanted unions.

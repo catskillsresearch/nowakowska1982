@@ -1,0 +1,1 @@
+A string is not L-parasitic when it appears inside some admissible string.

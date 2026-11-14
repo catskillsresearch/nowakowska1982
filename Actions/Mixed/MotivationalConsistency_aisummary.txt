@@ -1,0 +1,1 @@
+Utterances are not contradicted by subsequent actions; aggregate wants and unwants are disjoint.

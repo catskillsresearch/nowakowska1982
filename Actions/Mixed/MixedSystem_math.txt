@@ -1,0 +1,3 @@
+**Nowakowska (1973), §5.1**
+
+System $\langle D,L,M,\varphi,S,\rho,W,W',O,O'\rangle$ with (7), (11)–(13).

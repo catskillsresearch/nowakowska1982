@@ -1,0 +1,1 @@
+`LM` is `{x | pi x ∈ L}`; `hasUtterance` marks strings with sentences.

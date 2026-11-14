@@ -1,0 +1,1 @@
+`MotivationalConsistency` and `wanted_unwanted_disjoint` (Prop. 1).

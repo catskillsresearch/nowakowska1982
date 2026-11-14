@@ -1,0 +1,1 @@
+Assumptions (11)/(12) imply the abstract PromiseClosed / OffenseClosed conditions on O / O'.

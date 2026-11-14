@@ -1,0 +1,1 @@
+Project mixed strings to action strings by replacing verbal runs with pause blocks.

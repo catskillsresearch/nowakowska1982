@@ -1,0 +1,3 @@
+**Nowakowska (1973), §5.2.1**
+
+$\pi:(D\cup M)^*\to D^*$ replaces verbal stretches by pauses of matching duration.

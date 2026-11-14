@@ -1,0 +1,3 @@
+**Nowakowska (1973), §5.3.1**
+
+Prop. 1: consistent strings yield satisfiable utterance systems.

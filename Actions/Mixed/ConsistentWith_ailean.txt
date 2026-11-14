@@ -1,0 +1,1 @@
+`ConsistentWith` / `ConsistentWithSet` on pure action strings.

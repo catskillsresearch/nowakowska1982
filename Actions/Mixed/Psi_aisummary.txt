@@ -1,0 +1,1 @@
+ψ(A) collects action strings consistent with every utterance in A; antitone in A.
