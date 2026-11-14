@@ -527,11 +527,17 @@ def expand_import(
             if cm:
                 caption = cm.group(1).strip()
         if not caption:
-            caption = (
-                "Theory of Actions"
-                if target.name == "Actions.svg"
-                else stem.replace("-", " ")
-            )
+            # ``ModuleName: full subsection title`` (e.g. MotCalc: Motivational…).
+            module = target.stem
+            section = module
+            try:
+                for line in md_path.read_text(encoding="utf-8").splitlines():
+                    if line.startswith("# "):
+                        section = line[2:].strip()
+                        break
+            except OSError:
+                pass
+            caption = f"{module}: {section}"
         # Prefer a sibling Graphviz .dot → vector PDF (crisp at any zoom).
         # Rasterizing SVG at 72 dpi made import graphs look fuzzy in the PDF.
         dot_src = target.with_suffix(".dot")

@@ -4,10 +4,11 @@ digraph Promise {
         color="#1d4ed8", fontname="Helvetica", fontsize=11, fontcolor="#1e3a8a"];
   edge [color="#334155"];
 
-  Horizons [label="Horizons"];
-  PositiveCF [label="PositiveCF"];
-  OffenseCF [label="OffenseCF"];
+  // Labels = subsection titles. Edge A -> B means B imports A.
+  Horizons [label="Motivational horizons"];
+  PositiveCF [label="Positive promise CF"];
+  OffenseCF [label="Offense CF"];
 
-  PositiveCF -> Horizons;
-  OffenseCF -> Horizons;
+  Horizons -> PositiveCF;
+  Horizons -> OffenseCF;
 }

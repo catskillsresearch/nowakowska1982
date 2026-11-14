@@ -4,15 +4,16 @@ digraph MotCalc {
         color="#1d4ed8", fontname="Helvetica", fontsize=11, fontcolor="#1e3a8a"];
   edge [color="#334155"];
 
-  EpistemicModel [label="EpistemicModel"];
-  GladModel [label="GladModel"];
-  SemImp [label="SemImp"];
-  SampledSemImp [label="SampledSemImp"];
-  PreferWantCan [label="PreferWantCan"];
+  // Labels = subsection titles. Edge A -> B means B imports A.
+  EpistemicModel [label="Epistemic model"];
+  GladModel [label="Gladness model"];
+  SemImp [label="Semantic implications"];
+  SampledSemImp [label="Sampled SemImp bundle"];
+  PreferWantCan [label="Prefer / want / can"];
 
-  GladModel -> EpistemicModel;
-  SemImp -> EpistemicModel;
-  SemImp -> GladModel;
-  SampledSemImp -> SemImp;
-  PreferWantCan -> EpistemicModel;
+  EpistemicModel -> GladModel;
+  EpistemicModel -> SemImp;
+  EpistemicModel -> PreferWantCan;
+  GladModel -> SemImp;
+  SemImp -> SampledSemImp;
 }

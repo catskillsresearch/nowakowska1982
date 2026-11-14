@@ -4,14 +4,15 @@ digraph Arrow {
         color="#1d4ed8", fontname="Helvetica", fontsize=11, fontcolor="#1e3a8a"];
   edge [color="#334155"];
 
-  TotalPreorder [label="TotalPreorder"];
-  Arrow [label="Arrow"];
-  CompulsiveOrHedonistic [label="CompulsiveOrHedonistic"];
-  BlindObedience [label="BlindObedience"];
-  NeuroticAllOrNothing [label="NeuroticAllOrNothing"];
+  // Labels = subsection titles. Edge A -> B means B imports A.
+  TotalPreorder [label="Total preorder"];
+  Arrow [label="Arrow postulates"];
+  CompulsiveOrHedonistic [label="Compulsive or hedonistic"];
+  BlindObedience [label="Blind obedience"];
+  NeuroticAllOrNothing [label="Neurotic all-or-nothing"];
 
-  Arrow -> TotalPreorder;
-  CompulsiveOrHedonistic -> Arrow;
-  BlindObedience -> Arrow;
-  NeuroticAllOrNothing -> Arrow;
+  TotalPreorder -> Arrow;
+  Arrow -> CompulsiveOrHedonistic;
+  Arrow -> BlindObedience;
+  Arrow -> NeuroticAllOrNothing;
 }
