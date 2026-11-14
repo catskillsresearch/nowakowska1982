@@ -25,8 +25,9 @@ still say TBD).
 ## Compared claims
 
 Packaging follows DomainTheory / scott1980: `comparator.json` names library
-`Actions.*` declarations once; `Challenge.lean` is a Mathlib-only / `Challenge.*`
-mirror of that API; `Solution.lean` imports the sorry-free `Actions/` library.
+`Actions.*` declarations once; `Challenge.lean` is a single Mathlib-only
+statement file (deliberate `sorry` holes); `Solution.lean` imports the
+sorry-free `Actions/` library.
 
 The Comparator selects **every theorem that is a sink** in the theorems-only
 dependency graph (`docs/dependency_graph_theorems.svg`: nodes with no

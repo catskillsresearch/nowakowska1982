@@ -27,14 +27,14 @@ step "Build Lean project"
 lake build
 
 step "Reject proof holes in Solution / Actions sources"
+# Challenge may use deliberate `sorry` holes (Palomar CONTRIBUTING §2.2).
 if rg -n --glob '*.lean' \
     '(^|:=|by)[[:space:]]+sorry([[:space:];]|$)|^[[:space:]]*sorry([[:space:];]|$)' \
-    Actions Solution.lean Challenge.lean; then
+    Actions Solution.lean; then
   echo "FAIL: Lean sources contain sorry."
   exit 1
 fi
-echo "OK: no sorry in Actions / Challenge / Solution."
-
+echo "OK: no sorry in Actions / Solution."
 step "Batch A compared declarations elaborate"
 lake env lean --run /dev/null 2>/dev/null || true
 lake build Challenge Solution
