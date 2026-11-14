@@ -1,0 +1,5 @@
+**Nowakowska, Language of Motivation and Language of Actions (1973), §5.3.1**
+
+An utterance system $(\alpha_1,\ldots,\alpha_m)$ at times $(k_1,\ldots,k_m)$ is
+realized by a mixed string whose successive sentences and utterance moments
+match that list.

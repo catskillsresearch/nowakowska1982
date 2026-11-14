@@ -12,6 +12,7 @@ digraph Mixed {
   LM [label="Mixed language"];
   VerbalPart [label="Verbal part"];
   MotivationalConsistency [label="Motivational consistency"];
+  Realizes [label="Realization of timed lists"];
   Satisfiable [label="Satisfiable systems"];
   ConsistentWith [label="Consistent with utterance"];
   Psi [label="Psi of utterance sets"];
@@ -23,7 +24,9 @@ digraph Mixed {
   pi -> LM;
   LM -> VerbalPart;
   VerbalPart -> MotivationalConsistency;
+  VerbalPart -> Realizes;
   MotivationalConsistency -> Satisfiable;
+  Realizes -> Satisfiable;
   MixedSystem -> ConsistentWith;
   ConsistentWith -> Psi;
   MotivationalConsistency -> Psi;

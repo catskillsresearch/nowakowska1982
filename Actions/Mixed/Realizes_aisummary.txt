@@ -1,0 +1,2 @@
+A mixed string realizes a timed sentence list when its successive utterances
+match those sentences and times in order.

@@ -1,1 +1,2 @@
-A timed sentence list is satisfiable when some consistent mixed string realizes it.
+A timed sentence list is satisfiable when some motivationally consistent mixed
+string realizes it.

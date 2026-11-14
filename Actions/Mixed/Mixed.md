@@ -14,6 +14,7 @@ projection, then consistency, satisfiability, and $\psi(A)$.
 - [Mixed language](LM.md)
 - [Verbal part](VerbalPart.md)
 - [Motivational consistency](MotivationalConsistency.md)
+- [Realization of timed lists](Realizes.md)
 - [Satisfiable systems](Satisfiable.md)
 - [Consistent with utterance](ConsistentWith.md)
 - [Psi of utterance sets](Psi.md)

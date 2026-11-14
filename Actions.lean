@@ -25,6 +25,7 @@ public import Actions.Mixed.pi
 public import Actions.Mixed.LM
 public import Actions.Mixed.VerbalPart
 public import Actions.Mixed.MotivationalConsistency
+public import Actions.Mixed.Realizes
 public import Actions.Mixed.Satisfiable
 public import Actions.Mixed.ConsistentWith
 public import Actions.Mixed.Psi
