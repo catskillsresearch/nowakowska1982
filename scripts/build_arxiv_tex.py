@@ -253,22 +253,54 @@ def source_header_to_title(header: str) -> str:
     return f"Nowakowska, {emph}{rest}"
 
 
-def source_block_latex(markdown: str) -> str:
-    """Render a Nowakowska recap as a breakable text box; page line is the title."""
-    text = markdown.strip() + "\n"
-    lines = text.splitlines()
-    title = "Nowakowska, \\emph{Theory of Actions} (1982)"
-    body = text
-    if lines:
-        first = lines[0].strip()
-        if first.startswith("**Nowakowska") and first.endswith("**"):
-            title = source_header_to_title(first)
-            body = "\n".join(lines[1:]).lstrip("\n")
-            if not body.endswith("\n"):
-                body += "\n"
+def _one_sourcequote(title: str, body: str) -> str:
+    if not body.endswith("\n"):
+        body += "\n"
     inner = pandoc_to_latex(body, shift=False)
     inner = cleanup_pandoc_latex(inner).strip()
     return f"\\begin{{sourcequote}}{{{title}}}\n{inner}\n\\end{{sourcequote}}\n"
+
+
+def source_block_latex(markdown: str) -> str:
+    """Render Nowakowska recap(s) as green boxes; each bold header starts a box."""
+    text = markdown.strip() + "\n"
+    lines = text.splitlines()
+    # Split on every **Nowakowska, …** header so multi-work math sidecars
+    # become separate sourcequotes (e.g. MotCalc 2.2.4 + 2.1.4).
+    chunks: list[tuple[str | None, list[str]]] = []
+    current_header: str | None = None
+    current_body: list[str] = []
+    for line in lines:
+        stripped = line.strip()
+        if (
+            stripped.startswith("**Nowakowska")
+            and stripped.endswith("**")
+            and _SOURCE_HEADER_RE.match(stripped)
+        ):
+            if current_header is not None or any(s.strip() for s in current_body):
+                chunks.append((current_header, current_body))
+            current_header = stripped
+            current_body = []
+        else:
+            current_body.append(line)
+    if current_header is not None or any(s.strip() for s in current_body):
+        chunks.append((current_header, current_body))
+
+    if not chunks:
+        return _one_sourcequote(
+            "Nowakowska, \\emph{Theory of Actions} (1982)", text
+        )
+
+    parts: list[str] = []
+    for header, body_lines in chunks:
+        title = (
+            source_header_to_title(header)
+            if header
+            else "Nowakowska, \\emph{Theory of Actions} (1982)"
+        )
+        body = "\n".join(body_lines).strip("\n") + "\n"
+        parts.append(_one_sourcequote(title, body))
+    return "\n".join(parts)
 
 def lean_block_latex(code: str, listing_name: str) -> str:
     rel_path, line_count = write_listing(code, listing_name)
@@ -611,6 +643,10 @@ def build_title_page(abstract_latex: str) -> str:
         \\begin{{abstract}}
         {abstract_latex.strip()}
         \\end{{abstract}}
+
+        \\newpage
+        \\tableofcontents
+        \\newpage
         """
     ).strip()
 
