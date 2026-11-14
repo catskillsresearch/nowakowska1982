@@ -24,11 +24,15 @@ still say TBD).
 
 ## Compared claims
 
-The Palomar Comparator selects **every theorem that is a sink** in the
-theorems-only dependency graph (`docs/dependency_graph_theorems.svg`: nodes
-with no successor, including isolates), plus the automaton realization
-`toActionSystem.L`, and three clinical definition abbreviations (see
-`Challenge.lean`, `Solution.lean`, `comparator.json`). Headline sinks include:
+Packaging follows DomainTheory / scott1980: `comparator.json` names library
+`Actions.*` declarations once; `Challenge.lean` is a Mathlib-only / `Challenge.*`
+mirror of that API; `Solution.lean` imports the sorry-free `Actions/` library.
+
+The Comparator selects **every theorem that is a sink** in the theorems-only
+dependency graph (`docs/dependency_graph_theorems.svg`: nodes with no
+successor, including isolates), plus the automaton realization
+`toActionSystem.L`, and three clinical definition abbreviations. Headline sinks
+include:
 
 1. **113 conflict patterns** (`conflictPattern_card`) — novel machine-checked
    count of labeled four-motive conflict types; the 1982 paper states 113

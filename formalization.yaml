@@ -61,17 +61,46 @@ status:
   - Classical.choice
   - Quot.sound
   main_results:
-  - declaration: Actions.Conflicts.conflictPattern_card
-    file: Actions/Attainability/Conflicts.lean
+  - declaration: Actions.ActionAutomaton.admissible_cons_nextState
+    file: Actions/Automata/ActionAutomaton.lean
     sorry_count: 0
     axioms:
     - propext
     - Classical.choice
     - Quot.sound
     literature_dependencies: []
-    note: >-
-      Novel compared claim: paper asserts 113 conflict types without exhibiting
-      the enumeration; decide proof confirms the labeled downset model.
+  - declaration: Actions.ActionAutomaton.mem_language_iff
+    file: Actions/Automata/ActionAutomaton.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionAutomaton.nextState_eq
+    file: Actions/Automata/ActionAutomaton.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionAutomaton.nil_mem_language
+    file: Actions/Automata/ActionAutomaton.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionAutomaton.singleton_admissible
+    file: Actions/Automata/ActionAutomaton.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
   - declaration: Actions.ActionAutomaton.toActionSystem.L
     file: Actions/Automata/toActionSystem.lean
     sorry_count: 0
@@ -80,46 +109,46 @@ status:
     - Classical.choice
     - Quot.sound
     literature_dependencies: []
-    note: >-
-      Novel realization theorem: 1982 §13 states the automaton reading; this
-      library supplies the machine-checked L-equality.
-  - declaration: Actions.Arrow.ArrowPostulates2.impossibility_dictatorial_core
-    file: Actions/Choice/ArrowPostulates2.lean
+  - declaration: Actions.ActionAutomaton.toActionSystem.mem_L_iff
+    file: Actions/Automata/toActionSystem.lean
     sorry_count: 0
     axioms:
     - propext
     - Classical.choice
     - Quot.sound
-    literature_dependencies:
-    - Arrow63
-    note: >-
-      Dictatorial-core inconsistency for pure scale dictators; clinical defs
-      are disclosed library corollaries, not new psychological theorems.
-  - declaration: Actions.MotCalc.SampledSemImp.epistemicModel
-    file: Actions/Motivation/SampledSemImp.lean
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.EffortDominated.refl
+    file: Actions/Means/EffortDominated.lean
     sorry_count: 0
     axioms:
     - propext
     - Classical.choice
     - Quot.sound
-    literature_dependencies:
-    - Nowakowska73a
-    note: >-
-      Sampled §2.1.4 SemImp rules validated on the §2.2.4 epistemic model;
-      not a full 79-rule calculus.
-  - declaration: Actions.ActionSystem.PromiseClosed.isContextFree
-    file: Actions/Promise/PromiseClosed.lean
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.HatT.subset
+    file: Actions/Promise/HatT.lean
     sorry_count: 0
     axioms:
     - propext
     - Classical.choice
     - Quot.sound
-    literature_dependencies:
-    - Nowakowska73a
-    note: >-
-      Novel machine-checked reconstruction of 1973 Thm 1 / 1982 §7 positive
-      promise CF; RegularImpliesCF and CFInterRegular are explicit Ch. 3
-      hypotheses (not yet in Mathlib).
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.NonParasitic.append_left_right
+    file: Actions/Mixed/NonParasitic.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.NonParasitic.of_mem_L
+    file: Actions/Mixed/NonParasitic.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
   - declaration: Actions.ActionSystem.OffenseClosed.isContextFree
     file: Actions/Promise/OffenseClosed.lean
     sorry_count: 0
@@ -127,11 +156,399 @@ status:
     - propext
     - Classical.choice
     - Quot.sound
-    literature_dependencies:
-    - Nowakowska73a
-    note: >-
-      Novel machine-checked reconstruction of 1973 Thm 4 / 1982 §7 negative
-      offense CF; same Ch. 3 closure hypotheses.
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.Prax.Min_subset
+    file: Actions/Means/Prax.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.Prax.subset
+    file: Actions/Means/Prax.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.PromiseClosed.isContextFree
+    file: Actions/Promise/PromiseClosed.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.PromiseClosed.mono
+    file: Actions/Promise/PromiseClosed.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.RinvUnwanted.mem_iff
+    file: Actions/ActionSystem.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.RinvWanted.empty
+    file: Actions/ActionSystem.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.RinvWanted.mem_iff
+    file: Actions/ActionSystem.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.Rinv_subset_L
+    file: Actions/ActionSystem.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.stringDuration.nil_not_pos
+    file: Actions/Promise/stringDuration.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.stringDuration_pauseString
+    file: Actions/Promise/stringDuration.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.strongly_implies_weakly
+    file: Actions/Attainability/Goals.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionSystem.weakly_iff_strongly_singleton
+    file: Actions/Attainability/Goals.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Arrow.ArrowPostulates2.impossibility_dictatorial_core
+    file: Actions/Choice/ArrowPostulates2.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Arrow.BlindObedience.of_not_sovereignty
+    file: Actions/Choice/ArrowPostulates2.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Arrow.CompulsiveOrHedonistic.of_dictator
+    file: Actions/Choice/ArrowPostulates2.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Arrow.CompulsiveOrHedonistic.of_not_lack
+    file: Actions/Choice/ArrowPostulates2.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Arrow.NeuroticAllOrNothing.of_not_IIA
+    file: Actions/Choice/ArrowPostulates2.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Arrow.scale1Dictator.IIA
+    file: Actions/Choice/ArrowPostulates2.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Arrow.scale1Dictator.compulsive
+    file: Actions/Choice/ArrowPostulates2.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Arrow.scale1Dictator.not_lack
+    file: Actions/Choice/ArrowPostulates2.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Arrow.scale1Dictator.sovereignty
+    file: Actions/Choice/ArrowPostulates2.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Arrow.scale1Dictator.unanimity
+    file: Actions/Choice/ArrowPostulates2.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Arrow.scale2Dictator.IIA
+    file: Actions/Choice/ArrowPostulates2.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Arrow.scale2Dictator.not_lack
+    file: Actions/Choice/ArrowPostulates2.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Arrow.scale2Dictator.sovereignty
+    file: Actions/Choice/ArrowPostulates2.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Arrow.scale2Dictator.unanimity
+    file: Actions/Choice/ArrowPostulates2.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Conflicts.conflictPattern_card
+    file: Actions/Attainability/Conflicts.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Conflicts.isConflictPattern_decide
+    file: Actions/Attainability/Conflicts.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Conflicts.patternsFor_allDoubletons
+    file: Actions/Attainability/Conflicts.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Conflicts.patternsFor_zero
+    file: Actions/Attainability/Conflicts.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.MixedSystem.LM.mem_iff
+    file: Actions/Mixed/MixedSystem.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.MixedSystem.LM.of_pure_actions
+    file: Actions/Mixed/MixedSystem.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.MixedSystem.MotivationalConsistency.wanted_unwanted_disjoint
+    file: Actions/Mixed/MixedSystem.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.MixedSystem.O'_offenseClosed
+    file: Actions/Mixed/MixedSystem.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.MixedSystem.O_promiseClosed
+    file: Actions/Mixed/MixedSystem.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.MixedSystem.Psi.mem_iff
+    file: Actions/Mixed/MixedSystem.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.MixedSystem.Psi.pi_mem_of_motivationalConsistency
+    file: Actions/Mixed/MixedSystem.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.MixedSystem.Satisfiable.of_motivationalConsistency
+    file: Actions/Mixed/MixedSystem.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.MixedSystem.W_disjoint
+    file: Actions/Mixed/MixedSystem.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.MotCalc.SampledSemImp.epistemicModel
+    file: Actions/Motivation/SampledSemImp.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Toy.Prax_empty_example
+    file: Actions/Examples/ToyWorld.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Toy.nil_not_mem_promiseT
+    file: Actions/Examples/ToyWorld.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Toy.promiseT_closed
+    file: Actions/Examples/ToyWorld.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Toy.toy_pause_duration
+    file: Actions/Examples/ToyWorld.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Toy.toy_work_duration
+    file: Actions/Examples/ToyWorld.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Toy.twoGoals_conflict
+    file: Actions/Examples/ToyWorld.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Toy.work_attains
+    file: Actions/Examples/ToyWorld.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Toy.work_mem_promiseT
+    file: Actions/Examples/ToyWorld.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Toy.work_string_duration
+    file: Actions/Examples/ToyWorld.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
 comparator_config: comparator.json
 
 fidelity:

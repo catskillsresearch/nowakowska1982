@@ -22,23 +22,24 @@ Maria Nowakowska did not review or endorse this formalization.
 Sorry-free library under `Actions/` (sixtuplet, attainability, Prax, MotCalc
 sample, verbal embedding / motivational consistency / satisfiability /
 $\psi(A)$, promise closure, automaton reading, Arrow packaging, toy world).
-`Challenge.lean` / `Solution.lean` / `comparator.json` expose the compared
-family for Palomar Comparator: **all theorems-only dependency-graph sinks**
-(no successor, including isolates; see `docs/dependency_graph_theorems.svg`),
+Palomar packaging matches DomainTheory / scott1980: `comparator.json` lists
+library `Actions.*` names once; `Challenge/` mirrors that API (Mathlib-only);
+`Solution.lean` imports sorry-free `Actions/`. Compared family = **all
+theorems-only dependency-graph sinks** (see `docs/dependency_graph_theorems.svg`),
 plus `toActionSystem.L` and three clinical Arrow abbrevs.
 
 ### Compared claims (Comparator) — headline sinks
 
 | Claim | Role |
 | --- | --- |
-| `conflictPattern_card` | Novel: 113 labeled four-motive conflict patterns |
-| `toActionSystem.L` | Novel: automaton language = induced sixtuplet $L$ |
-| `ArrowPostulates2.impossibility_dictatorial_core` | Dictatorial-core inconsistency (+ clinical abbrevs) |
-| `SampledSemImp.epistemicModel` | MotCalc sample on §2.2.4 epistemic model |
-| `PromiseClosed.isContextFree` | Novel reconstruction of 1973 Thm 1 / 1982 §7 |
-| `OffenseClosed.isContextFree` | Novel reconstruction of 1973 Thm 4 / 1982 §7 |
+| `Actions.Conflicts.conflictPattern_card` | Novel: 113 labeled four-motive conflict patterns |
+| `Actions.ActionAutomaton.toActionSystem.L` | Novel: automaton language = induced sixtuplet $L$ |
+| `Actions.Arrow.ArrowPostulates2.impossibility_dictatorial_core` | Dictatorial-core inconsistency (+ clinical abbrevs) |
+| `Actions.MotCalc.SampledSemImp.epistemicModel` | MotCalc sample on §2.2.4 epistemic model |
+| `Actions.ActionSystem.PromiseClosed.isContextFree` | Novel reconstruction of 1973 Thm 1 / 1982 §7 |
+| `Actions.ActionSystem.OffenseClosed.isContextFree` | Novel reconstruction of 1973 Thm 4 / 1982 §7 |
 
-Full name list (61 theorems × Challenge/Solution) is in `comparator.json`.
+Full name list (61 theorems + 3 defs) is in `comparator.json`.
 Ch. 3 regular⇒CF and CF∩regular closures are **named hypotheses** on the CF
 theorems (not yet in Mathlib).
 

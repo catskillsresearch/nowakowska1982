@@ -27,7 +27,7 @@ globs = ["Actions"]
 
 [[lean_lib]]
 name = "Challenge"
-roots = ["Challenge"]
+globs = ["Challenge"]
 
 [[lean_lib]]
 name = "Solution"
