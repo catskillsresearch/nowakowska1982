@@ -40,9 +40,8 @@ def piPrefix (occ : VerbalOcc (S := S)) : List S.D := S.pi occ.pref
 def piSuffix (occ : VerbalOcc (S := S)) : List S.D := S.pi occ.suff
 
 /-- Discrete time contribution of one letter (pause-units). -/
-noncomputable def letterTime : S.Letter → ℕ
-  | Sum.inl d => Nat.floor (S.base.φ d)
-  | Sum.inr α => S.φM α
+noncomputable def letterTime (c : S.Letter) : ℕ :=
+  Sum.elim (fun d => Nat.floor (S.base.φ d)) (fun α => S.φM α) c
 
 /-- Utterance moment = total discrete time of the prefix. -/
 noncomputable def time (occ : VerbalOcc (S := S)) : ℕ :=
