@@ -1,45 +1,37 @@
 #!/usr/bin/env bash
-# Mechanical checks before Palomar submission (DomainTheory/scott1980 pattern).
+# Exec shared Palomar preflight from ../palomar-preflight (or CI checkout / legacy vendor).
 set -euo pipefail
-cd "$(dirname "$0")/.."
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 
-step() { printf '\n== %s ==\n' "$1"; }
+find_toolkit() {
+  local root="$1" d
+  for d in \
+    "${PALOMAR_PREFLIGHT_ROOT:-}" \
+    "$(dirname "$root")/palomar-preflight" \
+    "$root/palomar-preflight"; do
+    [[ -n "$d" && -f "$d/palomar_preflight.sh" ]] && {
+      cd "$d" && pwd
+      return 0
+    }
+  done
+  echo "error: palomar-preflight not found; set PALOMAR_PREFLIGHT_ROOT or checkout toolkit" >&2
+  return 1
+}
 
-step "Validate Comparator configuration"
-python3 - <<'PY'
-import json
-with open("comparator.json", encoding="utf-8") as f:
-    cfg = json.load(f)
-required = ("challenge_module", "solution_module", "theorem_names",
-            "definition_names", "permitted_axioms")
-missing = [k for k in required if k not in cfg]
-if missing:
-    raise SystemExit(f"Missing comparator keys: {', '.join(missing)}")
-names = cfg["theorem_names"] + cfg["definition_names"]
-dupes = sorted({n for n in names if names.count(n) > 1})
-if dupes:
-    raise SystemExit(f"Duplicate Comparator names: {', '.join(dupes)}")
-print(f"OK: {len(cfg['theorem_names'])} theorem targets and "
-      f"{len(cfg['definition_names'])} definition targets.")
-PY
+toolkit_supports_cli() {
+  bash "$1/palomar_preflight.sh" --help 2>&1 | grep -q -- '--project-root'
+}
 
-step "Build Lean project"
-lake build
+TOOLKIT="$(find_toolkit "$ROOT")"
+SORRY_PATHS="Actions Solution.lean"
 
-step "Reject proof holes in Solution / Actions sources"
-# Challenge may use deliberate `sorry` holes (Palomar CONTRIBUTING §2.2).
-if rg -n --glob '*.lean' \
-    '(^|:=|by)[[:space:]]+sorry([[:space:];]|$)|^[[:space:]]*sorry([[:space:];]|$)' \
-    Actions Solution.lean; then
-  echo "FAIL: Lean sources contain sorry."
-  exit 1
+if toolkit_supports_cli "$TOOLKIT"; then
+  exec bash "$TOOLKIT/palomar_preflight.sh" \
+    --project-root "$ROOT" \
+    --sorry-paths "$SORRY_PATHS" \
+    "$@"
 fi
-echo "OK: no sorry in Actions / Solution."
-step "Batch A compared declarations elaborate"
-lake env lean --run /dev/null 2>/dev/null || true
-lake build Challenge Solution
-echo "OK: Challenge and Solution build."
 
-echo
-echo "Preflight complete (Batch A). PALOMAR_URL remains TBD until registry assign."
-echo "Batch B (MotCalc / promise CF) blocked on 1973 scans."
+export PALOMAR_PROJECT_ROOT="$ROOT"
+export PALOMAR_SORRY_PATHS="$SORRY_PATHS"
+exec bash "$TOOLKIT/palomar_preflight.sh" "$@"

@@ -1,3 +1,4 @@
+[![Lean 4](https://img.shields.io/github/actions/workflow/status/catskillsresearch/nowakowska1982/build.yml?label=Lean%204)](https://github.com/catskillsresearch/nowakowska1982/actions/workflows/build.yml)
 [![Palomar](https://img.shields.io/badge/Palomar-2026--11--15--000006-0f766e.svg)](https://palomar-registry.org/entry?id=PALOMAR-2026-11-15-000006&version=1)
 
 # nowakowska1982
