@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
-# nowakowska1982 — Palomar packaging (registration ID pending).
+# nowakowska1982 — Palomar packaging (PALOMAR-2026-11-15-000006, version 1).
 version: v0.4
 project:
   name: Nowakowska Theory of Actions (1982) in Lean 4
@@ -23,7 +23,8 @@ project:
     with AI-agent assistance under Lars Warren Ericson's direction and
     review. There is no sorry in the Actions/ development, no
     project-defined axiom, and Mathlib is the only Lake dependency.
-    Palomar Registration: TBD.
+    Palomar Registration: PALOMAR-2026-11-15-000006, version 1
+    (https://palomar-registry.org/entry?id=PALOMAR-2026-11-15-000006&version=1).
   authors:
   - Lars Warren Ericson
   license: Apache-2.0
@@ -667,7 +668,8 @@ automation:
       report's mathematical claims.
   notes: >-
     Palomar Challenge / Solution / comparator / formalization.yaml packaging
-    follows the scott1980 / scott1964 / cardb template. Registration ID TBD.
+    follows the scott1980 / scott1964 / cardb template. Registered as
+    PALOMAR-2026-11-15-000006, version 1.
 
 review:
   status: self-assessed

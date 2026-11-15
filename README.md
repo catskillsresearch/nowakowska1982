@@ -1,3 +1,5 @@
+[![Palomar](https://img.shields.io/badge/Palomar-2026--11--15--000006-0f766e.svg)](https://palomar-registry.org/entry?id=PALOMAR-2026-11-15-000006&version=1)
+
 # nowakowska1982
 
 Lean 4 / Mathlib formalization of Maria Nowakowska's **1982** *A Formal Theory
@@ -5,9 +7,10 @@ of Actions: Syntax and Semantics of Behaviour* (published 1983), with MotCalc
 and promise-CF material from *Language of Motivation and Language of Actions*
 (**1973**, §§2.1.4, 2.2.4, 5.1–5.3). Author: Lars Warren Ericson.
 
-Standalone package. This repo is prepared for submission to
-[Palomar](https://palomar-registry.org/about) on its own (see
-`PROVENANCE.md`). **Palomar registration ID is pending.**
+Standalone package. This repo is registered with
+[Palomar](https://palomar-registry.org/about) on its own as
+[PALOMAR-2026-11-15-000006](https://palomar-registry.org/entry?id=PALOMAR-2026-11-15-000006&version=1)
+(see `PROVENANCE.md`).
 
 Toolchain: Lean / Mathlib **v4.36.0-rc2** (`lean-toolchain`, `lakefile.toml`).
 

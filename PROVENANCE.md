@@ -14,13 +14,14 @@ with AI-agent assistance under his direction and review. The source papers
 are cited as literature only and are not licensed under this repository's
 Apache-2.0 terms (see `NOTICE`).
 
-**This repository is submitted to Palomar on its own**, for the Nowakowska
+**This repository is registered with Palomar on its own**, for the Nowakowska
 action-theory development alone, following the same Challenge / Solution /
 `comparator.json` / `formalization.yaml` pattern as
 [`catskillsresearch/scott1980`](https://github.com/catskillsresearch/scott1980)
 and [`catskillsresearch/scott1964`](https://github.com/catskillsresearch/scott1964).
-Palomar registration ID is pending (`formalization.yaml` / `comparator.json`
-still say TBD).
+Registry entry:
+[PALOMAR-2026-11-15-000006](https://palomar-registry.org/entry?id=PALOMAR-2026-11-15-000006&version=1),
+version 1.
 
 ## Framing
 
