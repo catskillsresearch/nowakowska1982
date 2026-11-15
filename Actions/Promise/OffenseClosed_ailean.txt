@@ -3,15 +3,13 @@ the two-sided extension $xyz$ is admissible, then $xyz\in U$: breaking is
 preserved under admissible embedding.
 
 **Theorem** (`OffenseClosed.eq_L_inter_suffix`). If $U\subseteq L$ is
-offense-closed, then $U=L\cap C$ where $C$ is the offense suffix language of $U$.
-*Proof.* Every breaker has a first-offense prefix, hence lies in $C$.
-Conversely, $x=uv$ with $u\in\hat U\subseteq U$ and $x\in L$ upgrades by closure
-with empty left context.
+offense-closed, then $U=L\cap C$ where $C$ is the offense infix envelope of $U$.
+*Proof.* Every breaker factors through a factor-minimal first offense in
+$\hat U$, hence lies in $C$. Conversely, $x=avb$ with $v\in\hat U\subseteq U$ and
+$x\in L$ upgrades by two-sided closure.
 
 **Theorem** (`OffenseClosed.isContextFree`, offense CF). If $U\subseteq L$ is
-offense-closed with finite offense horizon, $L$ is context-free, and
-context-free languages are closed under intersection with regular languages,
-then $U$ is context-free. *Proof.* Write $U=L\cap C$ with $C$ regular, and apply
-the classical intersection hypothesis. (Offense-primality is carried as an
-additional hypothesis in the development but is not required for this
-intersection argument.)
+offense-closed with finite offense horizon and $L$ is context-free, then $U$ is
+context-free. *Proof.* Write $U=L\cap C$ with $C$ regular (infix envelope under
+finite horizon), and apply the proved CF ∩ Regular theorem. Offense-primality
+is not required for this argument and is not a hypothesis of the theorem.

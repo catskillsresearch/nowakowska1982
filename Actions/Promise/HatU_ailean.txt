@@ -1,14 +1,15 @@
 For a set $U$ of breaking (offense) strings, the first-offense set $\hat U$
-(`HatU`) consists of those $v\in U$ with no proper prefix still in $U$ obtained
-by splitting off a positive-duration suffix.
+(`HatU`) consists of those $v\in U$ that are *factor-minimal*: no proper
+positive-duration infix of $v$ still lies in $U$.
 
 **Theorem** (`HatU.subset`). $\hat U\subseteq U$. *Proof.* Immediate.
 
-**Theorem** (`HatU.exists_prefix`). Every member of $U$ has a prefix in $\hat U$.
-*Proof.* The same length induction as for minimal fulfillers: either the string
-is already first-offense, or a strictly shorter prefix in $U$ supplies a first
-offense by induction.
+**Theorem** (`HatU.exists_factor`). Every member of $U$ factors as
+$x\,v\,z$ with $v\in\hat U$. *Proof.* Strong induction on length: if the string
+is not factor-minimal, a strictly shorter positive-duration infix in $U$
+supplies a first offense by induction.
 
 Finite offense horizon (`FiniteOffenseHorizon`) means some real bounds all
-durations of first offenses. Offense-primality (`OffensePrime`) asserts that
-whenever a concatenation lies in $U$, at least one of the two factors does.
+durations of first offenses. Under a finite nonempty alphabet this implies
+$\hat U$ is finite. Offense-primality (`OffensePrime`) is recorded as a 1973
+side condition but is unused by the offense CF theorem.

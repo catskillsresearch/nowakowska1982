@@ -1,4 +1,5 @@
 **Nowakowska, Language of Motivation and Language of Actions (1973), §5.3.3**
 
-Under finite max $\varphi$ on first offenses, the suffix language of $\bar O'$
-is regular by the same Myhill–Nerode argument.
+Under finite max $\varphi$ on first offenses, the language of strings that
+contain a first offense as a contiguous infix is regular by a Myhill–Nerode
+argument (finite union over the finite set $\hat U$).

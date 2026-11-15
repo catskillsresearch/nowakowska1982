@@ -12,8 +12,7 @@ $x\in L$. Conversely, if $x\in L\cap C$ then $x=uv$ with $u\in\hat T\subseteq T$
 and closure upgrades $u$ along the admissible continuation $v$.
 
 **Theorem** (`PromiseClosed.isContextFree`, positive promise CF). If
-$T\subseteq L$ is promise-closed with finite horizon, $L$ is context-free, and
-context-free languages are closed under intersection with regular languages,
+$T\subseteq L$ is promise-closed with finite horizon and $L$ is context-free,
 then $T$ is context-free. *Proof.* Write $T=L\cap C$ as above; $C$ is regular by
-the finite-horizon argument; the classical intersection hypothesis finishes the
-proof.
+the finite-horizon argument; the proved CF ∩ Regular theorem finishes the
+proof. No external language hypothesis remains.

@@ -1,4 +1,4 @@
-The promise and offense CF theorems need two classical formal-language facts
-that Mathlib does not yet supply: every regular language is context-free, and
-CF languages are closed under intersection with regular languages. They are
-stated here as named hypotheses.
+The promise and offense CF theorems use two classical formal-language facts:
+every regular language over a finite alphabet is context-free, and CF languages
+are closed under intersection with regular languages. Both are proved in Lean
+in this repository (Bar-Hillel grammar × DFA product), not left as hypotheses.

@@ -1,16 +1,9 @@
-The offense suffix language of $U$ (`offenseSuffixLang`) consists of all strings
-that begin with some first offense from $\hat U$.
+The offense infix envelope of $U$ (`offenseSuffixLang` / `offenseInfixLang`)
+consists of all strings that contain some factor-minimal first offense from
+$\hat U$ as a contiguous infix.
 
-**Theorem** (`offenseSuffixLang.suffix_closed`). The language is closed under
-appending an arbitrary suffix. *Proof.* As for the promise envelope: extend the
-continuation after a fixed first offense.
-
-**Theorem** (`offenseSuffixLang.none_of_long`). Under a uniform duration bound on
-first offenses, strings longer than the bound and outside the language have no
-extension that enters it. *Proof.* Dual to the promise case via duration
-additivity.
-
-**Theorem** (`offenseSuffixLang.isRegular`). Under finite offense horizon (finite
-nonempty alphabet), the offense suffix language is regular. *Proof.* The same
-Myhill–Nerode partition into universal, empty, and finitely many short
-quotients.
+**Theorem** (`offenseSuffixLang.isRegular`). Under finite offense horizon
+(finite nonempty alphabet), the offense infix envelope is regular. *Proof.*
+$\hat U$ is finite; each fixed-infix language is regular by a finite
+Myhill–Nerode partition on right takes of length at most $|v|$; a finite union
+of regular languages is regular.

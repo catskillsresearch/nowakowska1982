@@ -1,6 +1,8 @@
 **Nowakowska, Language of Motivation and Language of Actions (1973), Ch. 3**
 
-Regular languages are context-free, and the context-free languages are closed
-under intersection with regular languages. The 1973 §5.3 arguments invoke
-these facts when identifying fulfilling/breaking sets with $L\cap C$ for a
-regular suffix envelope $C$.
+Regular languages are context-free (over a finite alphabet), and the
+context-free languages are closed under intersection with regular languages.
+The 1973 §5.3 arguments invoke these facts when identifying
+fulfilling/breaking sets with $L\cap C$ for a regular envelope $C$. In this
+formalization both facts are machine-checked Lean theorems
+(`Language.IsContextFree.inter_regular` / `RegularImpliesCF`), not hypotheses.

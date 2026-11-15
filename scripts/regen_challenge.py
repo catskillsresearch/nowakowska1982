@@ -274,13 +274,9 @@ for mod in order:
             if m:
                 fqn = fqn_of(ns_stack, m.group(2))
                 if fqn in def_names:
-                    block = "\n".join(lines[i:j])
-                    if ":=" in block:
-                        hdr = block.split(":=")[0].rstrip()
-                        out.append(hdr + " := by")
-                        out.append("  sorry")
-                    else:
-                        out.extend(lines[i:j])
+                    # Compared definitions are statement-of-record formulas:
+                    # keep the body (do not hole out with `sorry`).
+                    out.extend(lines[i:j])
                     kept.append(fqn)
                     i = j
                     continue

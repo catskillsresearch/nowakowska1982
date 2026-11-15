@@ -11,9 +11,10 @@ an automaton reading of the sixtuplet, and Arrow-style choice with clinical
 corollary packaging, with a small checked example.
 
 Where 1982 asserts results without a proof or enumeration, we supply
-machine-checked arguments: the **113** four-motive conflict types (stated, not
-enumerated); the automaton-to-sixtuplet realization (§13 sketch); and the
-promise / offense context-free theorems (§7, proofs deferred to [5] = 1973
-§5.3), reconstructed with classical Ch. 3 CF∩regular closures as named
-hypotheses. MotCalc contributions check sampled §2.1.4 semantic implications
-against the §2.2.4 epistemic model rather than new omitted theorems.
+machine-checked arguments: the **113** four-motive conflict families (stated,
+not enumerated); a reachability realization of the §13 automaton reading; and
+the promise / offense context-free theorems (§7, proofs deferred to [5] = 1973
+§5.3), reconstructed with factor-minimal first offenses and with classical
+Ch. 3 CF∩regular closure **proved in Lean** (not left as a hypothesis). MotCalc
+contributions check sampled §2.1.4 semantic implications against the §2.2.4
+epistemic model rather than new omitted theorems.

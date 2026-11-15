@@ -30,8 +30,6 @@ Nowakowska 1982/1973, plus Lean discharge of classical CF ∩ Regular.
 @[expose] public section
 
 namespace Actions
-end Actions
-namespace Actions
 namespace Conflicts
 def doubletons : List ℕ := [3, 5, 6, 9, 10, 12]
 def tripleRequirements : List (ℕ × List ℕ) :=
@@ -119,6 +117,19 @@ end EpistemicModel
 end MotCalc
 end Actions
 namespace Actions
+namespace Arrow
+structure TotalPreorder (α : Type*) where
+  le : α → α → Prop
+  refl : ∀ a, le a a
+  trans : ∀ {a b c}, le a b → le b c → le a c
+  total : ∀ a b, le a b ∨ le b a
+namespace TotalPreorder
+variable {α : Type*} (p : TotalPreorder α)
+def lt (a b : α) : Prop := p.le a b ∧ ¬ p.le b a
+end TotalPreorder
+end Arrow
+end Actions
+namespace Actions
 structure ActionSystem where
   /-- Alphabet of elementary actions. -/
   D : Type*
@@ -153,17 +164,15 @@ def Attainable (s : A.S) (t : ℕ) : Prop :=
 end ActionSystem
 end Actions
 namespace Actions
-namespace Arrow
-structure TotalPreorder (α : Type*) where
-  le : α → α → Prop
-  refl : ∀ a, le a a
-  trans : ∀ {a b c}, le a b → le b c → le a c
-  total : ∀ a b, le a b ∨ le b a
-namespace TotalPreorder
-variable {α : Type*} (p : TotalPreorder α)
-def lt (a b : α) : Prop := p.le a b ∧ ¬ p.le b a
-end TotalPreorder
-end Arrow
+namespace MotCalc
+structure GladModel (X : Type*) extends EpistemicModel X where
+  vG : PropSet X
+  vG_disjoint_vT : vG ∩ vT = ∅
+namespace GladModel
+def Glad {X} (M : GladModel X) (α : PropSet X) : Prop :=
+  M.vT ⊆ α ∨ (M.vG ⊆ α ∧ M.P α = 1)
+end GladModel
+end MotCalc
 end Actions
 namespace Actions
 namespace MotCalc
@@ -184,29 +193,52 @@ structure PreferWantCan (X : Type*) where
 end MotCalc
 end Actions
 namespace Actions
-namespace MotCalc
-structure GladModel (X : Type*) extends EpistemicModel X where
-  vG : PropSet X
-  vG_disjoint_vT : vG ∩ vT = ∅
-namespace GladModel
-def Glad {X} (M : GladModel X) (α : PropSet X) : Prop :=
-  M.vT ⊆ α ∨ (M.vG ⊆ α ∧ M.P α = 1)
-end GladModel
-end MotCalc
-end Actions
-namespace Actions
-namespace ActionSystem
-variable (A : ActionSystem)
-def NonParasitic (u : List A.D) : Prop :=
-  ∃ w₁ w₂ : List A.D, w₁ ++ u ++ w₂ ∈ A.L
-namespace NonParasitic
-theorem of_mem_L {u : List A.D} (hu : u ∈ A.L) : A.NonParasitic u := by
+namespace Arrow
+abbrev Ranking3 := Fin 3 → Fin 3
+def rankingPreorder (r : Ranking3) : TotalPreorder (Fin 3) where
+  le a b := r a ≤ r b
+  refl _ := le_rfl
+  trans h₁ h₂ := le_trans h₁ h₂
+  total a b := le_total (r a) (r b)
+abbrev Profile2 := Ranking3 × Ranking3
+abbrev SWF2 := Profile2 → Ranking3
+def IsDictator (F : SWF2) : Fin 2 → Prop
+  | ⟨0, _⟩ => ∀ π a b, (rankingPreorder π.1).lt a b → (rankingPreorder (F π)).lt a b
+  | ⟨1, _⟩ => ∀ π a b, (rankingPreorder π.2).lt a b → (rankingPreorder (F π)).lt a b
+def LackOfDictator (F : SWF2) : Prop := ∀ i, ¬ IsDictator F i
+def Unanimity (F : SWF2) : Prop :=
+  ∀ π a b,
+    (rankingPreorder π.1).lt a b → (rankingPreorder π.2).lt a b →
+      (rankingPreorder (F π)).lt a b
+def IIA (F : SWF2) : Prop :=
+  ∀ π π' a b,
+    ((rankingPreorder π.1).le a b ↔ (rankingPreorder π'.1).le a b) →
+    ((rankingPreorder π.1).le b a ↔ (rankingPreorder π'.1).le b a) →
+    ((rankingPreorder π.2).le a b ↔ (rankingPreorder π'.2).le a b) →
+    ((rankingPreorder π.2).le b a ↔ (rankingPreorder π'.2).le b a) →
+      ((rankingPreorder (F π)).le a b ↔ (rankingPreorder (F π')).le a b)
+def Sovereignty (F : SWF2) : Prop :=
+  ∀ a b : Fin 3, a ≠ b →
+    (∃ π, (rankingPreorder (F π)).lt a b) ∧
+    (∃ π, (rankingPreorder (F π)).lt b a)
+def rank3 (a b : Fin 3) (p q s : Fin 3) : Ranking3 := fun x =>
+  if x = a then p else if x = b then q else s
+namespace rank3
+variable {a b c p q s : Fin 3}
+end rank3
+def swapSWF (F : SWF2) : SWF2 := fun π => F (π.2, π.1)
+namespace swapSWF
+variable {F : SWF2}
+end swapSWF
+def Decisive1 (F : SWF2) (a b : Fin 3) : Prop :=
+  ∀ π : Profile2, π.1 a < π.1 b → π.2 b < π.2 a → F π a < F π b
+namespace Decisive1
+variable {F : SWF2}
+end Decisive1
+theorem arrow_dictator_of_unanimity_IIA (F : SWF2) :
+    Unanimity F → IIA F → ∃ i : Fin 2, IsDictator F i := by
   sorry
-theorem append_left_right {u w₁ w₂ : List A.D}
-    (h : w₁ ++ u ++ w₂ ∈ A.L) : A.NonParasitic u := by
-  sorry
-end NonParasitic
-end ActionSystem
+end Arrow
 end Actions
 namespace Actions
 namespace ActionSystem
@@ -237,20 +269,6 @@ namespace ActionSystem
 variable (A : ActionSystem)
 noncomputable def minφ [Fintype A.D] [Nonempty A.D] : ℝ :=
   Finset.univ.inf' Finset.univ_nonempty A.φ
-end ActionSystem
-end Actions
-namespace Actions
-namespace ActionSystem
-variable (A : ActionSystem)
-def EffortDominated (u u' : List A.D) : Prop :=
-  ∃ hlen : u.length = u'.length,
-    ∀ i (hi : i < u.length),
-      u[i] = u'[i]'(hlen ▸ hi) ∨
-        (u'[i]'(hlen ▸ hi) = A.pause ∧ u[i] ≠ A.pause)
-namespace EffortDominated
-theorem refl (u : List A.D) : A.EffortDominated u u := by
-  sorry
-end EffortDominated
 end ActionSystem
 end Actions
 namespace Actions
@@ -320,58 +338,64 @@ inductive ReachableIn : M.U → M.B → ℕ → M.U → Prop where
 end ActionAutomaton
 end Actions
 namespace Actions
-namespace Arrow
-abbrev Ranking3 := Fin 3 → Fin 3
-def rankingPreorder (r : Ranking3) : TotalPreorder (Fin 3) where
-  le a b := r a ≤ r b
-  refl _ := le_rfl
-  trans h₁ h₂ := le_trans h₁ h₂
-  total a b := le_total (r a) (r b)
-abbrev Profile2 := Ranking3 × Ranking3
-abbrev SWF2 := Profile2 → Ranking3
-def IsDictator (F : SWF2) : Fin 2 → Prop
-  | ⟨0, _⟩ => ∀ π a b, (rankingPreorder π.1).lt a b → (rankingPreorder (F π)).lt a b
-  | ⟨1, _⟩ => ∀ π a b, (rankingPreorder π.2).lt a b → (rankingPreorder (F π)).lt a b
-def LackOfDictator (F : SWF2) : Prop := ∀ i, ¬ IsDictator F i
-def Unanimity (F : SWF2) : Prop :=
-  ∀ π a b,
-    (rankingPreorder π.1).lt a b → (rankingPreorder π.2).lt a b →
-      (rankingPreorder (F π)).lt a b
-def IIA (F : SWF2) : Prop :=
-  ∀ π π' a b,
-    ((rankingPreorder π.1).le a b ↔ (rankingPreorder π'.1).le a b) →
-    ((rankingPreorder π.1).le b a ↔ (rankingPreorder π'.1).le b a) →
-    ((rankingPreorder π.2).le a b ↔ (rankingPreorder π'.2).le a b) →
-    ((rankingPreorder π.2).le b a ↔ (rankingPreorder π'.2).le b a) →
-      ((rankingPreorder (F π)).le a b ↔ (rankingPreorder (F π')).le a b)
-def Sovereignty (F : SWF2) : Prop :=
-  ∀ a b : Fin 3, a ≠ b →
-    (∃ π, (rankingPreorder (F π)).lt a b) ∧
-    (∃ π, (rankingPreorder (F π)).lt b a)
-def rank3 (a b : Fin 3) (p q s : Fin 3) : Ranking3 := fun x =>
-  if x = a then p else if x = b then q else s
-namespace rank3
-variable {a b c p q s : Fin 3}
-end rank3
-def swapSWF (F : SWF2) : SWF2 := fun π => F (π.2, π.1)
-namespace swapSWF
-variable {F : SWF2}
-end swapSWF
-def Decisive1 (F : SWF2) (a b : Fin 3) : Prop :=
-  ∀ π : Profile2, π.1 a < π.1 b → π.2 b < π.2 a → F π a < F π b
-namespace Decisive1
-variable {F : SWF2}
-end Decisive1
-theorem arrow_dictator_of_unanimity_IIA (F : SWF2) :
-    Unanimity F → IIA F → ∃ i : Fin 2, IsDictator F i := by
+namespace ActionSystem
+variable (A : ActionSystem)
+def EffortDominated (u u' : List A.D) : Prop :=
+  ∃ hlen : u.length = u'.length,
+    ∀ i (hi : i < u.length),
+      u[i] = u'[i]'(hlen ▸ hi) ∨
+        (u'[i]'(hlen ▸ hi) = A.pause ∧ u[i] ≠ A.pause)
+namespace EffortDominated
+theorem refl (u : List A.D) : A.EffortDominated u u := by
   sorry
-end Arrow
+end EffortDominated
+end ActionSystem
+end Actions
+namespace Actions
+namespace ActionSystem
+variable (A : ActionSystem)
+def NonParasitic (u : List A.D) : Prop :=
+  ∃ w₁ w₂ : List A.D, w₁ ++ u ++ w₂ ∈ A.L
+namespace NonParasitic
+theorem of_mem_L {u : List A.D} (hu : u ∈ A.L) : A.NonParasitic u := by
+  sorry
+theorem append_left_right {u w₁ w₂ : List A.D}
+    (h : w₁ ++ u ++ w₂ ∈ A.L) : A.NonParasitic u := by
+  sorry
+end NonParasitic
+end ActionSystem
 end Actions
 namespace Actions
 namespace MotCalc
 variable {X : Type*} (M : EpistemicModel X)
 def SemImp (A B : Prop) : Prop := A → B
 end MotCalc
+end Actions
+namespace Actions
+namespace Arrow
+def BlindObedience (F : SWF2) : Prop := ¬ Sovereignty F
+namespace BlindObedience
+theorem of_not_sovereignty {F : SWF2} (h : ¬ Sovereignty F) :
+    BlindObedience F := by
+  sorry
+end BlindObedience
+end Arrow
+end Actions
+namespace Actions
+namespace Arrow
+def prefer (a b : Fin 3) : Ranking3 := fun x =>
+  if x = a then (0 : Fin 3) else if x = b then (1 : Fin 3) else (2 : Fin 3)
+end Arrow
+end Actions
+namespace Actions
+namespace Arrow
+def NeuroticAllOrNothing (F : SWF2) : Prop := ¬ IIA F
+namespace NeuroticAllOrNothing
+theorem of_not_IIA {F : SWF2} (h : ¬ IIA F) :
+    NeuroticAllOrNothing F := by
+  sorry
+end NeuroticAllOrNothing
+end Arrow
 end Actions
 namespace Actions
 namespace ActionSystem
@@ -433,34 +457,6 @@ end toActionSystem
 end ActionAutomaton
 end Actions
 namespace Actions
-namespace Arrow
-def prefer (a b : Fin 3) : Ranking3 := fun x =>
-  if x = a then (0 : Fin 3) else if x = b then (1 : Fin 3) else (2 : Fin 3)
-end Arrow
-end Actions
-namespace Actions
-namespace Arrow
-def NeuroticAllOrNothing (F : SWF2) : Prop := by
-  sorry
-namespace NeuroticAllOrNothing
-theorem of_not_IIA {F : SWF2} (h : ¬ IIA F) :
-    NeuroticAllOrNothing F := by
-  sorry
-end NeuroticAllOrNothing
-end Arrow
-end Actions
-namespace Actions
-namespace Arrow
-def BlindObedience (F : SWF2) : Prop := by
-  sorry
-namespace BlindObedience
-theorem of_not_sovereignty {F : SWF2} (h : ¬ Sovereignty F) :
-    BlindObedience F := by
-  sorry
-end BlindObedience
-end Arrow
-end Actions
-namespace Actions
 namespace MotCalc
 variable {X : Type*}
 structure SampledSemImp (X : Type*) (M : EpistemicModel X) : Prop where
@@ -481,22 +477,50 @@ end SampledSemImp
 end MotCalc
 end Actions
 namespace Actions
+namespace Arrow
+def scale1Dictator : SWF2 := fun π => π.1
+namespace scale1Dictator
+theorem unanimity : Unanimity scale1Dictator := by
+  sorry
+theorem IIA : IIA scale1Dictator := by
+  sorry
+theorem not_lack : ¬ LackOfDictator scale1Dictator := by
+  sorry
+theorem sovereignty : Sovereignty scale1Dictator := by
+  sorry
+end scale1Dictator
+end Arrow
+end Actions
+namespace Actions
+namespace Arrow
+def scale2Dictator : SWF2 := fun π => π.2
+namespace scale2Dictator
+theorem unanimity : Unanimity scale2Dictator := by
+  sorry
+theorem IIA : IIA scale2Dictator := by
+  sorry
+theorem not_lack : ¬ LackOfDictator scale2Dictator := by
+  sorry
+theorem sovereignty : Sovereignty scale2Dictator := by
+  sorry
+end scale2Dictator
+end Arrow
+end Actions
+namespace Actions
 namespace ActionSystem
 variable (A : ActionSystem)
-def Prax (realizers : Set (List A.D)) : Set (List A.D) :=
-  { u ∈ realizers |
-      ¬ ∃ u' ∈ realizers, A.EffortDominated u u' ∧ u ≠ u' }
-namespace Prax
-noncomputable def Min (realizers : Set (List A.D)) : Set (List A.D) :=
-  { u ∈ A.Prax realizers |
-      ∀ u' ∈ A.Prax realizers, ¬ A.stringDuration u' < A.stringDuration u }
-theorem subset (realizers : Set (List A.D)) :
-    A.Prax realizers ⊆ realizers := by
+def HatU (U : Set (List A.D)) : Set (List A.D) :=
+  { v ∈ U |
+      ∀ x y z, v = x ++ y ++ z →
+        0 < A.stringDuration x + A.stringDuration z → y ∉ U }
+namespace HatU
+theorem subset (U : Set (List A.D)) : A.HatU U ⊆ U := by
   sorry
-theorem Min_subset (realizers : Set (List A.D)) :
-    Min A realizers ⊆ A.Prax realizers := by
-  sorry
-end Prax
+end HatU
+def FiniteOffenseHorizon (U : Set (List A.D)) : Prop :=
+  ∃ M : ℝ, ∀ x ∈ A.HatU U, A.stringDuration x ≤ M
+def OffensePrime (U : Set (List A.D)) : Prop :=
+  ∀ {u v : List A.D}, u ++ v ∈ U → u ∈ U ∨ v ∈ U
 end ActionSystem
 end Actions
 namespace Actions
@@ -570,49 +594,61 @@ end Actions
 namespace Actions
 namespace ActionSystem
 variable (A : ActionSystem)
-def HatU (U : Set (List A.D)) : Set (List A.D) :=
-  { v ∈ U |
-      ∀ x y z, v = x ++ y ++ z →
-        0 < A.stringDuration x + A.stringDuration z → y ∉ U }
-namespace HatU
-theorem subset (U : Set (List A.D)) : A.HatU U ⊆ U := by
+def Prax (realizers : Set (List A.D)) : Set (List A.D) :=
+  { u ∈ realizers |
+      ¬ ∃ u' ∈ realizers, A.EffortDominated u u' ∧ u ≠ u' }
+namespace Prax
+noncomputable def Min (realizers : Set (List A.D)) : Set (List A.D) :=
+  { u ∈ A.Prax realizers |
+      ∀ u' ∈ A.Prax realizers, ¬ A.stringDuration u' < A.stringDuration u }
+theorem subset (realizers : Set (List A.D)) :
+    A.Prax realizers ⊆ realizers := by
   sorry
-end HatU
-def FiniteOffenseHorizon (U : Set (List A.D)) : Prop :=
-  ∃ M : ℝ, ∀ x ∈ A.HatU U, A.stringDuration x ≤ M
-def OffensePrime (U : Set (List A.D)) : Prop :=
-  ∀ {u v : List A.D}, u ++ v ∈ U → u ∈ U ∨ v ∈ U
+theorem Min_subset (realizers : Set (List A.D)) :
+    Min A realizers ⊆ A.Prax realizers := by
+  sorry
+end Prax
 end ActionSystem
 end Actions
 namespace Actions
 namespace Arrow
-def scale1Dictator : SWF2 := fun π => π.1
+def CompulsiveOrHedonistic (F : SWF2) : Prop := ∃ i, IsDictator F i
+namespace CompulsiveOrHedonistic
+theorem of_not_lack {F : SWF2} (h : ¬ LackOfDictator F) :
+    CompulsiveOrHedonistic F := by
+  sorry
+theorem of_dictator {F : SWF2} {i : Fin 2} (h : IsDictator F i) :
+    CompulsiveOrHedonistic F := by
+  sorry
+end CompulsiveOrHedonistic
 namespace scale1Dictator
-theorem unanimity : Unanimity scale1Dictator := by
-  sorry
-theorem IIA : IIA scale1Dictator := by
-  sorry
-theorem not_lack : ¬ LackOfDictator scale1Dictator := by
-  sorry
-theorem sovereignty : Sovereignty scale1Dictator := by
+theorem compulsive : CompulsiveOrHedonistic scale1Dictator := by
   sorry
 end scale1Dictator
 end Arrow
 end Actions
 namespace Actions
 namespace Arrow
-def scale2Dictator : SWF2 := fun π => π.2
-namespace scale2Dictator
-theorem unanimity : Unanimity scale2Dictator := by
+def ArrowPostulates2 (F : SWF2) : Prop :=
+  LackOfDictator F ∧ Unanimity F ∧ IIA F ∧ Sovereignty F
+theorem arrow_impossibility (F : SWF2) : ¬ ArrowPostulates2 F := by
   sorry
-theorem IIA : IIA scale2Dictator := by
-  sorry
-theorem not_lack : ¬ LackOfDictator scale2Dictator := by
-  sorry
-theorem sovereignty : Sovereignty scale2Dictator := by
-  sorry
-end scale2Dictator
 end Arrow
+end Actions
+namespace Actions
+namespace ActionSystem
+variable (A : ActionSystem)
+def offenseSuffixLang (U : Set (List A.D)) : Language A.D :=
+  { x | ∃ pref v suff, v ∈ A.HatU U ∧ x = pref ++ v ++ suff }
+abbrev offenseInfixLang (U : Set (List A.D)) : Language A.D :=
+  A.offenseSuffixLang U
+namespace offenseSuffixLang
+def containsInfix (v : List A.D) : Language A.D :=
+  { x | ∃ a b : List A.D, x = a ++ v ++ b }
+def infixUnion (s : Set (List A.D)) : Language A.D :=
+  { x | ∃ v ∈ s, x ∈ containsInfix A v }
+end offenseSuffixLang
+end ActionSystem
 end Actions
 namespace Actions
 namespace ActionSystem
@@ -642,43 +678,17 @@ end Actions
 namespace Actions
 namespace ActionSystem
 variable (A : ActionSystem)
-def offenseSuffixLang (U : Set (List A.D)) : Language A.D :=
-  { x | ∃ pref v suff, v ∈ A.HatU U ∧ x = pref ++ v ++ suff }
-abbrev offenseInfixLang (U : Set (List A.D)) : Language A.D :=
-  A.offenseSuffixLang U
-namespace offenseSuffixLang
-def containsInfix (v : List A.D) : Language A.D :=
-  { x | ∃ a b : List A.D, x = a ++ v ++ b }
-def infixUnion (s : Set (List A.D)) : Language A.D :=
-  { x | ∃ v ∈ s, x ∈ containsInfix A v }
-end offenseSuffixLang
+def OffenseClosed (U : Set (List A.D)) : Prop :=
+  ∀ {x y z : List A.D}, x ++ y ++ z ∈ A.L → y ∈ U → x ++ y ++ z ∈ U
+namespace OffenseClosed
+theorem isContextFree [Fintype A.D] [Nonempty A.D]
+    {U : Set (List A.D)}
+    (hSub : U ⊆ A.L) (hb : A.OffenseClosed U) (hFin : A.FiniteOffenseHorizon U)
+    (hL : Language.IsContextFree (A.L : Language A.D)) :
+    Language.IsContextFree (U : Language A.D) := by
+  sorry
+end OffenseClosed
 end ActionSystem
-end Actions
-namespace Actions
-namespace Arrow
-def ArrowPostulates2 (F : SWF2) : Prop :=
-  LackOfDictator F ∧ Unanimity F ∧ IIA F ∧ Sovereignty F
-theorem arrow_impossibility (F : SWF2) : ¬ ArrowPostulates2 F := by
-  sorry
-end Arrow
-end Actions
-namespace Actions
-namespace Arrow
-def CompulsiveOrHedonistic (F : SWF2) : Prop := by
-  sorry
-namespace CompulsiveOrHedonistic
-theorem of_not_lack {F : SWF2} (h : ¬ LackOfDictator F) :
-    CompulsiveOrHedonistic F := by
-  sorry
-theorem of_dictator {F : SWF2} {i : Fin 2} (h : IsDictator F i) :
-    CompulsiveOrHedonistic F := by
-  sorry
-end CompulsiveOrHedonistic
-namespace scale1Dictator
-theorem compulsive : CompulsiveOrHedonistic scale1Dictator := by
-  sorry
-end scale1Dictator
-end Arrow
 end Actions
 namespace Actions
 namespace ActionSystem
@@ -702,6 +712,24 @@ end Actions
 namespace Actions
 namespace MixedSystem
 variable (S : MixedSystem)
+def LM : Set (List S.Letter) :=
+  { x | S.pi x ∈ S.base.L }
+namespace LM
+theorem mem_iff {x : List S.Letter} : x ∈ S.LM ↔ S.pi x ∈ S.base.L := by
+  sorry
+theorem of_pure_actions {u : List S.D} (hu : u ∈ S.base.L) :
+    u.map Sum.inl ∈ S.LM := by
+  sorry
+end LM
+def hasUtterance (x : List S.Letter) : Prop :=
+  ∃ α : S.M, Sum.inr α ∈ x
+def LM_minus_L : Set (List S.Letter) :=
+  { x | x ∈ S.LM ∧ S.hasUtterance x }
+end MixedSystem
+end Actions
+namespace Actions
+namespace MixedSystem
+variable (S : MixedSystem)
 abbrev Lambda := S.M × ℕ
 def ConsistentWith (x : List S.D) (αk : S.Lambda) : Prop :=
   x ∈ S.base.L ∧
@@ -719,63 +747,12 @@ end Actions
 namespace Actions
 namespace MixedSystem
 variable (S : MixedSystem)
-def LM : Set (List S.Letter) :=
-  { x | S.pi x ∈ S.base.L }
-namespace LM
-theorem mem_iff {x : List S.Letter} : x ∈ S.LM ↔ S.pi x ∈ S.base.L := by
+theorem O_promiseClosed (α : S.M) (k : ℕ) :
+    S.base.PromiseClosed (S.O α k) := by
   sorry
-theorem of_pure_actions {u : List S.D} (hu : u ∈ S.base.L) :
-    u.map Sum.inl ∈ S.LM := by
+theorem O'_offenseClosed (α : S.M) (k : ℕ) :
+    S.base.OffenseClosed (S.O' α k) := by
   sorry
-end LM
-def hasUtterance (x : List S.Letter) : Prop :=
-  ∃ α : S.M, Sum.inr α ∈ x
-def LM_minus_L : Set (List S.Letter) :=
-  { x | x ∈ S.LM ∧ S.hasUtterance x }
-end MixedSystem
-end Actions
-namespace Actions
-namespace ActionSystem
-variable (A : ActionSystem)
-def OffenseClosed (U : Set (List A.D)) : Prop :=
-  ∀ {x y z : List A.D}, x ++ y ++ z ∈ A.L → y ∈ U → x ++ y ++ z ∈ U
-namespace OffenseClosed
-theorem isContextFree [Fintype A.D] [Nonempty A.D]
-    {U : Set (List A.D)}
-    (hSub : U ⊆ A.L) (hb : A.OffenseClosed U) (hFin : A.FiniteOffenseHorizon U)
-    (hL : Language.IsContextFree (A.L : Language A.D)) :
-    Language.IsContextFree (U : Language A.D) := by
-  sorry
-end OffenseClosed
-end ActionSystem
-end Actions
-namespace Actions
-namespace MixedSystem
-variable (S : MixedSystem)
-structure VerbalOcc where
-  α : S.M
-  pref : List S.Letter
-  suff : List S.Letter
-namespace VerbalOcc
-def reconstruct (occ : VerbalOcc (S := S)) : List S.Letter :=
-  occ.pref ++ Sum.inr occ.α :: occ.suff
-def piPrefix (occ : VerbalOcc (S := S)) : List S.D := S.pi occ.pref
-def piSuffix (occ : VerbalOcc (S := S)) : List S.D := S.pi occ.suff
-noncomputable def time (occ : VerbalOcc (S := S)) : ℕ :=
-  S.utteranceTime (S.pi occ.pref)
-noncomputable def W_at (occ : VerbalOcc (S := S)) := S.W occ.α (time S occ)
-noncomputable def W'_at (occ : VerbalOcc (S := S)) := S.W' occ.α (time S occ)
-noncomputable def O_at (occ : VerbalOcc (S := S)) := S.O occ.α (time S occ)
-noncomputable def O'_at (occ : VerbalOcc (S := S)) := S.O' occ.α (time S occ)
-end VerbalOcc
-def verbalOccsAux : List S.Letter → List S.Letter → List (VerbalOcc (S := S))
-  | _pref, [] => []
-  | pref, Sum.inl d :: rs => verbalOccsAux (pref ++ [Sum.inl d]) rs
-  | pref, Sum.inr α :: rs =>
-      { α := α, pref := pref, suff := rs } ::
-        verbalOccsAux (pref ++ [Sum.inr α]) rs
-def verbalOccs (x : List S.Letter) : List (VerbalOcc (S := S)) :=
-  verbalOccsAux S [] x
 end MixedSystem
 end Actions
 namespace Actions
@@ -836,12 +813,30 @@ end Actions
 namespace Actions
 namespace MixedSystem
 variable (S : MixedSystem)
-theorem O_promiseClosed (α : S.M) (k : ℕ) :
-    S.base.PromiseClosed (S.O α k) := by
-  sorry
-theorem O'_offenseClosed (α : S.M) (k : ℕ) :
-    S.base.OffenseClosed (S.O' α k) := by
-  sorry
+structure VerbalOcc where
+  α : S.M
+  pref : List S.Letter
+  suff : List S.Letter
+namespace VerbalOcc
+def reconstruct (occ : VerbalOcc (S := S)) : List S.Letter :=
+  occ.pref ++ Sum.inr occ.α :: occ.suff
+def piPrefix (occ : VerbalOcc (S := S)) : List S.D := S.pi occ.pref
+def piSuffix (occ : VerbalOcc (S := S)) : List S.D := S.pi occ.suff
+noncomputable def time (occ : VerbalOcc (S := S)) : ℕ :=
+  S.utteranceTime (S.pi occ.pref)
+noncomputable def W_at (occ : VerbalOcc (S := S)) := S.W occ.α (time S occ)
+noncomputable def W'_at (occ : VerbalOcc (S := S)) := S.W' occ.α (time S occ)
+noncomputable def O_at (occ : VerbalOcc (S := S)) := S.O occ.α (time S occ)
+noncomputable def O'_at (occ : VerbalOcc (S := S)) := S.O' occ.α (time S occ)
+end VerbalOcc
+def verbalOccsAux : List S.Letter → List S.Letter → List (VerbalOcc (S := S))
+  | _pref, [] => []
+  | pref, Sum.inl d :: rs => verbalOccsAux (pref ++ [Sum.inl d]) rs
+  | pref, Sum.inr α :: rs =>
+      { α := α, pref := pref, suff := rs } ::
+        verbalOccsAux (pref ++ [Sum.inr α]) rs
+def verbalOccs (x : List S.Letter) : List (VerbalOcc (S := S)) :=
+  verbalOccsAux S [] x
 end MixedSystem
 end Actions
 namespace Actions

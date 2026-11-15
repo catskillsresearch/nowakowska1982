@@ -15,7 +15,8 @@ definitions, lemmas, and examples for the mathematical core of §§2, 4–7, and
 every definition and states and proves every theorem, with Lean names in
 typewriter font in parentheses;
 other prose without checked mathematics appears as short AI summaries only.
-Novel compared claims include the 113 conflict enumeration, the automaton
-realization reading stated without proof in §13, and machine-checked promise
-CF reconstructions sourced from 1973 §5.3.2–5.3.3, with verbal-embedding
-scaffold from §5.1–5.2 and satisfiability / $\psi$ from §5.3.1 / §5.3.5.
+Compared claims centre on verification of the stated 113 conflict families, a
+reachability reading of the §13 automaton bridge, Arrow impossibility in the
+finite 2×3 encoding, and machine-checked promise/offense CF reconstructions
+from 1973 §5.3.2–5.3.3 with CF ∩ Regular proved in Lean, together with
+verbal-embedding duration coherence from §5.1–5.3.

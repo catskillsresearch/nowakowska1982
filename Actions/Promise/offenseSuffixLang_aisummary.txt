@@ -1,2 +1,2 @@
-The regular envelope of first offenses plays the same role for negative
-promises as `promiseSuffixLang` does for positive ones.
+The regular infix envelope of factor-minimal first offenses plays the same
+role for negative promises as `promiseSuffixLang` does for positive ones.

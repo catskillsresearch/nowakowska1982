@@ -1,4 +1,4 @@
-# Language hypotheses
+# Classical language facts (proved)
 
 @import "LanguageHypotheses_aisummary.txt" {code_block=false}
 
