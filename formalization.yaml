@@ -4,27 +4,21 @@ version: v0.4
 project:
   name: Nowakowska Theory of Actions (1982) in Lean 4
   description: >-
-    A Lean 4 / Mathlib (v4.36.0-rc2) formalization of Maria Nowakowska's
+A Lean 4 / Mathlib (v4.36.0-rc2) formalization of Maria Nowakowska's
     A Formal Theory of Actions: Syntax and Semantics of Behaviour (chapter
     dated 1982; Praxiological Studies, 1983), synthesizing the parts of
     Language of Motivation and Language of Actions (1973) that 1982 cites
     for omitted proofs and for the motivational calculus (here: §§2.1.4,
-    2.2.4, 5.1–5.3). The library covers the action-system sixtuplet, weak
-    and strong attainability, Prax / Prax-min, a sampled MotCalc
-    speaker-world model, verbal embedding with motivational consistency /
-    satisfiability / ψ(A), promise closure, an automaton reading of the
-    sixtuplet, and Arrow-style choice with clinical corollary packaging,
-    with a small checked example. Compared Palomar claims are every theorem
-    that is a sink in the theorems-only dependency graph (no successor,
-    including isolates), plus toActionSystem.L and three clinical Arrow
-    abbrevs — among them: (i) novel machine-checked count of 113 labeled
-    four-motive conflict patterns; (ii) novel automaton-to-sixtuplet
-    realization theorem; (iii) Arrow dictatorial-core inconsistency with
-    clinical corollary packaging; (iv) MotCalc sampled SemImp validity on
-    the §2.2.4 epistemic model; (v)–(vi) novel machine-checked
-    promise/offense CF reconstructions from 1973 §5.3.2–5.3.3 (classical
-    Ch. 3 CF∩regular closures as named hypotheses); plus Prax, verbal
-    embedding / ψ, promise bridges, and toy-world sinks. Maria Nowakowska
+    2.2.4, 5.1–5.3). Framing: rigorous reconstruction/verification of her
+    action–motivation–promise material (precision gaps closed in Lean), plus
+    a formalization contribution proving CF ∩ Regular so Promise/Offense CF
+    theorems are unconditional. Headline compared claims include
+    card_conflictFamilies (her stated 113), Attainable_iff_reaches_length
+    (reachability realization), arrow_impossibility in the finite 2×3
+    encoding, unconditional PromiseClosed/OffenseClosed.isContextFree with
+    factor-minimal HatU, Language.IsContextFree.inter_regular, and
+    stringDuration_pi / timed ψ-membership. Clinical Arrow abbrevs and MotCalc
+    samples are supporting packaging, not claimed novelty. Maria Nowakowska
     did not participate in or endorse this formalization. Lean was written
     with AI-agent assistance under Lars Warren Ericson's direction and
     review. There is no sorry in the Actions/ development, no
@@ -48,12 +42,12 @@ classification:
   - '68V20'
 status:
   scope: >-
-    Complete for the Comparator family in comparator.json: all theorems-only
-    dependency-graph sinks (no successor, including isolates), plus
-    toActionSystem.L, and three clinical definition abbreviations.
-    Intermediate theorems that still have successors remain library-only.
-    Promise/offense CF theorems take RegularImpliesCF and CFInterRegular as
-    explicit hypotheses.
+Complete for the Comparator family in comparator.json: strengthened
+    headline theorems (card_conflictFamilies, Attainable_iff_reaches_length,
+    arrow_impossibility, unconditional Promise/Offense CF, inter_regular,
+    stringDuration_pi) plus supporting sinks and three clinical definition
+    abbreviations. Intermediate theorems that still have successors remain
+    library-only. CF ∩ Regular is proved in Actions/Promise/CFInterRegular.lean.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms:
@@ -61,6 +55,14 @@ status:
   - Classical.choice
   - Quot.sound
   main_results:
+  - declaration: Actions.ActionAutomaton.Reaches.admissible
+    file: Actions/Automata/ActionAutomaton.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
   - declaration: Actions.ActionAutomaton.admissible_cons_nextState
     file: Actions/Automata/ActionAutomaton.lean
     sorry_count: 0
@@ -70,6 +72,14 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.ActionAutomaton.mem_language_iff
+    file: Actions/Automata/ActionAutomaton.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.ActionAutomaton.mem_language_iff_exists_reaches
     file: Actions/Automata/ActionAutomaton.lean
     sorry_count: 0
     axioms:
@@ -101,7 +111,7 @@ status:
     - Classical.choice
     - Quot.sound
     literature_dependencies: []
-  - declaration: Actions.ActionAutomaton.toActionSystem.L
+  - declaration: Actions.ActionAutomaton.toActionSystem.Attainable_iff_reaches_length
     file: Actions/Automata/toActionSystem.lean
     sorry_count: 0
     axioms:
@@ -133,8 +143,16 @@ status:
     - Classical.choice
     - Quot.sound
     literature_dependencies: []
+  - declaration: Actions.ActionSystem.HatU.subset
+    file: Actions/Promise/HatU.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
   - declaration: Actions.ActionSystem.NonParasitic.append_left_right
-    file: Actions/Mixed/NonParasitic.lean
+    file: Actions/ActionSystem.lean
     sorry_count: 0
     axioms:
     - propext
@@ -142,7 +160,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.ActionSystem.NonParasitic.of_mem_L
-    file: Actions/Mixed/NonParasitic.lean
+    file: Actions/ActionSystem.lean
     sorry_count: 0
     axioms:
     - propext
@@ -238,7 +256,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.ActionSystem.strongly_implies_weakly
-    file: Actions/Attainability/Goals.lean
+    file: Actions/ActionSystem.lean
     sorry_count: 0
     axioms:
     - propext
@@ -246,14 +264,22 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.ActionSystem.weakly_iff_strongly_singleton
-    file: Actions/Attainability/Goals.lean
+    file: Actions/ActionSystem.lean
     sorry_count: 0
     axioms:
     - propext
     - Classical.choice
     - Quot.sound
     literature_dependencies: []
-  - declaration: Actions.Arrow.ArrowPostulates2.impossibility_dictatorial_core
+  - declaration: Actions.Arrow.arrow_dictator_of_unanimity_IIA
+    file: Actions/Choice/Arrow.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Arrow.arrow_impossibility
     file: Actions/Choice/ArrowPostulates2.lean
     sorry_count: 0
     axioms:
@@ -262,7 +288,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.Arrow.BlindObedience.of_not_sovereignty
-    file: Actions/Choice/ArrowPostulates2.lean
+    file: Actions/Choice/BlindObedience.lean
     sorry_count: 0
     axioms:
     - propext
@@ -270,7 +296,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.Arrow.CompulsiveOrHedonistic.of_dictator
-    file: Actions/Choice/ArrowPostulates2.lean
+    file: Actions/Choice/CompulsiveOrHedonistic.lean
     sorry_count: 0
     axioms:
     - propext
@@ -278,7 +304,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.Arrow.CompulsiveOrHedonistic.of_not_lack
-    file: Actions/Choice/ArrowPostulates2.lean
+    file: Actions/Choice/CompulsiveOrHedonistic.lean
     sorry_count: 0
     axioms:
     - propext
@@ -286,7 +312,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.Arrow.NeuroticAllOrNothing.of_not_IIA
-    file: Actions/Choice/ArrowPostulates2.lean
+    file: Actions/Choice/NeuroticAllOrNothing.lean
     sorry_count: 0
     axioms:
     - propext
@@ -294,7 +320,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.Arrow.scale1Dictator.IIA
-    file: Actions/Choice/ArrowPostulates2.lean
+    file: Actions/Choice/scale1Dictator.lean
     sorry_count: 0
     axioms:
     - propext
@@ -302,7 +328,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.Arrow.scale1Dictator.compulsive
-    file: Actions/Choice/ArrowPostulates2.lean
+    file: Actions/Choice/scale1Dictator.lean
     sorry_count: 0
     axioms:
     - propext
@@ -310,7 +336,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.Arrow.scale1Dictator.not_lack
-    file: Actions/Choice/ArrowPostulates2.lean
+    file: Actions/Choice/scale1Dictator.lean
     sorry_count: 0
     axioms:
     - propext
@@ -318,7 +344,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.Arrow.scale1Dictator.sovereignty
-    file: Actions/Choice/ArrowPostulates2.lean
+    file: Actions/Choice/scale1Dictator.lean
     sorry_count: 0
     axioms:
     - propext
@@ -326,7 +352,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.Arrow.scale1Dictator.unanimity
-    file: Actions/Choice/ArrowPostulates2.lean
+    file: Actions/Choice/scale1Dictator.lean
     sorry_count: 0
     axioms:
     - propext
@@ -334,7 +360,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.Arrow.scale2Dictator.IIA
-    file: Actions/Choice/ArrowPostulates2.lean
+    file: Actions/Choice/scale2Dictator.lean
     sorry_count: 0
     axioms:
     - propext
@@ -342,7 +368,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.Arrow.scale2Dictator.not_lack
-    file: Actions/Choice/ArrowPostulates2.lean
+    file: Actions/Choice/scale2Dictator.lean
     sorry_count: 0
     axioms:
     - propext
@@ -350,7 +376,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.Arrow.scale2Dictator.sovereignty
-    file: Actions/Choice/ArrowPostulates2.lean
+    file: Actions/Choice/scale2Dictator.lean
     sorry_count: 0
     axioms:
     - propext
@@ -358,38 +384,14 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.Arrow.scale2Dictator.unanimity
-    file: Actions/Choice/ArrowPostulates2.lean
+    file: Actions/Choice/scale2Dictator.lean
     sorry_count: 0
     axioms:
     - propext
     - Classical.choice
     - Quot.sound
     literature_dependencies: []
-  - declaration: Actions.Conflicts.conflictPattern_card
-    file: Actions/Attainability/Conflicts.lean
-    sorry_count: 0
-    axioms:
-    - propext
-    - Classical.choice
-    - Quot.sound
-    literature_dependencies: []
-  - declaration: Actions.Conflicts.isConflictPattern_decide
-    file: Actions/Attainability/Conflicts.lean
-    sorry_count: 0
-    axioms:
-    - propext
-    - Classical.choice
-    - Quot.sound
-    literature_dependencies: []
-  - declaration: Actions.Conflicts.patternsFor_allDoubletons
-    file: Actions/Attainability/Conflicts.lean
-    sorry_count: 0
-    axioms:
-    - propext
-    - Classical.choice
-    - Quot.sound
-    literature_dependencies: []
-  - declaration: Actions.Conflicts.patternsFor_zero
+  - declaration: Actions.Conflicts.card_conflictFamilies
     file: Actions/Attainability/Conflicts.lean
     sorry_count: 0
     axioms:
@@ -398,7 +400,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.MixedSystem.LM.mem_iff
-    file: Actions/Mixed/MixedSystem.lean
+    file: Actions/Mixed/LM.lean
     sorry_count: 0
     axioms:
     - propext
@@ -406,7 +408,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.MixedSystem.LM.of_pure_actions
-    file: Actions/Mixed/MixedSystem.lean
+    file: Actions/Mixed/LM.lean
     sorry_count: 0
     axioms:
     - propext
@@ -414,7 +416,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.MixedSystem.MotivationalConsistency.wanted_unwanted_disjoint
-    file: Actions/Mixed/MixedSystem.lean
+    file: Actions/Mixed/MotivationalConsistency.lean
     sorry_count: 0
     axioms:
     - propext
@@ -422,7 +424,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.MixedSystem.O'_offenseClosed
-    file: Actions/Mixed/MixedSystem.lean
+    file: Actions/Mixed/PromiseBridge.lean
     sorry_count: 0
     axioms:
     - propext
@@ -430,7 +432,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.MixedSystem.O_promiseClosed
-    file: Actions/Mixed/MixedSystem.lean
+    file: Actions/Mixed/PromiseBridge.lean
     sorry_count: 0
     axioms:
     - propext
@@ -438,7 +440,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.MixedSystem.Psi.mem_iff
-    file: Actions/Mixed/MixedSystem.lean
+    file: Actions/Mixed/Psi.lean
     sorry_count: 0
     axioms:
     - propext
@@ -446,7 +448,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.MixedSystem.Psi.pi_mem_of_motivationalConsistency
-    file: Actions/Mixed/MixedSystem.lean
+    file: Actions/Mixed/Psi.lean
     sorry_count: 0
     axioms:
     - propext
@@ -454,7 +456,7 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.MixedSystem.Satisfiable.of_motivationalConsistency
-    file: Actions/Mixed/MixedSystem.lean
+    file: Actions/Mixed/Satisfiable.lean
     sorry_count: 0
     axioms:
     - propext
@@ -469,8 +471,24 @@ status:
     - Classical.choice
     - Quot.sound
     literature_dependencies: []
+  - declaration: Actions.MixedSystem.pi.stringDuration_pi
+    file: Actions/Mixed/pi.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
   - declaration: Actions.MotCalc.SampledSemImp.epistemicModel
     file: Actions/Motivation/SampledSemImp.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Toy.HatU_offenseU
+    file: Actions/Examples/ToyWorld.lean
     sorry_count: 0
     axioms:
     - propext
@@ -486,6 +504,22 @@ status:
     - Quot.sound
     literature_dependencies: []
   - declaration: Actions.Toy.nil_not_mem_promiseT
+    file: Actions/Examples/ToyWorld.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Toy.offenseU_closed
+    file: Actions/Examples/ToyWorld.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+  - declaration: Actions.Toy.offenseU_finiteHorizon
     file: Actions/Examples/ToyWorld.lean
     sorry_count: 0
     axioms:
@@ -549,22 +583,30 @@ status:
     - Classical.choice
     - Quot.sound
     literature_dependencies: []
+  - declaration: Language.IsContextFree.inter_regular
+    file: Actions/Promise/CFInterRegular.lean
+    sorry_count: 0
+    axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+    literature_dependencies: []
+
 comparator_config: comparator.json
 
 fidelity:
   divergences: >-
-    Working sources: sources/nowakowska1982.pdf (1982/1983 chapter) and
+Working sources: sources/nowakowska1982.pdf (1982/1983 chapter) and
     scanned 1973 ranges under sources/nowakowska_1973_*. OCR drafts
     (sources/*.md, *_vision.md) are navigation aids; Lean is authoritative.
     Discrete sentence duration φ_M : M → ℕ is a modeling simplification of
-    the paper's real-valued φ on M. Satisfiability uses existential splits
-    and discrete utterance times rather than a full real-duration matching
-    obligation in every instance. Promise/offense CF proofs factor classical
-    Ch. 3 language facts as named hypotheses RegularImpliesCF /
-    CFInterRegular. Clinical Arrow readings are packaging of postulate
-    failure, not new psychology. Exact narrative alignment lives in the
-    Actions.md note tree / Actions.pdf rather than as additional compared
-    theorems.
+    the paper's real-valued φ on M. Utterance time is unified via
+    utteranceTime(π pref) = floor(mixedDuration pref), with ConsistentWith
+    tying k to the pause-block split. HatU is factor-minimal (first-offense
+    infix reading); offense envelope is two-sided. Promise/offense CF theorems
+    are unconditional: CF ∩ Regular is proved in-repo. Clinical Arrow readings
+    are packaging of postulate failure, not new psychology. Exact narrative
+    alignment lives in the Actions.md note tree / Actions.pdf.
 
 sources:
   - title: "A Formal Theory of Actions: Syntax and Semantics of Behaviour"
@@ -608,6 +650,12 @@ automation:
     framework: Cursor
     role: "Routine scaffolding and medium-complexity proof obligations."
   - method: agent
+    models: ["Claude Fable 5.2"]
+    framework: Cursor
+    role: >-
+      Substantive Lean repairs (automata realization, offense/HatU regularity,
+      conflict-family cardinality, Arrow impossibility, CF ∩ Regular).
+  - method: agent
     models: ["Google Gemini 3.8"]
     framework: Cursor
     role: "Exploratory and support passes."
@@ -632,15 +680,10 @@ review:
 
 known_gaps:
   - >-
-    Classical Ch. 3 facts RegularImpliesCF and CFInterRegular remain named
-    hypotheses on PromiseClosed.isContextFree and
-    OffenseClosed.isContextFree (not yet available as Mathlib theorems in
-    the form used here).
-  - >-
     MotCalc covers a sampled SemImp bundle on the §2.2.4 epistemic model,
     not the full published rule inventory.
   - >-
-    Verbal-embedding duration is discrete (pause-units) for sentences; full
+    Verbal-embedding sentence duration remains discrete (pause-units); full
     real-valued φ on M is not reconstructed in every lemma.
 
 limitations:
@@ -653,32 +696,37 @@ alignment:
   namespace: Actions
   statements:
   - source: "§4 four-motive conflict count (113 types)"
-    lean: Conflicts.conflictPattern_card
+    lean: Conflicts.card_conflictFamilies
     module: Actions.Conflicts
     status: proved
-    note: "Novel machine-checked enumeration of the labeled downset model."
+    note: "Verification of her stated 113 against IsConflictFamily."
   - source: "§13 automaton reading of the sixtuplet"
-    lean: ActionAutomaton.toActionSystem.L
+    lean: ActionAutomaton.toActionSystem.Attainable_iff_reaches_length
     module: Actions.ActionAutomaton
     status: proved
-    note: "Novel L-equality; paper states the correspondence without proof."
-  - source: "§5 Arrow postulates / dictatorial core"
-    lean: Arrow.ArrowPostulates2.impossibility_dictatorial_core
+    note: "Reachability realization; L-equality is definitional infrastructure."
+  - source: "§5 Arrow postulates"
+    lean: Arrow.arrow_impossibility
     module: Actions.Arrow
     status: proved
-    note: "Clinical abbrevs are packaging of postulate failure."
-  - source: "1973 §2.1.4 / §2.2.4 MotCalc sample"
-    lean: MotCalc.SampledSemImp.epistemicModel
-    module: Actions.MotCalc
-    status: proved
-    note: "Sampled rules only."
-  - source: "1973 Thm 1 / 1982 §7 positive promise CF"
+    note: "Standard impossibility in this finite 2×3 encoding."
+  - source: "1973 Thm 1 / 1982 §7 promise CF"
     lean: ActionSystem.PromiseClosed.isContextFree
     module: Actions.ActionSystem
     status: proved
-    note: "Ch. 3 closures as hypotheses."
+    note: "Unconditional; uses proved CF ∩ Regular."
   - source: "1973 Thm 4 / 1982 §7 offense CF"
     lean: ActionSystem.OffenseClosed.isContextFree
     module: Actions.ActionSystem
     status: proved
-    note: "Ch. 3 closures as hypotheses."
+    note: "Factor-minimal HatU; unconditional CF ∩ Regular."
+  - source: "Classical CF ∩ Regular (Ch. 3 citation)"
+    lean: Language.IsContextFree.inter_regular
+    module: Language
+    status: proved
+    note: "Formalization contribution discharging her external citation."
+  - source: "§5.2–5.3 duration / ψ coherence"
+    lean: MixedSystem.pi.stringDuration_pi
+    module: Actions.MixedSystem
+    status: proved
+    note: "Duration homomorphism; timed ConsistentWith / Psi."

@@ -39,13 +39,10 @@ def piPrefix (occ : VerbalOcc (S := S)) : List S.D := S.pi occ.pref
 /-- Behavioural suffix after this utterance. -/
 def piSuffix (occ : VerbalOcc (S := S)) : List S.D := S.pi occ.suff
 
-/-- Discrete time contribution of one letter (pause-units). -/
-noncomputable def letterTime (c : S.Letter) : ℕ :=
-  Sum.elim (fun d => Nat.floor (S.base.φ d)) (fun α => S.φM α) c
-
-/-- Utterance moment = total discrete time of the prefix. -/
+/-- Utterance moment = discrete time of the behavioural prefix `π(pref)`.
+Equals `Nat.floor (mixedDuration pref)` via `pi.utteranceTime_pi`. -/
 noncomputable def time (occ : VerbalOcc (S := S)) : ℕ :=
-  (occ.pref.map (letterTime S)).sum
+  S.utteranceTime (S.pi occ.pref)
 
 /-- Wanted time-results at this occurrence. -/
 noncomputable def W_at (occ : VerbalOcc (S := S)) := S.W occ.α (time S occ)

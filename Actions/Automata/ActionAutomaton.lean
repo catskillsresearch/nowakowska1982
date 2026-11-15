@@ -84,6 +84,140 @@ theorem mem_language_iff (u₀ : M.U) (b₀ : M.B) (ds : List M.D) :
     ds ∈ M.language u₀ b₀ ↔ M.Admissible u₀ b₀ ds :=
   Iff.rfl
 
+/-! ### Runs with an endpoint -/
+
+/-- `M.Reaches u b ds s`: the string `ds` is a run from `(u,b)` that ends in
+state `s`. Each letter is `τ`-admissible in the current context, the state is
+updated by `π` (i.e. `nextState`), and — exactly as in `Admissible` — the
+stimulus presented after each step is unconstrained. -/
+inductive Reaches : M.U → M.B → List M.D → M.U → Prop where
+  | nil (u : M.U) (b : M.B) : Reaches u b [] u
+  | cons {u : M.U} {b : M.B} {d : M.D} {ds : List M.D} {b' : M.B} {s : M.U}
+      (hd : d ∈ M.τ u b)
+      (tail : Reaches (M.π u b d) b' ds s) :
+      Reaches u b (d :: ds) s
+
+/-- The empty run stays where it is. -/
+@[simp]
+theorem reaches_nil_iff {u s : M.U} {b : M.B} :
+    M.Reaches u b [] s ↔ s = u := by
+  constructor
+  · intro h
+    cases h
+    rfl
+  · rintro rfl
+    exact Reaches.nil s b
+
+/-- Unfolding of a nonempty run: an admissible first letter, then a run from
+the `π`-successor under some next stimulus. -/
+theorem reaches_cons_iff {u s : M.U} {b : M.B} {d : M.D} {ds : List M.D} :
+    M.Reaches u b (d :: ds) s ↔
+      d ∈ M.τ u b ∧ ∃ b', M.Reaches (M.π u b d) b' ds s := by
+  constructor
+  · intro h
+    cases h with
+    | cons hd tail => exact ⟨hd, _, tail⟩
+  · rintro ⟨hd, b', tail⟩
+    exact Reaches.cons hd tail
+
+/-- One cons-step of a run, phrased with `nextState`. -/
+theorem reaches_cons_nextState {u s : M.U} {b b' : M.B} {d : M.D}
+    {ds : List M.D} (hd : d ∈ M.τ u b)
+    (tail : M.Reaches (M.nextState u b d) b' ds s) :
+    M.Reaches u b (d :: ds) s :=
+  Reaches.cons hd (by simpa [nextState] using tail)
+
+/-- One step: an admissible letter leads to its `nextState`. -/
+theorem reaches_singleton {u : M.U} {b : M.B} {d : M.D}
+    (hd : d ∈ M.τ u b) : M.Reaches u b [d] (M.nextState u b d) :=
+  Reaches.cons hd (Reaches.nil (M.π u b d) b)
+
+/-- A run that ends somewhere is in particular admissible. -/
+theorem Reaches.admissible {u s : M.U} {b : M.B} {ds : List M.D}
+    (h : M.Reaches u b ds s) : M.Admissible u b ds := by
+  induction h with
+  | nil u b => exact Admissible.nil u b
+  | cons hd _ ih => exact Admissible.cons hd ih
+
+/-- Every admissible string ends in some state. -/
+theorem Admissible.exists_reaches {u : M.U} {b : M.B} {ds : List M.D}
+    (h : M.Admissible u b ds) : ∃ s, M.Reaches u b ds s := by
+  induction h with
+  | nil u b => exact ⟨u, Reaches.nil u b⟩
+  | cons hd _ ih =>
+    obtain ⟨s, hs⟩ := ih
+    exact ⟨s, Reaches.cons hd hs⟩
+
+/-- Admissibility is exactly "the run ends somewhere". -/
+theorem admissible_iff_exists_reaches {u : M.U} {b : M.B} {ds : List M.D} :
+    M.Admissible u b ds ↔ ∃ s, M.Reaches u b ds s :=
+  ⟨fun h => h.exists_reaches, fun ⟨_, h⟩ => h.admissible⟩
+
+/-- The language from `(u₀,b₀)` consists of the strings that reach some state. -/
+theorem mem_language_iff_exists_reaches (u₀ : M.U) (b₀ : M.B) (ds : List M.D) :
+    ds ∈ M.language u₀ b₀ ↔ ∃ s, M.Reaches u₀ b₀ ds s :=
+  M.admissible_iff_exists_reaches
+
+/-! ### Step-counted reachability (no string) -/
+
+/-- `M.ReachableIn u b n s`: state `s` can be reached from `(u,b)` in exactly
+`n` steps. This is the string-free transition-graph notion: one step picks a
+`τ`-admissible letter, moves along `π`, and receives an arbitrary stimulus. -/
+inductive ReachableIn : M.U → M.B → ℕ → M.U → Prop where
+  | zero (u : M.U) (b : M.B) : ReachableIn u b 0 u
+  | succ {u : M.U} {b : M.B} {d : M.D} {b' : M.B} {n : ℕ} {s : M.U}
+      (hd : d ∈ M.τ u b)
+      (tail : ReachableIn (M.π u b d) b' n s) :
+      ReachableIn u b (n + 1) s
+
+/-- A run of length `n` witnesses `n`-step reachability. -/
+theorem Reaches.reachableIn {u s : M.U} {b : M.B} {ds : List M.D}
+    (h : M.Reaches u b ds s) : M.ReachableIn u b ds.length s := by
+  induction h with
+  | nil u b => exact ReachableIn.zero u b
+  | cons hd _ ih => exact ReachableIn.succ hd ih
+
+/-- `n`-step reachability is witnessed by a run of length `n`. -/
+theorem ReachableIn.exists_reaches {u s : M.U} {b : M.B} {n : ℕ}
+    (h : M.ReachableIn u b n s) :
+    ∃ ds : List M.D, ds.length = n ∧ M.Reaches u b ds s := by
+  induction h with
+  | zero u b => exact ⟨[], rfl, Reaches.nil u b⟩
+  | @succ u b d b' n s hd _ ih =>
+    obtain ⟨ds, hlen, hds⟩ := ih
+    exact ⟨d :: ds, by simp [hlen], Reaches.cons hd hds⟩
+
+/-- Reachable in `n` steps iff some length-`n` run ends there. -/
+theorem reachableIn_iff_exists_reaches {u s : M.U} {b : M.B} {n : ℕ} :
+    M.ReachableIn u b n s ↔
+      ∃ ds : List M.D, ds.length = n ∧ M.Reaches u b ds s := by
+  constructor
+  · exact fun h => h.exists_reaches
+  · rintro ⟨ds, rfl, h⟩
+    exact h.reachableIn
+
+/-- Zero steps reach only the start. -/
+@[simp]
+theorem reachableIn_zero_iff {u s : M.U} {b : M.B} :
+    M.ReachableIn u b 0 s ↔ s = u := by
+  constructor
+  · intro h
+    cases h
+    rfl
+  · rintro rfl
+    exact ReachableIn.zero s b
+
+/-- Step recurrence for reachability. -/
+theorem reachableIn_succ_iff {u s : M.U} {b : M.B} {n : ℕ} :
+    M.ReachableIn u b (n + 1) s ↔
+      ∃ d ∈ M.τ u b, ∃ b', M.ReachableIn (M.π u b d) b' n s := by
+  constructor
+  · intro h
+    cases h with
+    | succ hd tail => exact ⟨_, hd, _, tail⟩
+  · rintro ⟨d, hd, b', tail⟩
+    exact ReachableIn.succ hd tail
+
 end ActionAutomaton
 
 end Actions

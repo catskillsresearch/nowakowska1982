@@ -58,12 +58,13 @@ theorem pi_mem_of_motivationalConsistency {x : List S.Letter}
     simp only [pi, piGo]
     simpa using (pi.go_add_pending S (S.φM occ.α) 0 occ.suff)
   have hsplit : S.pi x =
-      (S.pi occ.pref ++ S.base.pauseString (S.φM occ.α)) ++ S.pi occ.suff := by
+      S.pi occ.pref ++ S.base.pauseString (S.φM occ.α) ++ S.pi occ.suff := by
     rw [hpi, hα, List.append_assoc]
   have hocc' := h.2.2 occ hocc
   refine ⟨h.1, hocc'.1, hocc'.2.1, ?_⟩
-  refine ⟨S.pi occ.pref ++ S.base.pauseString (S.φM occ.α),
-    S.pi occ.suff, hsplit, hocc'.2.2.1, hocc'.2.2.2⟩
+  refine ⟨S.pi occ.pref, S.pi occ.suff, hsplit, ?_, hocc'.2.2.1, hocc'.2.2.2⟩
+  -- `VerbalOcc.time` is defined as `utteranceTime (π pref)`.
+  rfl
 
 end Psi
 

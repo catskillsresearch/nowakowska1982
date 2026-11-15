@@ -19,29 +19,28 @@ Maria Nowakowska did not review or endorse this formalization.
 
 ## Status
 
-Sorry-free library under `Actions/` (sixtuplet, attainability, Prax, MotCalc
-sample, verbal embedding / motivational consistency / satisfiability /
-$\psi(A)$, promise closure, automaton reading, Arrow packaging, toy world).
-Palomar packaging matches DomainTheory / scott1980: `comparator.json` lists
-library `Actions.*` names once; `Challenge/` mirrors that API (Mathlib-only);
-`Solution.lean` imports sorry-free `Actions/`. Compared family = **all
-theorems-only dependency-graph sinks** (see `docs/dependency_graph_theorems.svg`),
-plus `toActionSystem.L` and three clinical Arrow abbrevs.
+Sorry-free library under `Actions/`. Palomar packaging matches DomainTheory /
+scott1980: `comparator.json` lists library names once; `Challenge.lean` is a
+single Mathlib-only statement file; `Solution.lean` imports `Actions/`.
+
+Framing: **reconstruction / verification** of Nowakowska 1982/1973, plus a
+Lean proof of classical **CF ∩ Regular** that discharges hypotheses she left
+external. Not a new psychological theory; Arrow is the standard impossibility
+in her finite 2×3 encoding.
 
 ### Compared claims (Comparator) — headline sinks
 
 | Claim | Role |
 | --- | --- |
-| `Actions.Conflicts.conflictPattern_card` | Novel: 113 labeled four-motive conflict patterns |
-| `Actions.ActionAutomaton.toActionSystem.L` | Novel: automaton language = induced sixtuplet $L$ |
-| `Actions.Arrow.ArrowPostulates2.impossibility_dictatorial_core` | Dictatorial-core inconsistency (+ clinical abbrevs) |
-| `Actions.MotCalc.SampledSemImp.epistemicModel` | MotCalc sample on §2.2.4 epistemic model |
-| `Actions.ActionSystem.PromiseClosed.isContextFree` | Novel reconstruction of 1973 Thm 1 / 1982 §7 |
-| `Actions.ActionSystem.OffenseClosed.isContextFree` | Novel reconstruction of 1973 Thm 4 / 1982 §7 |
+| `Actions.Conflicts.card_conflictFamilies` | Verification: 113 conflict families |
+| `Actions.ActionAutomaton.toActionSystem.Attainable_iff_reaches_length` | Faithful reachability realization |
+| `Actions.Arrow.arrow_impossibility` | Arrow impossibility in this 2×3 encoding |
+| `Actions.ActionSystem.PromiseClosed.isContextFree` | Unconditional promise CF reconstruction |
+| `Actions.ActionSystem.OffenseClosed.isContextFree` | Unconditional offense CF (factor-minimal `HatU`) |
+| `Language.IsContextFree.inter_regular` | Lean discharge of CF ∩ Regular |
+| `Actions.MixedSystem.pi.stringDuration_pi` | Duration homomorphism for `π` |
 
-Full name list (61 theorems + 3 defs) is in `comparator.json`.
-Ch. 3 regular⇒CF and CF∩regular closures are **named hypotheses** on the CF
-theorems (not yet in Mathlib).
+Full name list is in `comparator.json`.
 
 ## Files (Palomar)
 
@@ -60,14 +59,7 @@ theorems (not yet in Mathlib).
 ## Build
 
 ```bash
-lake exe cache get
 lake build
-```
-
-`lake build` typechecks `Actions`, `Challenge`, and `Solution`.
-
-Report PDF:
-
-```bash
-./scripts/build_arxiv_pdf.sh   # writes Actions.pdf / view.pdf / arxiv.pdf
+lake build Challenge Solution
+bash scripts/palomar_preflight.sh --no-policy-sync
 ```

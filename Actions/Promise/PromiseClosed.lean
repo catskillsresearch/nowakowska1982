@@ -52,8 +52,7 @@ theorem eq_L_inter_suffix {T : Set (List A.D)}
 theorem isContextFree [Fintype A.D] [Nonempty A.D]
     {T : Set (List A.D)}
     (hSub : T ⊆ A.L) (ha : A.PromiseClosed T) (hFin : A.FiniteHorizon T)
-    (hL : Language.IsContextFree (A.L : Language A.D))
-    (_hRegCF : RegularImpliesCF A.D) (hInter : CFInterRegular A.D) :
+    (hL : Language.IsContextFree (A.L : Language A.D)) :
     Language.IsContextFree (T : Language A.D) := by
   have hCreg := promiseSuffixLang.isRegular A hFin
   have hEq : (T : Language A.D) =
@@ -61,7 +60,7 @@ theorem isContextFree [Fintype A.D] [Nonempty A.D]
     change (T : Set _) = (A.L ∩ A.promiseSuffixLang T : Set _)
     exact PromiseClosed.eq_L_inter_suffix A hSub ha
   rw [hEq]
-  exact hInter _ _ hL hCreg
+  exact hL.inter_regular hCreg
 
 end PromiseClosed
 

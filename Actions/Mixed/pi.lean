@@ -87,6 +87,36 @@ theorem pure_actions (u : List S.D) :
         List.nil_append]
       exact congrArg (d :: ·) (by simpa [pi] using ih)
 
+/-- Duration of `π` equals mixed duration, after flushing `pending` pauses. -/
+theorem stringDuration_piGo (p : ℕ) (x : List S.Letter) :
+    S.base.stringDuration (S.piGo p x) = (p : ℝ) + S.mixedDuration x := by
+  induction x generalizing p with
+  | nil =>
+      simp [piGo, mixedDuration, ActionSystem.stringDuration_pauseString]
+  | cons c rest ih =>
+      match c with
+      | Sum.inl d =>
+          simp only [piGo, mixedDuration_cons, letterDuration]
+          rw [ActionSystem.stringDuration.append, ActionSystem.stringDuration_pauseString,
+            ActionSystem.stringDuration_cons, ih 0]
+          ring
+      | Sum.inr α =>
+          simp only [piGo, mixedDuration_cons, letterDuration]
+          have h := ih (p + S.φM α)
+          rw [h]
+          push_cast
+          ring
+
+/-- **Duration homomorphism:** `stringDuration (π x) = mixedDuration x`. -/
+theorem stringDuration_pi (x : List S.Letter) :
+    S.base.stringDuration (S.pi x) = S.mixedDuration x := by
+  simpa [pi] using stringDuration_piGo S 0 x
+
+/-- Discrete utterance time of `π x` is the floor of mixed duration. -/
+theorem utteranceTime_pi (x : List S.Letter) :
+    S.utteranceTime (S.pi x) = Nat.floor (S.mixedDuration x) := by
+  simp [utteranceTime, stringDuration_pi]
+
 end pi
 
 end MixedSystem

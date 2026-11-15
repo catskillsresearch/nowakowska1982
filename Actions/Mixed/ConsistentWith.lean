@@ -4,7 +4,7 @@ Released under Apache-2.0 license as described in file LICENSE.
 -/
 module
 
-public import Actions.Mixed.MixedSystem
+public import Actions.Mixed.pi
 import Mathlib.Tactic
 
 @[expose] public section
@@ -12,9 +12,10 @@ import Mathlib.Tactic
 /-!
 # Consistency of an action string with an utterance pair (§5.3.5)
 
-The paper requires a split `x = uv` with `φ(u) = k`. Here the split is
-existential and `k` is carried by the pair; exact duration matching is left
-to instances where `φ` is discrete.
+An action string `x ∈ L` is consistent with `(α, k)` when wants/unwants at
+time `k` hold, and there is a timed split
+`x = u ++ pauseString (φM α) ++ v` with `utteranceTime u = k` so that
+obligations/prohibitions constrain the subsequent string `v`.
 -/
 
 namespace Actions
@@ -30,9 +31,11 @@ def ConsistentWith (x : List S.D) (αk : S.Lambda) : Prop :=
   x ∈ S.base.L ∧
     (S.W αk.1 αk.2 = ∅ ∨ x ∈ S.base.RinvWanted (S.W αk.1 αk.2)) ∧
     (S.W' αk.1 αk.2 = ∅ ∨ x ∉ S.base.RinvUnwanted (S.W' αk.1 αk.2)) ∧
-    ∃ u v : List S.D, x = u ++ v ∧
-      (S.O αk.1 αk.2 = ∅ ∨ v ∈ S.O αk.1 αk.2) ∧
-      (S.O' αk.1 αk.2 = ∅ ∨ v ∉ S.O' αk.1 αk.2)
+    ∃ u v : List S.D,
+      x = u ++ S.base.pauseString (S.φM αk.1) ++ v ∧
+        S.utteranceTime u = αk.2 ∧
+        (S.O αk.1 αk.2 = ∅ ∨ v ∈ S.O αk.1 αk.2) ∧
+        (S.O' αk.1 αk.2 = ∅ ∨ v ∉ S.O' αk.1 αk.2)
 
 /-- Consistency with respect to a set `A ⊆ Λ`. -/
 def ConsistentWithSet (x : List S.D) (A : Set S.Lambda) : Prop :=

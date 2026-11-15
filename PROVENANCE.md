@@ -22,49 +22,54 @@ and [`catskillsresearch/scott1964`](https://github.com/catskillsresearch/scott19
 Palomar registration ID is pending (`formalization.yaml` / `comparator.json`
 still say TBD).
 
+## Framing
+
+Primary story: **rigorous reconstruction / verification** of Nowakowska
+1982/1973, turning impressionistic informal mathematics into
+Comparator-locked Lean statements (cf. Suppes’ observation that some of her
+expository mathematics is woolly). Secondary story: a Lean/Mathlib-facing
+**discharge of classical CF ∩ Regular**, which she only cites externally.
+
+Explicit non-claims: no new psychological theory; no novel Arrow theorem
+beyond the finite 2×3 encoding; clinical labels are packaging of postulate
+failures; the automaton bridge is infrastructure, not a standalone novelty.
+
 ## Compared claims
 
 Packaging follows DomainTheory / scott1980: `comparator.json` names library
-`Actions.*` declarations once; `Challenge.lean` is a single Mathlib-only
-statement file (deliberate `sorry` holes); `Solution.lean` imports the
-sorry-free `Actions/` library.
+`Actions.*` (and one `Language.*`) declarations once; `Challenge.lean` is a
+single Mathlib-only statement file (deliberate `sorry` holes); `Solution.lean`
+imports the sorry-free `Actions/` library.
 
-The Comparator selects **every theorem that is a sink** in the theorems-only
-dependency graph (`docs/dependency_graph_theorems.svg`: nodes with no
-successor, including isolates), plus the automaton realization
-`toActionSystem.L`, and three clinical definition abbreviations. Headline sinks
-include:
+Headline compared claims:
 
-1. **113 conflict patterns** (`conflictPattern_card`) — novel machine-checked
-   count of labeled four-motive conflict types; the 1982 paper states 113
-   without exhibiting the enumeration.
-2. **Automaton realization** (`toActionSystem.L`) — novel machine-checked
-   equality of the induced sixtuplet language with the automaton language;
-   1982 §13 states the reading without a formal identification.
-3. **Arrow dictatorial core** (`ArrowPostulates2.impossibility_dictatorial_core`)
-   — pure scale dictators fail the packaged two-scale Arrow postulates;
-   clinical abbreviations `CompulsiveOrHedonistic`, `BlindObedience`, and
-   `NeuroticAllOrNothing` are disclosed library packaging, not new
-   psychological theorems.
-4. **MotCalc sample** (`SampledSemImp.epistemicModel`) — sampled §2.1.4
-   semantic-implication rules validated on the §2.2.4 epistemic model; not a
-   full 79-rule calculus.
-5. **Positive promise CF** (`PromiseClosed.isContextFree`) — novel
-   reconstruction of 1973 Theorem 1 / 1982 §7, with classical Ch. 3
-   regular⇒CF and CF∩regular closures as named hypotheses.
-6. **Offense CF** (`OffenseClosed.isContextFree`) — novel reconstruction of
-   1973 Theorem 4 / 1982 §7 under the same Ch. 3 hypotheses.
+1. **`card_conflictFamilies`** — machine-checked verification that there are
+   exactly 113 four-motive conflict families (`IsConflictFamily` on
+   `Finset (Finset (Fin 4))`), matching her stated 113 via a structural
+   bijection to a factored count (not a new combinatorial theorem of ours).
+2. **`toActionSystem.Attainable_iff_reaches_length`** — faithful automaton
+   bridge: causation is reachability of runs at time `t = length` (supporting
+   formalization, not novel dynamics).
+3. **`arrow_impossibility` / `arrow_dictator_of_unanimity_IIA`** — standard
+   Arrow impossibility in her finite two-scale / three-option score encoding
+   (not a new social-choice theorem).
+4. **`PromiseClosed.isContextFree` / `OffenseClosed.isContextFree`** —
+   reconstruction of 1973 Thm 1 / Thm 4 with factor-minimal `HatU` and infix
+   offense envelope; now **unconditional** on classical language hypotheses.
+5. **`Language.IsContextFree.inter_regular`** — formalization contribution
+   discharging the CF ∩ Regular lemma she left as a black box (beyond her
+   text; still useful Mathlib-facing work).
+6. **`pi.stringDuration_pi` / timed `Psi.pi_mem_of_motivationalConsistency`** —
+   duration homomorphism and utterance-time coherence for verbal embedding.
 
-Further sinks cover Prax / EffortDominated, verbal embedding and $\psi$,
-promise bridges, scale-dictator / clinical packaging lemmas, automaton
-plumbing, and the toy-world checks. Full Comparator name lists are in
-`comparator.json`.
+Supporting sinks (Prax, MotCalc sample, scale-dictator packaging lemmas,
+toy-world checks including offense witnesses) remain in `comparator.json`
+but are not advertised as headline novelty.
 
 ## Library beyond Comparator
 
 The sorry-free development lives under `Actions/`. Intermediate theorems that
-still have successors in the theorems-only graph remain library-only unless
-named in `comparator.json`.
+still have successors remain library-only unless named in `comparator.json`.
 
 No project-defined axioms are introduced. Compared proofs use only
 `propext`, `Quot.sound`, and `Classical.choice`, as disclosed in

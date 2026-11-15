@@ -30,6 +30,8 @@ def OffenseClosed (U : Set (List A.D)) : Prop :=
 
 namespace OffenseClosed
 
+/-- Under condition (b), `U` is exactly the admissible strings containing a
+factor-minimal first offense as an infix. -/
 theorem eq_L_inter_suffix {U : Set (List A.D)}
     (hSub : U ⊆ A.L) (hb : A.OffenseClosed U) :
     U = A.L ∩ A.offenseSuffixLang U := by
@@ -37,20 +39,16 @@ theorem eq_L_inter_suffix {U : Set (List A.D)}
   constructor
   · intro hx
     refine ⟨hSub hx, ?_⟩
-    rcases HatU.exists_prefix A hx with ⟨u, v, rfl, hu⟩
-    exact ⟨u, hu, v, rfl⟩
-  · intro ⟨hxL, hxC⟩
-    rcases hxC with ⟨u, hu, v, rfl⟩
-    have : [] ++ u ++ v ∈ A.L := by simpa using hxL
-    exact hb this hu.1
+    rcases HatU.exists_factor A hx with ⟨pref, v, suff, rfl, hv⟩
+    exact ⟨pref, v, suff, hv, rfl⟩
+  · rintro ⟨hxL, pref, v, suff, hv, rfl⟩
+    exact hb hxL hv.1
 
 /-- Negative/offense CF (1982 §7 / 1973 Thm 4). Palomar novel reconstruction. -/
 theorem isContextFree [Fintype A.D] [Nonempty A.D]
     {U : Set (List A.D)}
     (hSub : U ⊆ A.L) (hb : A.OffenseClosed U) (hFin : A.FiniteOffenseHorizon U)
-    (_hPrime : A.OffensePrime U)
-    (hL : Language.IsContextFree (A.L : Language A.D))
-    (_hRegCF : RegularImpliesCF A.D) (hInter : CFInterRegular A.D) :
+    (hL : Language.IsContextFree (A.L : Language A.D)) :
     Language.IsContextFree (U : Language A.D) := by
   have hCreg := offenseSuffixLang.isRegular A hFin
   have hEq : (U : Language A.D) =
@@ -58,7 +56,7 @@ theorem isContextFree [Fintype A.D] [Nonempty A.D]
     change (U : Set _) = (A.L ∩ A.offenseSuffixLang U : Set _)
     exact OffenseClosed.eq_L_inter_suffix A hSub hb
   rw [hEq]
-  exact hInter _ _ hL hCreg
+  exact hL.inter_regular hCreg
 
 end OffenseClosed
 

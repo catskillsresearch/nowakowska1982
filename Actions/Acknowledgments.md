@@ -21,6 +21,8 @@ below. We gratefully acknowledge assistance from:
 - **Cursor Grok 4.7** [@Grk47] — Lean 4 / Mathlib formalization of Nowakowska
   (1982), `lake build` repair, vision-OCR transcription, drafting the narrative
   note tree, and Palomar-oriented module packaging.
+- **Claude Fable 5.2** [@Fab52] — substantive Lean repairs on automata
+  realization, offense/HatU regularity, and conflict-family cardinality proofs.
 - **Google Gemini 3.8** [@Gem38] — exploratory and support passes (typographic
   conventions, scope decisions, and cross-checks against the narrative
   inventory).

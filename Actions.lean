@@ -34,6 +34,7 @@ public import Actions.Promise.minφ
 public import Actions.Promise.stringDuration
 public import Actions.Promise.HatT
 public import Actions.Promise.HatU
+public import Actions.Promise.CFInterRegular
 public import Actions.Promise.LanguageHypotheses
 public import Actions.Promise.promiseSuffixLang
 public import Actions.Promise.PromiseClosed

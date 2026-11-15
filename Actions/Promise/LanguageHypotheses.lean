@@ -4,13 +4,17 @@ Released under Apache-2.0 license as described in file LICENSE.
 -/
 module
 
-public import Mathlib.Computability.ContextFreeGrammar
-public import Mathlib.Computability.DFA
+public import Actions.Promise.CFInterRegular
 
 @[expose] public section
 
 /-!
-# Classical Ch. 3 language hypotheses for promise/offense CF
+# Classical Ch. 3 language facts for promise/offense CF
+
+These were formerly named hypotheses (`def … : Prop`) threaded through
+`PromiseClosed.isContextFree` / `OffenseClosed.isContextFree`. They are now
+theorems, proved in `Actions.Promise.CFInterRegular` by the Bar-Hillel
+grammar × DFA product construction.
 -/
 
 namespace Actions
@@ -18,16 +22,19 @@ namespace ActionSystem
 
 open scoped Computability
 
-/-- Classical Ch. 3 hypothesis: every regular language is context-free. -/
-def RegularImpliesCF (α : Type*) : Prop :=
-  ∀ L : Language α, Language.IsRegular L → Language.IsContextFree L
+/-- Classical Ch. 3 fact: over a finite alphabet every regular language is
+context-free. (The finiteness assumption is necessary: a context-free grammar
+has finitely many rules, so it mentions only finitely many terminals.) -/
+theorem RegularImpliesCF (α : Type*) [Finite α] (L : Language α)
+    (hL : Language.IsRegular L) : Language.IsContextFree L :=
+  hL.isContextFree
 
-/-- Classical Ch. 3 hypothesis: CF languages are closed under intersection with
-regular languages. -/
-def CFInterRegular (α : Type*) : Prop :=
-  ∀ L R : Language α,
-    Language.IsContextFree L → Language.IsRegular R →
-      Language.IsContextFree (L ⊓ R)
+/-- Classical Ch. 3 fact (Bar-Hillel): CF languages are closed under
+intersection with regular languages. -/
+theorem CFInterRegular (α : Type*) (L R : Language α)
+    (hL : Language.IsContextFree L) (hR : Language.IsRegular R) :
+    Language.IsContextFree (L ⊓ R) :=
+  hL.inter_regular hR
 
 end ActionSystem
 end Actions
