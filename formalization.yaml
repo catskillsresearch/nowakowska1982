@@ -4,8 +4,8 @@ version: v0.4
 project:
   name: Nowakowska Theory of Actions (1982) in Lean 4
   description: >-
-A Lean 4 / Mathlib (v4.36.0-rc2) formalization of Maria Nowakowska's
-    A Formal Theory of Actions: Syntax and Semantics of Behaviour (chapter
+    A Lean 4 / Mathlib (v4.36.0-rc2) formalization of Maria Nowakowska's
+    A Formal Theory of Actions (Syntax and Semantics of Behaviour; chapter
     dated 1982; Praxiological Studies, 1983), synthesizing the parts of
     Language of Motivation and Language of Actions (1973) that 1982 cites
     for omitted proofs and for the motivational calculus (here: §§2.1.4,
@@ -42,7 +42,7 @@ classification:
   - '68V20'
 status:
   scope: >-
-Complete for the Comparator family in comparator.json: strengthened
+    Complete for the Comparator family in comparator.json: strengthened
     headline theorems (card_conflictFamilies, Attainable_iff_reaches_length,
     arrow_impossibility, unconditional Promise/Offense CF, inter_regular,
     stringDuration_pi) plus supporting sinks and three clinical definition
@@ -596,7 +596,7 @@ comparator_config: comparator.json
 
 fidelity:
   divergences: >-
-Working sources: sources/nowakowska1982.pdf (1982/1983 chapter) and
+    Working sources: sources/nowakowska1982.pdf (1982/1983 chapter) and
     scanned 1973 ranges under sources/nowakowska_1973_*. OCR drafts
     (sources/*.md, *_vision.md) are navigation aids; Lean is authoritative.
     Discrete sentence duration φ_M : M → ℕ is a modeling simplification of
